@@ -164,9 +164,15 @@
     border-radius: 12px;
     padding: 0.9rem 1rem;
     display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+
+  .card .card-top {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
   }
 
   .card .nom {
@@ -198,6 +204,27 @@
   .pastille.rouge { background: var(--rouge); }
   .pastille.ferme { background: #94a3b8; }
 
+  .sparkline-wrap {
+    width: 100%;
+  }
+
+  .sparkline-wrap .sparkline-legende {
+    font-size: 0.68rem;
+    color: var(--gris-texte);
+    margin: 0 0 0.2rem;
+  }
+
+  .sparkline {
+    display: block;
+    width: 100%;
+  }
+
+  .sparkline-vide {
+    font-size: 0.72rem;
+    color: var(--gris-texte);
+    font-style: italic;
+  }
+
   footer.maj {
     text-align: center;
     margin-top: 1.5rem;
@@ -218,8 +245,6 @@
 
   @media (min-width: 420px) {
     .cards { grid-template-columns: 1fr 1fr; }
-    .card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    .card .pastille { align-self: flex-end; }
   }
 </style>
 </head>
@@ -249,6 +274,11 @@
 
     <div class="verdict" id="verdict">Chargement des données…</div>
     <div class="verdict-detail" id="verdict-detail"></div>
+
+    <div class="sparkline-wrap" id="featured-sparkline-wrap" hidden>
+      <p class="sparkline-legende">Même heure, 7 derniers jours</p>
+      <div id="featured-sparkline"></div>
+    </div>
   </div>
 
   <section class="autres">
@@ -274,6 +304,8 @@
     gaugeSub: document.getElementById("gauge-sub"),
     verdict: document.getElementById("verdict"),
     verdictDetail: document.getElementById("verdict-detail"),
+    featuredSparklineWrap: document.getElementById("featured-sparkline-wrap"),
+    featuredSparkline: document.getElementById("featured-sparkline"),
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
     erreur: document.getElementById("erreur"),
@@ -298,6 +330,71 @@
     return "Très fréquentée, prévoyez de l'attente.";
   }
 
+  function pourcentagePoint(pt) {
+    if (!pt || pt.ouvert === false || pt.frequentation_reelle == null || pt.capacite_max == null) {
+      return null;
+    }
+    return Math.min(100, Math.max(0, Math.round((pt.frequentation_reelle / pt.capacite_max) * 100)));
+  }
+
+  function creerSparklineSvg(historique, largeur, hauteur) {
+    if (!historique || !historique.length) return null;
+
+    var valeurs = historique.map(pourcentagePoint);
+    var valides = valeurs.filter(function (v) { return v != null; });
+    if (!valides.length) return null;
+
+    var min = Math.min.apply(null, valides);
+    var max = Math.max.apply(null, valides);
+    if (max - min < 10) {
+      var milieu = (max + min) / 2;
+      min = Math.max(0, milieu - 5);
+      max = Math.min(100, milieu + 5) || 10;
+    }
+
+    var marge = 4;
+    var n = historique.length;
+    var pasX = n > 1 ? (largeur - marge * 2) / (n - 1) : 0;
+
+    var points = valeurs.map(function (v, i) {
+      if (v == null) return null;
+      var x = marge + i * pasX;
+      var y = marge + (1 - (v - min) / (max - min)) * (hauteur - marge * 2);
+      return { x: x, y: y, v: v };
+    });
+
+    var segments = [];
+    var courant = [];
+    points.forEach(function (p) {
+      if (p) {
+        courant.push(p);
+      } else if (courant.length) {
+        segments.push(courant);
+        courant = [];
+      }
+    });
+    if (courant.length) segments.push(courant);
+
+    var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="sparkline" preserveAspectRatio="none">';
+    segments.forEach(function (segment) {
+      var d = segment
+        .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
+        .join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="#94a3b8" stroke-width="2" ' +
+        'stroke-linecap="round" stroke-linejoin="round"/>';
+    });
+
+    var dernier = points[points.length - 1];
+    if (dernier) {
+      var couleur = couleurNiveau(niveau(dernier.v));
+      svg += '<circle cx="' + dernier.x.toFixed(1) + '" cy="' + dernier.y.toFixed(1) +
+        '" r="4" fill="' + couleur + '"/>';
+    }
+
+    svg += "</svg>";
+    return svg;
+  }
+
   function formatMinutes(dateIso) {
     if (!dateIso) return "";
     var diffMs = Date.now() - new Date(dateIso).getTime();
@@ -316,6 +413,16 @@
     }
   }
 
+  function renderFeaturedSparkline(piscine) {
+    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 260, 44) : null;
+    if (svg) {
+      els.featuredSparkline.innerHTML = svg;
+      els.featuredSparklineWrap.hidden = false;
+    } else {
+      els.featuredSparklineWrap.hidden = true;
+    }
+  }
+
   function renderFeatured(piscine) {
     els.featuredNom.textContent = piscine ? piscine.nom : "Centre Nautique T.Bertrand (CNTB)";
 
@@ -327,6 +434,7 @@
       els.verdict.textContent = "Piscine fermée pour le moment";
       els.verdict.className = "verdict niveau-ferme";
       els.verdictDetail.textContent = "";
+      renderFeaturedSparkline(piscine);
       return;
     }
 
@@ -346,11 +454,16 @@
     els.verdict.textContent = texteVerdict(n, pourcentage);
     els.verdict.className = "verdict niveau-" + n;
     els.verdictDetail.textContent = piscine.places_restantes + " places restantes";
+
+    renderFeaturedSparkline(piscine);
   }
 
   function renderCard(cle, piscine) {
     var div = document.createElement("div");
     div.className = "card";
+
+    var top = document.createElement("div");
+    top.className = "card-top";
 
     var infos = document.createElement("div");
     var nom = document.createElement("div");
@@ -378,8 +491,24 @@
     }
 
     infos.appendChild(places);
-    div.appendChild(infos);
-    div.appendChild(pastille);
+    top.appendChild(infos);
+    top.appendChild(pastille);
+    div.appendChild(top);
+
+    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 220, 28) : null;
+    if (svg) {
+      var sparklineWrap = document.createElement("div");
+      sparklineWrap.className = "sparkline-wrap";
+      var legende = document.createElement("p");
+      legende.className = "sparkline-legende";
+      legende.textContent = "Même heure, 7 derniers jours";
+      sparklineWrap.appendChild(legende);
+      var sparklineDiv = document.createElement("div");
+      sparklineDiv.innerHTML = svg;
+      sparklineWrap.appendChild(sparklineDiv);
+      div.appendChild(sparklineWrap);
+    }
+
     return div;
   }
 
