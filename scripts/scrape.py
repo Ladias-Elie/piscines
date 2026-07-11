@@ -7,6 +7,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
 
@@ -14,6 +15,9 @@ URL = "https://www.piscines-patinoires.lyon.fr/frequentation-piscine.html"
 ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "data.json"
 HISTORY_FILE = ROOT / "history.json"
+
+# Les horodatages sont stockés en UTC, mais affichés à l'heure de Lyon.
+FUSEAU_LYON = ZoneInfo("Europe/Paris")
 
 # Nombre de jours précédents comparés au jour courant dans la mini-courbe, et
 # tolérance de recherche autour de la même heure (le cron tourne toutes les
@@ -129,7 +133,7 @@ def build_journee_actuelle(history: list, pool_key: str, now: datetime) -> list:
 
 def _point_from_pool_heure(horodatage: datetime, pool: dict) -> dict:
     return {
-        "heure": horodatage.strftime("%H:%M"),
+        "heure": horodatage.astimezone(FUSEAU_LYON).strftime("%H:%M"),
         "frequentation_reelle": pool.get("frequentation_reelle"),
         "capacite_max": pool.get("capacite_max"),
         "ouvert": pool.get("ouvert"),

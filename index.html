@@ -5,96 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Piscines Lyon — Fréquentation en direct</title>
 <meta name="description" content="Fréquentation en temps réel des piscines d'été de Lyon : CNTB, Vaise, Duchère, Mermoz.">
-<meta name="theme-color" content="#0284c7">
+<meta name="theme-color" content="#1f6fb2">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
   :root {
-    --bleu: #0284c7;
-    --bleu-fonce: #075985;
-    --vert: #16a34a;
-    --orange: #ea580c;
-    --rouge: #dc2626;
-    --gris-fond: #f1f5f9;
-    --gris-texte: #475569;
-    --gris-fonce: #1e293b;
-    --blanc: #ffffff;
-    --radius: 16px;
+    --bg: #f5efe1;
+    --ink: #12213b;
+    --ink-soft: #55607a;
+    --ink-faint: #8891a3;
+    --card-bg: #ffffff;
+    --pool: #1f6fb2;
+    --sun: #eab13a;
+    --vert: #2f8f5b;
+    --orange: #d97a34;
+    --rouge: #c74634;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
+    min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--gris-fond);
-    color: var(--gris-fonce);
+    background: var(--bg);
+    color: var(--ink);
     padding-bottom: 2rem;
   }
 
   header {
-    background: linear-gradient(135deg, var(--bleu), var(--bleu-fonce));
-    color: var(--blanc);
-    padding: 1.25rem 1rem 1.5rem;
+    position: relative;
+    padding: 2.1rem 1.25rem 1.1rem;
     text-align: center;
+    overflow: hidden;
+  }
+
+  .deco-sun {
+    position: absolute;
+    top: -70px;
+    right: -60px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: var(--sun);
+    z-index: 0;
+  }
+
+  header .kicker,
+  header h1,
+  header p {
+    position: relative;
+    z-index: 1;
+  }
+
+  .kicker {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--pool);
+    font-weight: 800;
   }
 
   header h1 {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 700;
+    margin: 0.4rem 0 0;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
   }
 
   header p {
-    margin: 0.35rem 0 0;
-    font-size: 0.8rem;
-    opacity: 0.85;
+    margin: 0.45rem 0 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
   }
+
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 18px;
+    margin-bottom: 0.5rem;
+  }
+
+  .wave-divider svg { display: block; width: 100%; height: 100%; }
 
   main {
     max-width: 480px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 1rem;
   }
 
   .featured {
-    background: var(--blanc);
-    border-radius: var(--radius);
-    padding: 1.5rem 1rem;
-    margin-top: -1.75rem;
-    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+    background: var(--card-bg);
+    border: 2.5px solid var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.25rem 1.5rem;
+    box-shadow: 7px 7px 0 var(--ink);
     text-align: center;
   }
 
-  .featured .badge {
-    display: inline-block;
-    background: var(--bleu);
-    color: var(--blanc);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-  }
-
   .featured h2 {
-    margin: 0 0 1rem;
-    font-size: 1.15rem;
+    margin: 0 0 1.35rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
   }
 
   .gauge-wrap {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     margin: 0 auto;
   }
 
   .gauge-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 
-  .gauge-track { fill: none; stroke: #e2e8f0; stroke-width: 14; }
+  .gauge-track { fill: none; stroke: rgba(18, 33, 59, 0.1); stroke-width: 14; }
 
   .gauge-value {
     fill: none;
@@ -113,60 +143,74 @@
   }
 
   .gauge-percent {
-    font-size: 2.1rem;
+    font-size: 2.5rem;
     font-weight: 800;
+    letter-spacing: -0.02em;
     line-height: 1;
   }
 
   .gauge-sub {
-    font-size: 0.75rem;
-    color: var(--gris-texte);
-    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.35rem;
   }
 
   .verdict {
-    margin-top: 1.1rem;
-    font-size: 1rem;
-    font-weight: 700;
+    display: inline-block;
+    margin-top: 1.35rem;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #fff;
+    padding: 0.5rem 1.05rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
   }
 
   .verdict-detail {
-    margin-top: 0.3rem;
-    font-size: 0.85rem;
-    color: var(--gris-texte);
+    margin-top: 0.55rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
   }
 
-  .niveau-vert { color: var(--vert); }
-  .niveau-orange { color: var(--orange); }
-  .niveau-rouge { color: var(--rouge); }
-  .niveau-ferme { color: var(--gris-texte); }
+  .niveau-vert { background: var(--vert); }
+  .niveau-orange { background: var(--orange); }
+  .niveau-rouge { background: var(--rouge); }
+  .niveau-ferme { background: var(--ink-faint); }
 
   section.autres {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
   }
 
   section.autres h3 {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gris-texte);
-    margin: 0 0 0.6rem 0.25rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    font-weight: 800;
+    margin: 0 0 0.7rem 0.25rem;
   }
 
   .cards {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .card {
-    background: var(--blanc);
-    border-radius: 12px;
-    padding: 0.9rem 1rem;
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-md);
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    gap: 0.65rem;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .card:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ink);
   }
 
   .card .card-top {
@@ -178,40 +222,45 @@
   .card .nom {
     font-weight: 700;
     font-size: 0.95rem;
+    color: var(--ink);
   }
 
   .card .places {
     font-size: 0.78rem;
-    color: var(--gris-texte);
-    margin-top: 0.15rem;
+    color: var(--ink-soft);
+    margin-top: 0.2rem;
   }
 
   .card .pastille {
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    border: 2px solid var(--ink);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 0.8rem;
-    color: var(--blanc);
+    font-size: 0.78rem;
+    color: #fff;
     flex-shrink: 0;
   }
 
   .pastille.vert { background: var(--vert); }
   .pastille.orange { background: var(--orange); }
   .pastille.rouge { background: var(--rouge); }
-  .pastille.ferme { background: #94a3b8; }
+  .pastille.ferme { background: var(--ink-faint); }
 
   .sparkline-wrap {
     width: 100%;
   }
 
   .sparkline-wrap .sparkline-legende {
-    font-size: 0.68rem;
-    color: var(--gris-texte);
-    margin: 0 0 0.2rem;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-weight: 700;
+    margin: 0 0 0.3rem;
   }
 
   .sparkline {
@@ -219,26 +268,21 @@
     width: 100%;
   }
 
-  .sparkline-vide {
-    font-size: 0.72rem;
-    color: var(--gris-texte);
-    font-style: italic;
-  }
-
   .courbe-jour-wrap {
     width: 100%;
-    margin-top: 1.1rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid #e2e8f0;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--ink);
+    text-align: left;
   }
 
   .courbe-jour-legende {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gris-texte);
-    margin: 0 0 0.4rem;
-    text-align: left;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-weight: 800;
+    margin: 0 0 0.5rem;
   }
 
   .courbe-jour {
@@ -246,30 +290,109 @@
     width: 100%;
   }
 
+  .point-hit { cursor: pointer; }
+
   .courbe-jour-axes {
     display: flex;
     justify-content: space-between;
     font-size: 0.68rem;
-    color: var(--gris-texte);
-    margin-top: 0.15rem;
+    color: var(--ink-faint);
+    font-weight: 700;
+    margin-top: 0.2rem;
   }
 
   footer.maj {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     font-size: 0.75rem;
-    color: var(--gris-texte);
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--vert);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
   }
 
   .erreur {
     text-align: center;
     color: var(--rouge);
+    font-weight: 700;
     font-size: 0.85rem;
     margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #f7ddd7;
+    border: 2px solid var(--rouge);
+    border-radius: var(--radius-sm);
   }
 
-  .skeleton {
-    opacity: 0.5;
+  .point-tooltip {
+    position: fixed;
+    z-index: 50;
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 0.65rem 0.9rem 0.6rem;
+    min-width: 136px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .point-tooltip[hidden] { display: none; }
+
+  .point-tooltip-close {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .point-tooltip-heure {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .point-tooltip-valeur {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .point-tooltip-badge {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 0.14rem 0.55rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    color: #fff;
   }
 
   @media (min-width: 420px) {
@@ -280,20 +403,28 @@
 <body>
 
 <header>
-  <h1>🏊 Piscines de Lyon</h1>
-  <p>Fréquentation en direct des piscines d'été</p>
+  <div class="deco-sun"></div>
+  <div class="kicker">Lyon · Piscines d'été</div>
+  <h1>Fréquentation en direct</h1>
+  <p>CNTB · Vaise · Duchère · Mermoz</p>
 </header>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 400 28" preserveAspectRatio="none">
+    <path d="M0,14 C25,0 25,28 50,14 C75,0 75,28 100,14 C125,0 125,28 150,14 C175,0 175,28 200,14 C225,0 225,28 250,14 C275,0 275,28 300,14 C325,0 325,28 350,14 C375,0 375,28 400,14"
+          fill="none" stroke="#12213b" stroke-width="2" opacity="0.16"/>
+  </svg>
+</div>
 
 <main>
   <div class="featured" id="featured">
-    <span class="badge">En vedette</span>
     <h2 id="featured-nom">Centre Nautique T.Bertrand (CNTB)</h2>
 
     <div class="gauge-wrap">
       <svg viewBox="0 0 200 200">
         <circle class="gauge-track" cx="100" cy="100" r="85"></circle>
         <circle class="gauge-value" id="gauge-circle" cx="100" cy="100" r="85"
-                stroke="#16a34a" stroke-dasharray="0 534"></circle>
+                stroke="#2f8f5b" stroke-dasharray="0 534"></circle>
       </svg>
       <div class="gauge-center">
         <div class="gauge-percent" id="gauge-percent">—</div>
@@ -327,9 +458,17 @@
   <div class="erreur" id="erreur" hidden></div>
 
   <footer class="maj">
+    <span class="live-dot"></span>
     <span id="maj-texte">Mise à jour…</span>
   </footer>
 </main>
+
+<div class="point-tooltip" id="point-tooltip" role="tooltip" hidden>
+  <button class="point-tooltip-close" id="point-tooltip-close" aria-label="Fermer">×</button>
+  <div class="point-tooltip-heure" id="point-tooltip-heure"></div>
+  <div class="point-tooltip-valeur" id="point-tooltip-valeur"></div>
+  <span class="point-tooltip-badge" id="point-tooltip-badge"></span>
+</div>
 
 <script>
 (function () {
@@ -351,6 +490,11 @@
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
     erreur: document.getElementById("erreur"),
+    pointTooltip: document.getElementById("point-tooltip"),
+    pointTooltipHeure: document.getElementById("point-tooltip-heure"),
+    pointTooltipValeur: document.getElementById("point-tooltip-valeur"),
+    pointTooltipBadge: document.getElementById("point-tooltip-badge"),
+    pointTooltipClose: document.getElementById("point-tooltip-close"),
   };
 
   var CIRCONFERENCE = 2 * Math.PI * 85;
@@ -363,7 +507,7 @@
   }
 
   function couleurNiveau(n) {
-    return { vert: "#16a34a", orange: "#ea580c", rouge: "#dc2626" }[n];
+    return { vert: "#2f8f5b", orange: "#d97a34", rouge: "#c74634" }[n];
   }
 
   function texteVerdict(n, pourcentage) {
@@ -422,7 +566,7 @@
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#94a3b8" stroke-width="2" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="rgba(18,33,59,0.3)" stroke-width="2" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
     });
 
@@ -448,7 +592,7 @@
     var valeurs = journee.map(pourcentagePoint);
     if (!valeurs.some(function (v) { return v != null; })) return null;
 
-    var marge = 6;
+    var marge = 8;
     var t0 = minutesDepuisMinuit(journee[0].heure);
     var t1 = minutesDepuisMinuit(journee[journee.length - 1].heure);
     var duree = Math.max(1, t1 - t0);
@@ -461,7 +605,14 @@
       var v = valeurs[i];
       if (v == null) return null;
       var fraction = (minutesDepuisMinuit(pt.heure) - t0) / duree;
-      return { x: marge + fraction * (largeur - marge * 2), y: y(v), v: v };
+      return {
+        x: marge + fraction * (largeur - marge * 2),
+        y: y(v),
+        v: v,
+        heure: pt.heure,
+        freq: pt.frequentation_reelle,
+        cap: pt.capacite_max,
+      };
     });
 
     var segments = [];
@@ -480,18 +631,20 @@
 
     [50, 80].forEach(function (seuil) {
       svg += '<line x1="' + marge + '" y1="' + y(seuil).toFixed(1) + '" x2="' + (largeur - marge) +
-        '" y2="' + y(seuil).toFixed(1) + '" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>';
+        '" y2="' + y(seuil).toFixed(1) + '" stroke="rgba(18,33,59,0.14)" stroke-width="1" stroke-dasharray="3,3"/>';
     });
 
     segments.forEach(function (segment) {
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#0284c7" stroke-width="2" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="#1f6fb2" stroke-width="2.5" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
       segment.forEach(function (p) {
-        svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3" fill="' +
-          couleurNiveau(niveau(p.v)) + '"/>';
+        svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3.5" fill="' +
+          couleurNiveau(niveau(p.v)) + '" stroke="#12213b" stroke-width="1"/>';
+        svg += '<circle class="point-hit" data-heure="' + p.heure + '" data-freq="' + p.freq + '" data-cap="' + p.cap +
+          '" data-pct="' + p.v + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="10" fill="transparent"/>';
       });
     });
 
@@ -511,11 +664,65 @@
     return "il y a " + heures + "h" + (reste ? reste : "");
   }
 
+  function formatHeureLyon(dateIso) {
+    if (!dateIso) return "";
+    return new Date(dateIso).toLocaleTimeString("fr-FR", {
+      timeZone: "Europe/Paris",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   function majHorodatage() {
     if (derniereMaj) {
-      els.majTexte.textContent = "Mis à jour " + formatMinutes(derniereMaj);
+      els.majTexte.textContent = "Mis à jour à " + formatHeureLyon(derniereMaj) +
+        " (" + formatMinutes(derniereMaj) + ")";
     }
   }
+
+  function ouvrirTooltip(cible, clientX, clientY) {
+    var heure = cible.getAttribute("data-heure");
+    var freq = cible.getAttribute("data-freq");
+    var cap = cible.getAttribute("data-cap");
+    var pct = parseInt(cible.getAttribute("data-pct"), 10);
+    var n = niveau(pct);
+
+    els.pointTooltipHeure.textContent = heure;
+    els.pointTooltipValeur.textContent = freq + " / " + cap + " personnes";
+    els.pointTooltipBadge.textContent = pct + "%";
+    els.pointTooltipBadge.style.background = couleurNiveau(n);
+    els.pointTooltip.hidden = false;
+
+    var largeurTooltip = els.pointTooltip.offsetWidth || 140;
+    var hauteurTooltip = els.pointTooltip.offsetHeight || 60;
+    var x = Math.min(Math.max(8, clientX - largeurTooltip / 2), window.innerWidth - largeurTooltip - 8);
+    var y = clientY - hauteurTooltip - 18;
+    if (y < 8) y = clientY + 18;
+    els.pointTooltip.style.left = x + "px";
+    els.pointTooltip.style.top = y + "px";
+  }
+
+  function fermerTooltip() {
+    els.pointTooltip.hidden = true;
+  }
+
+  els.courbeJour.addEventListener("mouseover", function (e) {
+    if (e.target.classList.contains("point-hit")) ouvrirTooltip(e.target, e.clientX, e.clientY);
+  });
+  els.courbeJour.addEventListener("mouseout", function (e) {
+    if (e.target.classList.contains("point-hit")) fermerTooltip();
+  });
+  els.courbeJour.addEventListener("click", function (e) {
+    if (e.target.classList.contains("point-hit")) {
+      e.stopPropagation();
+      ouvrirTooltip(e.target, e.clientX, e.clientY);
+    }
+  });
+  els.pointTooltipClose.addEventListener("click", function (e) {
+    e.stopPropagation();
+    fermerTooltip();
+  });
+  document.addEventListener("click", fermerTooltip);
 
   function renderFeaturedSparkline(piscine) {
     var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 260, 44) : null;
@@ -545,8 +752,9 @@
 
     if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
       els.gaugeCircle.setAttribute("stroke-dasharray", "0 " + CIRCONFERENCE);
-      els.gaugeCircle.setAttribute("stroke", "#94a3b8");
+      els.gaugeCircle.setAttribute("stroke", "rgba(18,33,59,0.18)");
       els.gaugePercent.textContent = "—";
+      els.gaugePercent.style.color = "var(--ink-faint)";
       els.gaugeSub.textContent = "Fermée";
       els.verdict.textContent = "Piscine fermée pour le moment";
       els.verdict.className = "verdict niveau-ferme";
