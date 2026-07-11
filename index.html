@@ -108,21 +108,6 @@
     text-align: center;
   }
 
-  .featured .badge {
-    display: inline-flex;
-    align-items: center;
-    background: var(--pool);
-    color: #fff;
-    border: 2px solid var(--ink);
-    font-size: 0.66rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
-    margin-bottom: 1rem;
-  }
-
   .featured h2 {
     margin: 0 0 1.35rem;
     font-size: 1.05rem;
@@ -433,7 +418,6 @@
 
 <main>
   <div class="featured" id="featured">
-    <span class="badge">En vedette</span>
     <h2 id="featured-nom">Centre Nautique T.Bertrand (CNTB)</h2>
 
     <div class="gauge-wrap">
@@ -680,9 +664,19 @@
     return "il y a " + heures + "h" + (reste ? reste : "");
   }
 
+  function formatHeureLyon(dateIso) {
+    if (!dateIso) return "";
+    return new Date(dateIso).toLocaleTimeString("fr-FR", {
+      timeZone: "Europe/Paris",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   function majHorodatage() {
     if (derniereMaj) {
-      els.majTexte.textContent = "Mis à jour " + formatMinutes(derniereMaj);
+      els.majTexte.textContent = "Mis à jour à " + formatHeureLyon(derniereMaj) +
+        " (" + formatMinutes(derniereMaj) + ")";
     }
   }
 
