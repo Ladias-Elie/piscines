@@ -225,6 +225,35 @@
     font-style: italic;
   }
 
+  .courbe-jour-wrap {
+    width: 100%;
+    margin-top: 1.1rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .courbe-jour-legende {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gris-texte);
+    margin: 0 0 0.4rem;
+    text-align: left;
+  }
+
+  .courbe-jour {
+    display: block;
+    width: 100%;
+  }
+
+  .courbe-jour-axes {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--gris-texte);
+    margin-top: 0.15rem;
+  }
+
   footer.maj {
     text-align: center;
     margin-top: 1.5rem;
@@ -275,6 +304,15 @@
     <div class="verdict" id="verdict">Chargement des données…</div>
     <div class="verdict-detail" id="verdict-detail"></div>
 
+    <div class="courbe-jour-wrap" id="courbe-jour-wrap" hidden>
+      <p class="courbe-jour-legende">Aujourd'hui</p>
+      <div id="courbe-jour"></div>
+      <div class="courbe-jour-axes">
+        <span id="courbe-jour-debut"></span>
+        <span id="courbe-jour-fin"></span>
+      </div>
+    </div>
+
     <div class="sparkline-wrap" id="featured-sparkline-wrap" hidden>
       <p class="sparkline-legende">Même heure, 7 derniers jours</p>
       <div id="featured-sparkline"></div>
@@ -306,6 +344,10 @@
     verdictDetail: document.getElementById("verdict-detail"),
     featuredSparklineWrap: document.getElementById("featured-sparkline-wrap"),
     featuredSparkline: document.getElementById("featured-sparkline"),
+    courbeJourWrap: document.getElementById("courbe-jour-wrap"),
+    courbeJour: document.getElementById("courbe-jour"),
+    courbeJourDebut: document.getElementById("courbe-jour-debut"),
+    courbeJourFin: document.getElementById("courbe-jour-fin"),
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
     erreur: document.getElementById("erreur"),
@@ -395,6 +437,68 @@
     return svg;
   }
 
+  function minutesDepuisMinuit(heure) {
+    var parts = heure.split(":");
+    return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+  }
+
+  function creerCourbeJournee(journee, largeur, hauteur) {
+    if (!journee || journee.length < 2) return null;
+
+    var valeurs = journee.map(pourcentagePoint);
+    if (!valeurs.some(function (v) { return v != null; })) return null;
+
+    var marge = 6;
+    var t0 = minutesDepuisMinuit(journee[0].heure);
+    var t1 = minutesDepuisMinuit(journee[journee.length - 1].heure);
+    var duree = Math.max(1, t1 - t0);
+
+    function y(pourcentage) {
+      return marge + (1 - pourcentage / 100) * (hauteur - marge * 2);
+    }
+
+    var points = journee.map(function (pt, i) {
+      var v = valeurs[i];
+      if (v == null) return null;
+      var fraction = (minutesDepuisMinuit(pt.heure) - t0) / duree;
+      return { x: marge + fraction * (largeur - marge * 2), y: y(v), v: v };
+    });
+
+    var segments = [];
+    var courant = [];
+    points.forEach(function (p) {
+      if (p) {
+        courant.push(p);
+      } else if (courant.length) {
+        segments.push(courant);
+        courant = [];
+      }
+    });
+    if (courant.length) segments.push(courant);
+
+    var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="courbe-jour">';
+
+    [50, 80].forEach(function (seuil) {
+      svg += '<line x1="' + marge + '" y1="' + y(seuil).toFixed(1) + '" x2="' + (largeur - marge) +
+        '" y2="' + y(seuil).toFixed(1) + '" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>';
+    });
+
+    segments.forEach(function (segment) {
+      var d = segment
+        .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
+        .join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="#0284c7" stroke-width="2" ' +
+        'stroke-linecap="round" stroke-linejoin="round"/>';
+      segment.forEach(function (p) {
+        svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3" fill="' +
+          couleurNiveau(niveau(p.v)) + '"/>';
+      });
+    });
+
+    svg += "</svg>";
+    return svg;
+  }
+
   function formatMinutes(dateIso) {
     if (!dateIso) return "";
     var diffMs = Date.now() - new Date(dateIso).getTime();
@@ -423,6 +527,19 @@
     }
   }
 
+  function renderCourbeJournee(piscine) {
+    var journee = piscine ? piscine.journee_actuelle : null;
+    var svg = journee ? creerCourbeJournee(journee, 300, 110) : null;
+    if (svg) {
+      els.courbeJour.innerHTML = svg;
+      els.courbeJourDebut.textContent = journee[0].heure;
+      els.courbeJourFin.textContent = journee[journee.length - 1].heure;
+      els.courbeJourWrap.hidden = false;
+    } else {
+      els.courbeJourWrap.hidden = true;
+    }
+  }
+
   function renderFeatured(piscine) {
     els.featuredNom.textContent = piscine ? piscine.nom : "Centre Nautique T.Bertrand (CNTB)";
 
@@ -435,6 +552,7 @@
       els.verdict.className = "verdict niveau-ferme";
       els.verdictDetail.textContent = "";
       renderFeaturedSparkline(piscine);
+      renderCourbeJournee(piscine);
       return;
     }
 
@@ -456,6 +574,7 @@
     els.verdictDetail.textContent = piscine.places_restantes + " places restantes";
 
     renderFeaturedSparkline(piscine);
+    renderCourbeJournee(piscine);
   }
 
   function renderCard(cle, piscine) {
