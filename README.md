@@ -67,15 +67,28 @@ python scripts/scrape.py
       "capacite_max": 2000,
       "frequentation_reelle": 340,
       "places_restantes": 1660,
-      "ouvert": true
+      "ouvert": true,
+      "historique_7j": [
+        { "date": "2026-07-05", "frequentation_reelle": 210, "capacite_max": 2000, "ouvert": true },
+        { "date": "2026-07-06", "frequentation_reelle": null, "capacite_max": null, "ouvert": null },
+        { "date": "2026-07-11", "frequentation_reelle": 340, "capacite_max": 2000, "ouvert": true }
+      ]
     },
     "Vaise": {
       "nom": "Piscine de Vaise",
       "capacite_max": 1100,
       "frequentation_reelle": null,
       "places_restantes": null,
-      "ouvert": false
+      "ouvert": false,
+      "historique_7j": []
     }
   }
 }
 ```
+
+`historique_7j` contient, pour chaque piscine, la fréquentation relevée à la
+même heure que maintenant sur les 6 jours précédents (avec un trou `null`
+si aucune mesure n'a été prise à ce créneau ce jour-là), suivie du point du
+jour. La PWA l'utilise pour afficher une mini-courbe de comparaison à côté
+de chaque chiffre. Ce champ est dérivé de `history.json` à chaque
+exécution du scraper et n'est donc présent que dans `data.json`.

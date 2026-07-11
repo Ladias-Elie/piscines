@@ -4,7 +4,7 @@
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 
@@ -14,6 +14,12 @@ URL = "https://www.piscines-patinoires.lyon.fr/frequentation-piscine.html"
 ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "data.json"
 HISTORY_FILE = ROOT / "history.json"
+
+# Nombre de jours précédents comparés au jour courant dans la mini-courbe, et
+# tolérance de recherche autour de la même heure (le cron tourne toutes les
+# 15 min mais peut avoir un peu de retard).
+JOURS_HISTORIQUE = 6
+TOLERANCE_MINUTES = 25
 
 # Correspondance entre un mot-clé identifiant chaque piscine d'été et sa clé dans le JSON.
 POOLS = {
@@ -88,6 +94,46 @@ def load_json(path: Path, default):
         return default
 
 
+def _point_from_pool(date_iso: str, pool) -> dict:
+    if pool is None:
+        return {"date": date_iso, "frequentation_reelle": None, "capacite_max": None, "ouvert": None}
+    return {
+        "date": date_iso,
+        "frequentation_reelle": pool.get("frequentation_reelle"),
+        "capacite_max": pool.get("capacite_max"),
+        "ouvert": pool.get("ouvert"),
+    }
+
+
+def build_historique_7j(history: list, pool_key: str, now: datetime) -> list:
+    """Pour une piscine, renvoie les valeurs à la même heure sur les JOURS_HISTORIQUE
+    jours précédents, plus le point du jour, pour tracer une mini-courbe de comparaison."""
+
+    par_date = {}
+    for entry in history:
+        try:
+            horodatage = datetime.fromisoformat(entry["horodatage"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        par_date.setdefault(horodatage.date(), []).append((horodatage, entry))
+
+    points = []
+    for jours_avant in range(JOURS_HISTORIQUE, 0, -1):
+        cible = now - timedelta(days=jours_avant)
+        meilleur_pool = None
+        meilleur_ecart = None
+        for horodatage, entry in par_date.get(cible.date(), []):
+            ecart = abs((horodatage - cible).total_seconds())
+            if ecart <= TOLERANCE_MINUTES * 60 and (meilleur_ecart is None or ecart < meilleur_ecart):
+                pool = entry.get("piscines", {}).get(pool_key)
+                if pool is not None:
+                    meilleur_pool = pool
+                    meilleur_ecart = ecart
+        points.append(_point_from_pool(cible.date().isoformat(), meilleur_pool))
+
+    return points
+
+
 def main() -> int:
     try:
         html = fetch_html(URL)
@@ -106,15 +152,24 @@ def main() -> int:
         print("Aucune piscine trouvée, le tableau a peut-être changé de structure.", file=sys.stderr)
         return 1
 
-    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    now_dt = datetime.now(timezone.utc)
+    now = now_dt.isoformat(timespec="seconds")
+
+    history = load_json(HISTORY_FILE, [])
+
+    piscines_avec_historique = {}
+    for key, pool in pools.items():
+        historique = build_historique_7j(history, key, now_dt)
+        historique.append(_point_from_pool(now_dt.date().isoformat(), pool))
+        piscines_avec_historique[key] = {**pool, "historique_7j": historique}
 
     data = {
         "derniere_mise_a_jour": now,
-        "piscines": pools,
+        "piscines": piscines_avec_historique,
     }
     DATA_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    history = load_json(HISTORY_FILE, [])
+    # history.json ne garde que les valeurs brutes mesurées, sans la mini-courbe dérivée.
     history.append({"horodatage": now, "piscines": pools})
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
