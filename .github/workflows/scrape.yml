@@ -2,7 +2,9 @@ name: Scrape fréquentation piscines
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    # Décalé des marques rondes (:00/:15/:30/:45) pour éviter la contention
+    # documentée par GitHub sur les crons alignés au quart d'heure.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch: {}
 
 permissions:
