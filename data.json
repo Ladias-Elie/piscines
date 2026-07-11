@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-07-11T13:18:40+00:00",
+  "derniere_mise_a_jour": "2026-07-11T13:40:55+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T.Bertrand (CNTB)",
@@ -157,9 +157,9 @@
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 500,
-      "frequentation_reelle": 1,
-      "places_restantes": 499,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "historique_7j": [
         {
           "date": "2026-07-05",
@@ -199,9 +199,9 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 1,
+          "frequentation_reelle": null,
           "capacite_max": 500,
-          "ouvert": true
+          "ouvert": false
         }
       ]
     }
