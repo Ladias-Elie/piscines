@@ -5,96 +5,187 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Piscines Lyon — Fréquentation en direct</title>
 <meta name="description" content="Fréquentation en temps réel des piscines d'été de Lyon : CNTB, Vaise, Duchère, Mermoz.">
-<meta name="theme-color" content="#0284c7">
+<meta name="theme-color" content="#060a14">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
   :root {
-    --bleu: #0284c7;
-    --bleu-fonce: #075985;
-    --vert: #16a34a;
-    --orange: #ea580c;
-    --rouge: #dc2626;
-    --gris-fond: #f1f5f9;
-    --gris-texte: #475569;
-    --gris-fonce: #1e293b;
-    --blanc: #ffffff;
-    --radius: 16px;
+    --bg: #060a14;
+    --glass: rgba(255, 255, 255, 0.055);
+    --glass-strong: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --texte: #f1f5fb;
+    --texte-muted: #94a3bb;
+    --texte-faint: #5b6579;
+    --vert: #34d399;
+    --orange: #fb923c;
+    --rouge: #fb7185;
+    --accent: #22d3ee;
+    --accent-2: #818cf8;
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
+    min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--gris-fond);
-    color: var(--gris-fonce);
+    background: var(--bg);
+    color: var(--texte);
     padding-bottom: 2rem;
+    overflow-x: hidden;
+  }
+
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .blob-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    top: -140px;
+    left: -120px;
+    animation: derive-1 20s ease-in-out infinite alternate;
+  }
+
+  .blob-2 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, var(--accent-2), transparent 70%);
+    bottom: -160px;
+    right: -100px;
+    animation: derive-2 24s ease-in-out infinite alternate;
+  }
+
+  .blob-3 {
+    width: 300px;
+    height: 300px;
+    opacity: 0.32;
+    background: radial-gradient(circle, var(--vert), transparent 70%);
+    top: 38%;
+    left: 55%;
+    animation: derive-1 28s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes derive-1 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(30px, 40px) scale(1.15); }
+  }
+
+  @keyframes derive-2 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(-40px, -25px) scale(1.1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none !important; }
   }
 
   header {
-    background: linear-gradient(135deg, var(--bleu), var(--bleu-fonce));
-    color: var(--blanc);
-    padding: 1.25rem 1rem 1.5rem;
+    position: relative;
+    z-index: 1;
+    padding: 2.25rem 1.25rem 1rem;
     text-align: center;
   }
 
-  header h1 {
-    margin: 0;
-    font-size: 1.25rem;
+  .kicker {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--texte-muted);
     font-weight: 700;
   }
 
+  header h1 {
+    margin: 0.4rem 0 0;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, #f8fafc, var(--accent) 55%, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   header p {
-    margin: 0.35rem 0 0;
-    font-size: 0.8rem;
-    opacity: 0.85;
+    margin: 0.45rem 0 0;
+    font-size: 0.85rem;
+    color: var(--texte-muted);
   }
 
   main {
+    position: relative;
+    z-index: 1;
     max-width: 480px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 1rem;
   }
 
   .featured {
-    background: var(--blanc);
-    border-radius: var(--radius);
-    padding: 1.5rem 1rem;
-    margin-top: -1.75rem;
-    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+    position: relative;
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.25rem 1.5rem;
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     text-align: center;
   }
 
   .featured .badge {
-    display: inline-block;
-    background: var(--bleu);
-    color: var(--blanc);
-    font-size: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(34, 211, 238, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    font-size: 0.66rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    padding: 0.32rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .featured .badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
   }
 
   .featured h2 {
-    margin: 0 0 1rem;
-    font-size: 1.15rem;
+    margin: 0 0 1.35rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--texte);
   }
 
   .gauge-wrap {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto;
+    filter: drop-shadow(0 0 26px rgba(34, 211, 238, 0.16));
   }
 
   .gauge-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 
-  .gauge-track { fill: none; stroke: #e2e8f0; stroke-width: 14; }
+  .gauge-track { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 14; }
 
   .gauge-value {
     fill: none;
@@ -113,44 +204,63 @@
   }
 
   .gauge-percent {
-    font-size: 2.1rem;
+    font-size: 2.6rem;
     font-weight: 800;
+    letter-spacing: -0.02em;
     line-height: 1;
+    text-shadow: 0 0 30px currentColor;
   }
 
   .gauge-sub {
-    font-size: 0.75rem;
-    color: var(--gris-texte);
-    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    color: var(--texte-muted);
+    margin-top: 0.35rem;
   }
 
   .verdict {
-    margin-top: 1.1rem;
-    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.35rem;
+    font-size: 0.92rem;
     font-weight: 700;
+    padding: 0.5rem 1.05rem;
+    border-radius: 999px;
+    background: var(--glass-strong);
+    border: 1px solid var(--border-glass);
+  }
+
+  .verdict::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
   }
 
   .verdict-detail {
-    margin-top: 0.3rem;
-    font-size: 0.85rem;
-    color: var(--gris-texte);
+    margin-top: 0.55rem;
+    font-size: 0.82rem;
+    color: var(--texte-muted);
   }
 
   .niveau-vert { color: var(--vert); }
   .niveau-orange { color: var(--orange); }
   .niveau-rouge { color: var(--rouge); }
-  .niveau-ferme { color: var(--gris-texte); }
+  .niveau-ferme { color: var(--texte-faint); }
 
   section.autres {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
   }
 
   section.autres h3 {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gris-texte);
-    margin: 0 0 0.6rem 0.25rem;
+    letter-spacing: 0.14em;
+    color: var(--texte-muted);
+    font-weight: 700;
+    margin: 0 0 0.7rem 0.25rem;
   }
 
   .cards {
@@ -160,14 +270,19 @@
   }
 
   .card {
-    background: var(--blanc);
-    border-radius: 12px;
-    padding: 0.9rem 1rem;
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-radius: var(--radius-md);
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    gap: 0.65rem;
+    transition: transform 0.15s ease, border-color 0.15s ease;
   }
+
+  .card:active { transform: scale(0.97); }
 
   .card .card-top {
     display: flex;
@@ -178,12 +293,13 @@
   .card .nom {
     font-weight: 700;
     font-size: 0.95rem;
+    color: var(--texte);
   }
 
   .card .places {
     font-size: 0.78rem;
-    color: var(--gris-texte);
-    margin-top: 0.15rem;
+    color: var(--texte-muted);
+    margin-top: 0.2rem;
   }
 
   .card .pastille {
@@ -194,24 +310,26 @@
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 0.8rem;
-    color: var(--blanc);
+    font-size: 0.78rem;
+    color: #05070d;
     flex-shrink: 0;
   }
 
-  .pastille.vert { background: var(--vert); }
-  .pastille.orange { background: var(--orange); }
-  .pastille.rouge { background: var(--rouge); }
-  .pastille.ferme { background: #94a3b8; }
+  .pastille.vert { background: var(--vert); box-shadow: 0 0 16px rgba(52, 211, 153, 0.5); }
+  .pastille.orange { background: var(--orange); box-shadow: 0 0 16px rgba(251, 146, 60, 0.5); }
+  .pastille.rouge { background: var(--rouge); box-shadow: 0 0 16px rgba(251, 113, 133, 0.5); }
+  .pastille.ferme { background: var(--texte-faint); color: var(--texte); box-shadow: none; }
 
   .sparkline-wrap {
     width: 100%;
   }
 
   .sparkline-wrap .sparkline-legende {
-    font-size: 0.68rem;
-    color: var(--gris-texte);
-    margin: 0 0 0.2rem;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--texte-muted);
+    margin: 0 0 0.3rem;
   }
 
   .sparkline {
@@ -219,26 +337,21 @@
     width: 100%;
   }
 
-  .sparkline-vide {
-    font-size: 0.72rem;
-    color: var(--gris-texte);
-    font-style: italic;
-  }
-
   .courbe-jour-wrap {
     width: 100%;
-    margin-top: 1.1rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid #e2e8f0;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-glass);
+    text-align: left;
   }
 
   .courbe-jour-legende {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gris-texte);
-    margin: 0 0 0.4rem;
-    text-align: left;
+    letter-spacing: 0.08em;
+    color: var(--texte-muted);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
   }
 
   .courbe-jour {
@@ -246,19 +359,43 @@
     width: 100%;
   }
 
+  .point-hit { cursor: pointer; }
+
   .courbe-jour-axes {
     display: flex;
     justify-content: space-between;
     font-size: 0.68rem;
-    color: var(--gris-texte);
-    margin-top: 0.15rem;
+    color: var(--texte-faint);
+    margin-top: 0.2rem;
   }
 
   footer.maj {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     font-size: 0.75rem;
-    color: var(--gris-texte);
+    color: var(--texte-faint);
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--vert);
+    box-shadow: 0 0 8px var(--vert);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
   }
 
   .erreur {
@@ -266,10 +403,61 @@
     color: var(--rouge);
     font-size: 0.85rem;
     margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(251, 113, 133, 0.08);
+    border: 1px solid rgba(251, 113, 133, 0.25);
+    border-radius: var(--radius-sm);
   }
 
-  .skeleton {
-    opacity: 0.5;
+  .point-tooltip {
+    position: fixed;
+    z-index: 50;
+    background: rgba(10, 14, 26, 0.92);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(18px);
+    border-radius: 14px;
+    padding: 0.65rem 0.9rem 0.6rem;
+    min-width: 136px;
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.65);
+  }
+
+  .point-tooltip[hidden] { display: none; }
+
+  .point-tooltip-close {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    background: none;
+    border: none;
+    color: var(--texte-muted);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .point-tooltip-heure {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--texte-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .point-tooltip-valeur {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--texte);
+  }
+
+  .point-tooltip-badge {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 0.14rem 0.55rem;
+    border-radius: 999px;
+    color: #05070d;
   }
 
   @media (min-width: 420px) {
@@ -279,9 +467,14 @@
 </head>
 <body>
 
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
 <header>
-  <h1>🏊 Piscines de Lyon</h1>
-  <p>Fréquentation en direct des piscines d'été</p>
+  <div class="kicker">Lyon · Piscines d'été</div>
+  <h1>Fréquentation en direct</h1>
+  <p>CNTB · Vaise · Duchère · Mermoz</p>
 </header>
 
 <main>
@@ -291,9 +484,23 @@
 
     <div class="gauge-wrap">
       <svg viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-vert" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6ee7b7"/>
+            <stop offset="100%" stop-color="#059669"/>
+          </linearGradient>
+          <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fdba74"/>
+            <stop offset="100%" stop-color="#ea580c"/>
+          </linearGradient>
+          <linearGradient id="grad-rouge" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fda4af"/>
+            <stop offset="100%" stop-color="#e11d48"/>
+          </linearGradient>
+        </defs>
         <circle class="gauge-track" cx="100" cy="100" r="85"></circle>
         <circle class="gauge-value" id="gauge-circle" cx="100" cy="100" r="85"
-                stroke="#16a34a" stroke-dasharray="0 534"></circle>
+                stroke="url(#grad-vert)" stroke-dasharray="0 534"></circle>
       </svg>
       <div class="gauge-center">
         <div class="gauge-percent" id="gauge-percent">—</div>
@@ -327,9 +534,17 @@
   <div class="erreur" id="erreur" hidden></div>
 
   <footer class="maj">
+    <span class="live-dot"></span>
     <span id="maj-texte">Mise à jour…</span>
   </footer>
 </main>
+
+<div class="point-tooltip" id="point-tooltip" role="tooltip" hidden>
+  <button class="point-tooltip-close" id="point-tooltip-close" aria-label="Fermer">×</button>
+  <div class="point-tooltip-heure" id="point-tooltip-heure"></div>
+  <div class="point-tooltip-valeur" id="point-tooltip-valeur"></div>
+  <span class="point-tooltip-badge" id="point-tooltip-badge"></span>
+</div>
 
 <script>
 (function () {
@@ -351,6 +566,11 @@
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
     erreur: document.getElementById("erreur"),
+    pointTooltip: document.getElementById("point-tooltip"),
+    pointTooltipHeure: document.getElementById("point-tooltip-heure"),
+    pointTooltipValeur: document.getElementById("point-tooltip-valeur"),
+    pointTooltipBadge: document.getElementById("point-tooltip-badge"),
+    pointTooltipClose: document.getElementById("point-tooltip-close"),
   };
 
   var CIRCONFERENCE = 2 * Math.PI * 85;
@@ -363,7 +583,11 @@
   }
 
   function couleurNiveau(n) {
-    return { vert: "#16a34a", orange: "#ea580c", rouge: "#dc2626" }[n];
+    return { vert: "#34d399", orange: "#fb923c", rouge: "#fb7185" }[n];
+  }
+
+  function gradientNiveau(n) {
+    return { vert: "url(#grad-vert)", orange: "url(#grad-orange)", rouge: "url(#grad-rouge)" }[n];
   }
 
   function texteVerdict(n, pourcentage) {
@@ -422,7 +646,7 @@
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#94a3b8" stroke-width="2" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
     });
 
@@ -448,7 +672,7 @@
     var valeurs = journee.map(pourcentagePoint);
     if (!valeurs.some(function (v) { return v != null; })) return null;
 
-    var marge = 6;
+    var marge = 8;
     var t0 = minutesDepuisMinuit(journee[0].heure);
     var t1 = minutesDepuisMinuit(journee[journee.length - 1].heure);
     var duree = Math.max(1, t1 - t0);
@@ -461,7 +685,14 @@
       var v = valeurs[i];
       if (v == null) return null;
       var fraction = (minutesDepuisMinuit(pt.heure) - t0) / duree;
-      return { x: marge + fraction * (largeur - marge * 2), y: y(v), v: v };
+      return {
+        x: marge + fraction * (largeur - marge * 2),
+        y: y(v),
+        v: v,
+        heure: pt.heure,
+        freq: pt.frequentation_reelle,
+        cap: pt.capacite_max,
+      };
     });
 
     var segments = [];
@@ -480,18 +711,20 @@
 
     [50, 80].forEach(function (seuil) {
       svg += '<line x1="' + marge + '" y1="' + y(seuil).toFixed(1) + '" x2="' + (largeur - marge) +
-        '" y2="' + y(seuil).toFixed(1) + '" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>';
+        '" y2="' + y(seuil).toFixed(1) + '" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,3"/>';
     });
 
     segments.forEach(function (segment) {
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#0284c7" stroke-width="2" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="#22d3ee" stroke-width="2.5" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
       segment.forEach(function (p) {
-        svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3" fill="' +
+        svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3.5" fill="' +
           couleurNiveau(niveau(p.v)) + '"/>';
+        svg += '<circle class="point-hit" data-heure="' + p.heure + '" data-freq="' + p.freq + '" data-cap="' + p.cap +
+          '" data-pct="' + p.v + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="10" fill="transparent"/>';
       });
     });
 
@@ -516,6 +749,50 @@
       els.majTexte.textContent = "Mis à jour " + formatMinutes(derniereMaj);
     }
   }
+
+  function ouvrirTooltip(cible, clientX, clientY) {
+    var heure = cible.getAttribute("data-heure");
+    var freq = cible.getAttribute("data-freq");
+    var cap = cible.getAttribute("data-cap");
+    var pct = parseInt(cible.getAttribute("data-pct"), 10);
+    var n = niveau(pct);
+
+    els.pointTooltipHeure.textContent = heure;
+    els.pointTooltipValeur.textContent = freq + " / " + cap + " personnes";
+    els.pointTooltipBadge.textContent = pct + "%";
+    els.pointTooltipBadge.style.background = couleurNiveau(n);
+    els.pointTooltip.hidden = false;
+
+    var largeurTooltip = els.pointTooltip.offsetWidth || 140;
+    var hauteurTooltip = els.pointTooltip.offsetHeight || 60;
+    var x = Math.min(Math.max(8, clientX - largeurTooltip / 2), window.innerWidth - largeurTooltip - 8);
+    var y = clientY - hauteurTooltip - 18;
+    if (y < 8) y = clientY + 18;
+    els.pointTooltip.style.left = x + "px";
+    els.pointTooltip.style.top = y + "px";
+  }
+
+  function fermerTooltip() {
+    els.pointTooltip.hidden = true;
+  }
+
+  els.courbeJour.addEventListener("mouseover", function (e) {
+    if (e.target.classList.contains("point-hit")) ouvrirTooltip(e.target, e.clientX, e.clientY);
+  });
+  els.courbeJour.addEventListener("mouseout", function (e) {
+    if (e.target.classList.contains("point-hit")) fermerTooltip();
+  });
+  els.courbeJour.addEventListener("click", function (e) {
+    if (e.target.classList.contains("point-hit")) {
+      e.stopPropagation();
+      ouvrirTooltip(e.target, e.clientX, e.clientY);
+    }
+  });
+  els.pointTooltipClose.addEventListener("click", function (e) {
+    e.stopPropagation();
+    fermerTooltip();
+  });
+  document.addEventListener("click", fermerTooltip);
 
   function renderFeaturedSparkline(piscine) {
     var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 260, 44) : null;
@@ -545,8 +822,9 @@
 
     if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
       els.gaugeCircle.setAttribute("stroke-dasharray", "0 " + CIRCONFERENCE);
-      els.gaugeCircle.setAttribute("stroke", "#94a3b8");
+      els.gaugeCircle.setAttribute("stroke", "rgba(255,255,255,0.15)");
       els.gaugePercent.textContent = "—";
+      els.gaugePercent.style.color = "var(--texte-faint)";
       els.gaugeSub.textContent = "Fermée";
       els.verdict.textContent = "Piscine fermée pour le moment";
       els.verdict.className = "verdict niveau-ferme";
@@ -563,7 +841,7 @@
 
     var longueur = (pourcentage / 100) * CIRCONFERENCE;
     els.gaugeCircle.setAttribute("stroke-dasharray", longueur + " " + CIRCONFERENCE);
-    els.gaugeCircle.setAttribute("stroke", couleur);
+    els.gaugeCircle.setAttribute("stroke", gradientNiveau(n));
 
     els.gaugePercent.textContent = pourcentage + "%";
     els.gaugePercent.style.color = couleur;
