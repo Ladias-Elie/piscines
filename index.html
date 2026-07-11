@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Piscines Lyon — Fréquentation en direct</title>
+<meta name="description" content="Fréquentation en temps réel des piscines d'été de Lyon : CNTB, Vaise, Duchère, Mermoz.">
+<meta name="theme-color" content="#0284c7">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+  :root {
+    --bleu: #0284c7;
+    --bleu-fonce: #075985;
+    --vert: #16a34a;
+    --orange: #ea580c;
+    --rouge: #dc2626;
+    --gris-fond: #f1f5f9;
+    --gris-texte: #475569;
+    --gris-fonce: #1e293b;
+    --blanc: #ffffff;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--gris-fond);
+    color: var(--gris-fonce);
+    padding-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--bleu), var(--bleu-fonce));
+    color: var(--blanc);
+    padding: 1.25rem 1rem 1.5rem;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  header p {
+    margin: 0.35rem 0 0;
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
+
+  main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .featured {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 1.5rem 1rem;
+    margin-top: -1.75rem;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+    text-align: center;
+  }
+
+  .featured .badge {
+    display: inline-block;
+    background: var(--bleu);
+    color: var(--blanc);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .featured h2 {
+    margin: 0 0 1rem;
+    font-size: 1.15rem;
+  }
+
+  .gauge-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .gauge-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+  .gauge-track { fill: none; stroke: #e2e8f0; stroke-width: 14; }
+
+  .gauge-value {
+    fill: none;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.6s ease, stroke 0.6s ease;
+  }
+
+  .gauge-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gauge-percent {
+    font-size: 2.1rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .gauge-sub {
+    font-size: 0.75rem;
+    color: var(--gris-texte);
+    margin-top: 0.25rem;
+  }
+
+  .verdict {
+    margin-top: 1.1rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .verdict-detail {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--gris-texte);
+  }
+
+  .niveau-vert { color: var(--vert); }
+  .niveau-orange { color: var(--orange); }
+  .niveau-rouge { color: var(--rouge); }
+  .niveau-ferme { color: var(--gris-texte); }
+
+  section.autres {
+    margin-top: 1.5rem;
+  }
+
+  section.autres h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gris-texte);
+    margin: 0 0 0.6rem 0.25rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .card {
+    background: var(--blanc);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+
+  .card .nom {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .card .places {
+    font-size: 0.78rem;
+    color: var(--gris-texte);
+    margin-top: 0.15rem;
+  }
+
+  .card .pastille {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--blanc);
+    flex-shrink: 0;
+  }
+
+  .pastille.vert { background: var(--vert); }
+  .pastille.orange { background: var(--orange); }
+  .pastille.rouge { background: var(--rouge); }
+  .pastille.ferme { background: #94a3b8; }
+
+  footer.maj {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--gris-texte);
+  }
+
+  .erreur {
+    text-align: center;
+    color: var(--rouge);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .skeleton {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 420px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .card .pastille { align-self: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏊 Piscines de Lyon</h1>
+  <p>Fréquentation en direct des piscines d'été</p>
+</header>
+
+<main>
+  <div class="featured" id="featured">
+    <span class="badge">En vedette</span>
+    <h2 id="featured-nom">Centre Nautique T.Bertrand (CNTB)</h2>
+
+    <div class="gauge-wrap">
+      <svg viewBox="0 0 200 200">
+        <circle class="gauge-track" cx="100" cy="100" r="85"></circle>
+        <circle class="gauge-value" id="gauge-circle" cx="100" cy="100" r="85"
+                stroke="#16a34a" stroke-dasharray="0 534"></circle>
+      </svg>
+      <div class="gauge-center">
+        <div class="gauge-percent" id="gauge-percent">—</div>
+        <div class="gauge-sub" id="gauge-sub">chargement…</div>
+      </div>
+    </div>
+
+    <div class="verdict" id="verdict">Chargement des données…</div>
+    <div class="verdict-detail" id="verdict-detail"></div>
+  </div>
+
+  <section class="autres">
+    <h3>Autres piscines</h3>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <div class="erreur" id="erreur" hidden></div>
+
+  <footer class="maj">
+    <span id="maj-texte">Mise à jour…</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var FEATURED_KEY = "CNTB";
+
+  var els = {
+    featuredNom: document.getElementById("featured-nom"),
+    gaugeCircle: document.getElementById("gauge-circle"),
+    gaugePercent: document.getElementById("gauge-percent"),
+    gaugeSub: document.getElementById("gauge-sub"),
+    verdict: document.getElementById("verdict"),
+    verdictDetail: document.getElementById("verdict-detail"),
+    cards: document.getElementById("cards"),
+    majTexte: document.getElementById("maj-texte"),
+    erreur: document.getElementById("erreur"),
+  };
+
+  var CIRCONFERENCE = 2 * Math.PI * 85;
+  var derniereMaj = null;
+
+  function niveau(pourcentage) {
+    if (pourcentage < 50) return "vert";
+    if (pourcentage <= 80) return "orange";
+    return "rouge";
+  }
+
+  function couleurNiveau(n) {
+    return { vert: "#16a34a", orange: "#ea580c", rouge: "#dc2626" }[n];
+  }
+
+  function texteVerdict(n, pourcentage) {
+    if (n === "vert") return "C'est calme, profitez-en !";
+    if (n === "orange") return "Ça commence à se remplir.";
+    return "Très fréquentée, prévoyez de l'attente.";
+  }
+
+  function formatMinutes(dateIso) {
+    if (!dateIso) return "";
+    var diffMs = Date.now() - new Date(dateIso).getTime();
+    var minutes = Math.max(0, Math.round(diffMs / 60000));
+    if (minutes < 1) return "à l'instant";
+    if (minutes === 1) return "il y a 1 min";
+    if (minutes < 60) return "il y a " + minutes + " min";
+    var heures = Math.floor(minutes / 60);
+    var reste = minutes % 60;
+    return "il y a " + heures + "h" + (reste ? reste : "");
+  }
+
+  function majHorodatage() {
+    if (derniereMaj) {
+      els.majTexte.textContent = "Mis à jour " + formatMinutes(derniereMaj);
+    }
+  }
+
+  function renderFeatured(piscine) {
+    els.featuredNom.textContent = piscine ? piscine.nom : "Centre Nautique T.Bertrand (CNTB)";
+
+    if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
+      els.gaugeCircle.setAttribute("stroke-dasharray", "0 " + CIRCONFERENCE);
+      els.gaugeCircle.setAttribute("stroke", "#94a3b8");
+      els.gaugePercent.textContent = "—";
+      els.gaugeSub.textContent = "Fermée";
+      els.verdict.textContent = "Piscine fermée pour le moment";
+      els.verdict.className = "verdict niveau-ferme";
+      els.verdictDetail.textContent = "";
+      return;
+    }
+
+    var pourcentage = Math.round((piscine.frequentation_reelle / piscine.capacite_max) * 100);
+    pourcentage = Math.min(100, Math.max(0, pourcentage));
+    var n = niveau(pourcentage);
+    var couleur = couleurNiveau(n);
+
+    var longueur = (pourcentage / 100) * CIRCONFERENCE;
+    els.gaugeCircle.setAttribute("stroke-dasharray", longueur + " " + CIRCONFERENCE);
+    els.gaugeCircle.setAttribute("stroke", couleur);
+
+    els.gaugePercent.textContent = pourcentage + "%";
+    els.gaugePercent.style.color = couleur;
+    els.gaugeSub.textContent = piscine.frequentation_reelle + " / " + piscine.capacite_max;
+
+    els.verdict.textContent = texteVerdict(n, pourcentage);
+    els.verdict.className = "verdict niveau-" + n;
+    els.verdictDetail.textContent = piscine.places_restantes + " places restantes";
+  }
+
+  function renderCard(cle, piscine) {
+    var div = document.createElement("div");
+    div.className = "card";
+
+    var infos = document.createElement("div");
+    var nom = document.createElement("div");
+    nom.className = "nom";
+    nom.textContent = piscine ? piscine.nom : cle;
+    infos.appendChild(nom);
+
+    var places = document.createElement("div");
+    places.className = "places";
+
+    var pastille = document.createElement("div");
+    pastille.className = "pastille";
+
+    if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
+      places.textContent = "Fermée";
+      pastille.classList.add("ferme");
+      pastille.textContent = "—";
+    } else {
+      var pourcentage = Math.round((piscine.frequentation_reelle / piscine.capacite_max) * 100);
+      pourcentage = Math.min(100, Math.max(0, pourcentage));
+      var n = niveau(pourcentage);
+      places.textContent = piscine.places_restantes + " places restantes";
+      pastille.classList.add(n);
+      pastille.textContent = pourcentage + "%";
+    }
+
+    infos.appendChild(places);
+    div.appendChild(infos);
+    div.appendChild(pastille);
+    return div;
+  }
+
+  function render(data) {
+    var piscines = data.piscines || {};
+    derniereMaj = data.derniere_mise_a_jour;
+
+    renderFeatured(piscines[FEATURED_KEY]);
+
+    els.cards.innerHTML = "";
+    Object.keys(piscines)
+      .filter(function (cle) { return cle !== FEATURED_KEY; })
+      .forEach(function (cle) {
+        els.cards.appendChild(renderCard(cle, piscines[cle]));
+      });
+
+    majHorodatage();
+    els.erreur.hidden = true;
+  }
+
+  function charger() {
+    fetch("data.json", { cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(render)
+      .catch(function (err) {
+        els.erreur.hidden = false;
+        els.erreur.textContent = "Impossible de charger les données (" + err.message + ").";
+      });
+  }
+
+  charger();
+  setInterval(charger, 5 * 60 * 1000);
+  setInterval(majHorodatage, 30 * 1000);
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
