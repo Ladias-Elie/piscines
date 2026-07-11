@@ -105,6 +105,37 @@ def _point_from_pool(date_iso: str, pool) -> dict:
     }
 
 
+def build_journee_actuelle(history: list, pool_key: str, now: datetime) -> list:
+    """Pour une piscine, renvoie tous les relevés du jour courant (hors point actuel),
+    triés chronologiquement, pour tracer la courbe de fréquentation de la journée."""
+
+    aujourdhui = now.date()
+    points = []
+    for entry in history:
+        try:
+            horodatage = datetime.fromisoformat(entry["horodatage"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        if horodatage.date() != aujourdhui:
+            continue
+        pool = entry.get("piscines", {}).get(pool_key)
+        if pool is None:
+            continue
+        points.append((horodatage, _point_from_pool_heure(horodatage, pool)))
+
+    points.sort(key=lambda item: item[0])
+    return [point for _, point in points]
+
+
+def _point_from_pool_heure(horodatage: datetime, pool: dict) -> dict:
+    return {
+        "heure": horodatage.strftime("%H:%M"),
+        "frequentation_reelle": pool.get("frequentation_reelle"),
+        "capacite_max": pool.get("capacite_max"),
+        "ouvert": pool.get("ouvert"),
+    }
+
+
 def build_historique_7j(history: list, pool_key: str, now: datetime) -> list:
     """Pour une piscine, renvoie les valeurs à la même heure sur les JOURS_HISTORIQUE
     jours précédents, plus le point du jour, pour tracer une mini-courbe de comparaison."""
@@ -161,7 +192,15 @@ def main() -> int:
     for key, pool in pools.items():
         historique = build_historique_7j(history, key, now_dt)
         historique.append(_point_from_pool(now_dt.date().isoformat(), pool))
-        piscines_avec_historique[key] = {**pool, "historique_7j": historique}
+
+        journee = build_journee_actuelle(history, key, now_dt)
+        journee.append(_point_from_pool_heure(now_dt, pool))
+
+        piscines_avec_historique[key] = {
+            **pool,
+            "historique_7j": historique,
+            "journee_actuelle": journee,
+        }
 
     data = {
         "derniere_mise_a_jour": now,

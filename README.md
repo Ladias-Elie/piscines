@@ -72,6 +72,11 @@ python scripts/scrape.py
         { "date": "2026-07-05", "frequentation_reelle": 210, "capacite_max": 2000, "ouvert": true },
         { "date": "2026-07-06", "frequentation_reelle": null, "capacite_max": null, "ouvert": null },
         { "date": "2026-07-11", "frequentation_reelle": 340, "capacite_max": 2000, "ouvert": true }
+      ],
+      "journee_actuelle": [
+        { "heure": "10:00", "frequentation_reelle": 120, "capacite_max": 2000, "ouvert": true },
+        { "heure": "10:15", "frequentation_reelle": 180, "capacite_max": 2000, "ouvert": true },
+        { "heure": "12:03", "frequentation_reelle": 340, "capacite_max": 2000, "ouvert": true }
       ]
     },
     "Vaise": {
@@ -80,7 +85,8 @@ python scripts/scrape.py
       "frequentation_reelle": null,
       "places_restantes": null,
       "ouvert": false,
-      "historique_7j": []
+      "historique_7j": [],
+      "journee_actuelle": []
     }
   }
 }
@@ -90,5 +96,13 @@ python scripts/scrape.py
 même heure que maintenant sur les 6 jours précédents (avec un trou `null`
 si aucune mesure n'a été prise à ce créneau ce jour-là), suivie du point du
 jour. La PWA l'utilise pour afficher une mini-courbe de comparaison à côté
-de chaque chiffre. Ce champ est dérivé de `history.json` à chaque
-exécution du scraper et n'est donc présent que dans `data.json`.
+de chaque chiffre.
+
+`journee_actuelle` contient tous les relevés du jour courant (triés
+chronologiquement), utilisé par la PWA pour tracer le graphique "Aujourd'hui"
+du CNTB en vedette (nuage de points relié, échelle fixe 0-100 %, repères à
+50 % et 80 %). Une future évolution pourra y superposer une moyenne par
+quart d'heure une fois suffisamment de jours d'historique accumulés.
+
+Ces deux champs sont dérivés de `history.json` à chaque exécution du
+scraper et ne sont donc présents que dans `data.json`.
