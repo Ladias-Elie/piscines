@@ -5,27 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Piscines Lyon — Fréquentation en direct</title>
 <meta name="description" content="Fréquentation en temps réel des piscines d'été de Lyon : CNTB, Vaise, Duchère, Mermoz.">
-<meta name="theme-color" content="#060a14">
+<meta name="theme-color" content="#1f6fb2">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
   :root {
-    --bg: #060a14;
-    --glass: rgba(255, 255, 255, 0.055);
-    --glass-strong: rgba(255, 255, 255, 0.08);
-    --border-glass: rgba(255, 255, 255, 0.1);
-    --texte: #f1f5fb;
-    --texte-muted: #94a3bb;
-    --texte-faint: #5b6579;
-    --vert: #34d399;
-    --orange: #fb923c;
-    --rouge: #fb7185;
-    --accent: #22d3ee;
-    --accent-2: #818cf8;
-    --radius-lg: 28px;
-    --radius-md: 18px;
-    --radius-sm: 12px;
+    --bg: #f5efe1;
+    --ink: #12213b;
+    --ink-soft: #55607a;
+    --ink-faint: #8891a3;
+    --card-bg: #ffffff;
+    --pool: #1f6fb2;
+    --sun: #eab13a;
+    --vert: #2f8f5b;
+    --orange: #d97a34;
+    --rouge: #c74634;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
   }
 
   * { box-sizing: border-box; }
@@ -35,75 +33,41 @@
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
-    color: var(--texte);
+    color: var(--ink);
     padding-bottom: 2rem;
-    overflow-x: hidden;
-  }
-
-  .blob {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.5;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .blob-1 {
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, var(--accent), transparent 70%);
-    top: -140px;
-    left: -120px;
-    animation: derive-1 20s ease-in-out infinite alternate;
-  }
-
-  .blob-2 {
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, var(--accent-2), transparent 70%);
-    bottom: -160px;
-    right: -100px;
-    animation: derive-2 24s ease-in-out infinite alternate;
-  }
-
-  .blob-3 {
-    width: 300px;
-    height: 300px;
-    opacity: 0.32;
-    background: radial-gradient(circle, var(--vert), transparent 70%);
-    top: 38%;
-    left: 55%;
-    animation: derive-1 28s ease-in-out infinite alternate-reverse;
-  }
-
-  @keyframes derive-1 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(30px, 40px) scale(1.15); }
-  }
-
-  @keyframes derive-2 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-40px, -25px) scale(1.1); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .blob { animation: none !important; }
   }
 
   header {
     position: relative;
-    z-index: 1;
-    padding: 2.25rem 1.25rem 1rem;
+    padding: 2.1rem 1.25rem 1.1rem;
     text-align: center;
+    overflow: hidden;
+  }
+
+  .deco-sun {
+    position: absolute;
+    top: -70px;
+    right: -60px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: var(--sun);
+    z-index: 0;
+  }
+
+  header .kicker,
+  header h1,
+  header p {
+    position: relative;
+    z-index: 1;
   }
 
   .kicker {
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--texte-muted);
-    font-weight: 700;
+    color: var(--pool);
+    font-weight: 800;
   }
 
   header h1 {
@@ -111,81 +75,71 @@
     font-size: 1.75rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    background: linear-gradient(120deg, #f8fafc, var(--accent) 55%, var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--ink);
   }
 
   header p {
     margin: 0.45rem 0 0;
     font-size: 0.85rem;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
   }
 
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 18px;
+    margin-bottom: 0.5rem;
+  }
+
+  .wave-divider svg { display: block; width: 100%; height: 100%; }
+
   main {
-    position: relative;
-    z-index: 1;
     max-width: 480px;
     margin: 0 auto;
     padding: 0 1rem;
   }
 
   .featured {
-    position: relative;
-    background: var(--glass);
-    border: 1px solid var(--border-glass);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    background: var(--card-bg);
+    border: 2.5px solid var(--ink);
     border-radius: var(--radius-lg);
     padding: 1.75rem 1.25rem 1.5rem;
-    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 7px 7px 0 var(--ink);
     text-align: center;
   }
 
   .featured .badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background: rgba(34, 211, 238, 0.12);
-    color: var(--accent);
-    border: 1px solid rgba(34, 211, 238, 0.3);
+    background: var(--pool);
+    color: #fff;
+    border: 2px solid var(--ink);
     font-size: 0.66rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.32rem 0.75rem;
+    padding: 0.3rem 0.75rem;
     border-radius: 999px;
     margin-bottom: 1rem;
-  }
-
-  .featured .badge::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
   }
 
   .featured h2 {
     margin: 0 0 1.35rem;
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--texte);
+    color: var(--ink);
   }
 
   .gauge-wrap {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 210px;
+    height: 210px;
     margin: 0 auto;
-    filter: drop-shadow(0 0 26px rgba(34, 211, 238, 0.16));
   }
 
   .gauge-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 
-  .gauge-track { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 14; }
+  .gauge-track { fill: none; stroke: rgba(18, 33, 59, 0.1); stroke-width: 14; }
 
   .gauge-value {
     fill: none;
@@ -204,51 +158,39 @@
   }
 
   .gauge-percent {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;
-    text-shadow: 0 0 30px currentColor;
   }
 
   .gauge-sub {
     font-size: 0.78rem;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
     margin-top: 0.35rem;
   }
 
   .verdict {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: inline-block;
     margin-top: 1.35rem;
     font-size: 0.92rem;
-    font-weight: 700;
+    font-weight: 800;
+    color: #fff;
     padding: 0.5rem 1.05rem;
     border-radius: 999px;
-    background: var(--glass-strong);
-    border: 1px solid var(--border-glass);
-  }
-
-  .verdict::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 8px currentColor;
+    border: 2px solid var(--ink);
   }
 
   .verdict-detail {
     margin-top: 0.55rem;
     font-size: 0.82rem;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
   }
 
-  .niveau-vert { color: var(--vert); }
-  .niveau-orange { color: var(--orange); }
-  .niveau-rouge { color: var(--rouge); }
-  .niveau-ferme { color: var(--texte-faint); }
+  .niveau-vert { background: var(--vert); }
+  .niveau-orange { background: var(--orange); }
+  .niveau-rouge { background: var(--rouge); }
+  .niveau-ferme { background: var(--ink-faint); }
 
   section.autres {
     margin-top: 1.75rem;
@@ -258,31 +200,33 @@
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--texte-muted);
-    font-weight: 700;
+    color: var(--ink-soft);
+    font-weight: 800;
     margin: 0 0 0.7rem 0.25rem;
   }
 
   .cards {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .card {
-    background: var(--glass);
-    border: 1px solid var(--border-glass);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
     border-radius: var(--radius-md);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
   }
 
-  .card:active { transform: scale(0.97); }
+  .card:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
 
   .card .card-top {
     display: flex;
@@ -293,12 +237,12 @@
   .card .nom {
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--texte);
+    color: var(--ink);
   }
 
   .card .places {
     font-size: 0.78rem;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
     margin-top: 0.2rem;
   }
 
@@ -306,19 +250,20 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    border: 2px solid var(--ink);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
     font-size: 0.78rem;
-    color: #05070d;
+    color: #fff;
     flex-shrink: 0;
   }
 
-  .pastille.vert { background: var(--vert); box-shadow: 0 0 16px rgba(52, 211, 153, 0.5); }
-  .pastille.orange { background: var(--orange); box-shadow: 0 0 16px rgba(251, 146, 60, 0.5); }
-  .pastille.rouge { background: var(--rouge); box-shadow: 0 0 16px rgba(251, 113, 133, 0.5); }
-  .pastille.ferme { background: var(--texte-faint); color: var(--texte); box-shadow: none; }
+  .pastille.vert { background: var(--vert); }
+  .pastille.orange { background: var(--orange); }
+  .pastille.rouge { background: var(--rouge); }
+  .pastille.ferme { background: var(--ink-faint); }
 
   .sparkline-wrap {
     width: 100%;
@@ -328,7 +273,8 @@
     font-size: 0.66rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
+    font-weight: 700;
     margin: 0 0 0.3rem;
   }
 
@@ -341,7 +287,7 @@
     width: 100%;
     margin-top: 1.25rem;
     padding-top: 1.25rem;
-    border-top: 1px solid var(--border-glass);
+    border-top: 2px solid var(--ink);
     text-align: left;
   }
 
@@ -349,8 +295,8 @@
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--texte-muted);
-    font-weight: 700;
+    color: var(--ink-soft);
+    font-weight: 800;
     margin: 0 0 0.5rem;
   }
 
@@ -365,7 +311,8 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.68rem;
-    color: var(--texte-faint);
+    color: var(--ink-faint);
+    font-weight: 700;
     margin-top: 0.2rem;
   }
 
@@ -377,21 +324,21 @@
     text-align: center;
     margin-top: 2rem;
     font-size: 0.75rem;
-    color: var(--texte-faint);
+    color: var(--ink-faint);
+    font-weight: 600;
   }
 
   .live-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--vert);
-    box-shadow: 0 0 8px var(--vert);
     animation: pulse 2s ease-in-out infinite;
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.25; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -401,24 +348,24 @@
   .erreur {
     text-align: center;
     color: var(--rouge);
+    font-weight: 700;
     font-size: 0.85rem;
     margin-top: 1rem;
     padding: 0.75rem 1rem;
-    background: rgba(251, 113, 133, 0.08);
-    border: 1px solid rgba(251, 113, 133, 0.25);
+    background: #f7ddd7;
+    border: 2px solid var(--rouge);
     border-radius: var(--radius-sm);
   }
 
   .point-tooltip {
     position: fixed;
     z-index: 50;
-    background: rgba(10, 14, 26, 0.92);
-    border: 1px solid var(--border-glass);
-    backdrop-filter: blur(18px);
-    border-radius: 14px;
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
     padding: 0.65rem 0.9rem 0.6rem;
     min-width: 136px;
-    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.65);
+    box-shadow: 4px 4px 0 var(--ink);
   }
 
   .point-tooltip[hidden] { display: none; }
@@ -429,9 +376,10 @@
     right: 4px;
     background: none;
     border: none;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
     font-size: 1rem;
     line-height: 1;
+    font-weight: 800;
     cursor: pointer;
     padding: 6px;
   }
@@ -440,14 +388,15 @@
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--texte-muted);
+    color: var(--ink-soft);
+    font-weight: 700;
     margin-bottom: 0.25rem;
   }
 
   .point-tooltip-valeur {
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--texte);
+    color: var(--ink);
   }
 
   .point-tooltip-badge {
@@ -457,7 +406,8 @@
     font-weight: 800;
     padding: 0.14rem 0.55rem;
     border-radius: 999px;
-    color: #05070d;
+    border: 2px solid var(--ink);
+    color: #fff;
   }
 
   @media (min-width: 420px) {
@@ -467,15 +417,19 @@
 </head>
 <body>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
 <header>
+  <div class="deco-sun"></div>
   <div class="kicker">Lyon · Piscines d'été</div>
   <h1>Fréquentation en direct</h1>
   <p>CNTB · Vaise · Duchère · Mermoz</p>
 </header>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 400 28" preserveAspectRatio="none">
+    <path d="M0,14 C25,0 25,28 50,14 C75,0 75,28 100,14 C125,0 125,28 150,14 C175,0 175,28 200,14 C225,0 225,28 250,14 C275,0 275,28 300,14 C325,0 325,28 350,14 C375,0 375,28 400,14"
+          fill="none" stroke="#12213b" stroke-width="2" opacity="0.16"/>
+  </svg>
+</div>
 
 <main>
   <div class="featured" id="featured">
@@ -484,23 +438,9 @@
 
     <div class="gauge-wrap">
       <svg viewBox="0 0 200 200">
-        <defs>
-          <linearGradient id="grad-vert" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#6ee7b7"/>
-            <stop offset="100%" stop-color="#059669"/>
-          </linearGradient>
-          <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fdba74"/>
-            <stop offset="100%" stop-color="#ea580c"/>
-          </linearGradient>
-          <linearGradient id="grad-rouge" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fda4af"/>
-            <stop offset="100%" stop-color="#e11d48"/>
-          </linearGradient>
-        </defs>
         <circle class="gauge-track" cx="100" cy="100" r="85"></circle>
         <circle class="gauge-value" id="gauge-circle" cx="100" cy="100" r="85"
-                stroke="url(#grad-vert)" stroke-dasharray="0 534"></circle>
+                stroke="#2f8f5b" stroke-dasharray="0 534"></circle>
       </svg>
       <div class="gauge-center">
         <div class="gauge-percent" id="gauge-percent">—</div>
@@ -583,11 +523,7 @@
   }
 
   function couleurNiveau(n) {
-    return { vert: "#34d399", orange: "#fb923c", rouge: "#fb7185" }[n];
-  }
-
-  function gradientNiveau(n) {
-    return { vert: "url(#grad-vert)", orange: "url(#grad-orange)", rouge: "url(#grad-rouge)" }[n];
+    return { vert: "#2f8f5b", orange: "#d97a34", rouge: "#c74634" }[n];
   }
 
   function texteVerdict(n, pourcentage) {
@@ -646,7 +582,7 @@
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="rgba(18,33,59,0.3)" stroke-width="2" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
     });
 
@@ -711,18 +647,18 @@
 
     [50, 80].forEach(function (seuil) {
       svg += '<line x1="' + marge + '" y1="' + y(seuil).toFixed(1) + '" x2="' + (largeur - marge) +
-        '" y2="' + y(seuil).toFixed(1) + '" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,3"/>';
+        '" y2="' + y(seuil).toFixed(1) + '" stroke="rgba(18,33,59,0.14)" stroke-width="1" stroke-dasharray="3,3"/>';
     });
 
     segments.forEach(function (segment) {
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#22d3ee" stroke-width="2.5" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="#1f6fb2" stroke-width="2.5" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
       segment.forEach(function (p) {
         svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3.5" fill="' +
-          couleurNiveau(niveau(p.v)) + '"/>';
+          couleurNiveau(niveau(p.v)) + '" stroke="#12213b" stroke-width="1"/>';
         svg += '<circle class="point-hit" data-heure="' + p.heure + '" data-freq="' + p.freq + '" data-cap="' + p.cap +
           '" data-pct="' + p.v + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="10" fill="transparent"/>';
       });
@@ -822,9 +758,9 @@
 
     if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
       els.gaugeCircle.setAttribute("stroke-dasharray", "0 " + CIRCONFERENCE);
-      els.gaugeCircle.setAttribute("stroke", "rgba(255,255,255,0.15)");
+      els.gaugeCircle.setAttribute("stroke", "rgba(18,33,59,0.18)");
       els.gaugePercent.textContent = "—";
-      els.gaugePercent.style.color = "var(--texte-faint)";
+      els.gaugePercent.style.color = "var(--ink-faint)";
       els.gaugeSub.textContent = "Fermée";
       els.verdict.textContent = "Piscine fermée pour le moment";
       els.verdict.className = "verdict niveau-ferme";
@@ -841,7 +777,7 @@
 
     var longueur = (pourcentage / 100) * CIRCONFERENCE;
     els.gaugeCircle.setAttribute("stroke-dasharray", longueur + " " + CIRCONFERENCE);
-    els.gaugeCircle.setAttribute("stroke", gradientNiveau(n));
+    els.gaugeCircle.setAttribute("stroke", couleur);
 
     els.gaugePercent.textContent = pourcentage + "%";
     els.gaugePercent.style.color = couleur;
