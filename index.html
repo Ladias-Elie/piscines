@@ -500,9 +500,25 @@
   var CIRCONFERENCE = 2 * Math.PI * 85;
   var derniereMaj = null;
 
-  function niveau(pourcentage) {
-    if (pourcentage < 50) return "vert";
-    if (pourcentage <= 80) return "orange";
+  // Seuils en nombre de personnes réel (pas en % de la capacité légale, qui est
+  // très supérieure à ce qui "sent" plein). Calés sur un seul repère de terrain
+  // (CNTB ~860 personnes = déjà bondé) puis extrapolés aux autres piscines au
+  // prorata de leur capacité légale — à corriger si le ressenti diffère.
+  var SEUILS = {
+    CNTB: { vert: 400, rouge: 800 },
+    Vaise: { vert: 220, rouge: 440 },
+    "Duchère": { vert: 120, rouge: 240 },
+    Mermoz: { vert: 100, rouge: 200 },
+  };
+
+  function seuilsPiscine(cle) {
+    return SEUILS[cle] || { vert: 50, rouge: 100 };
+  }
+
+  function niveau(cle, frequentation) {
+    var s = seuilsPiscine(cle);
+    if (frequentation < s.vert) return "vert";
+    if (frequentation <= s.rouge) return "orange";
     return "rouge";
   }
 
@@ -510,23 +526,28 @@
     return { vert: "#2f8f5b", orange: "#d97a34", rouge: "#c74634" }[n];
   }
 
-  function texteVerdict(n, pourcentage) {
+  function texteVerdict(n) {
     if (n === "vert") return "C'est calme, profitez-en !";
     if (n === "orange") return "Ça commence à se remplir.";
     return "Très fréquentée, prévoyez de l'attente.";
   }
 
-  function pourcentagePoint(pt) {
-    if (!pt || pt.ouvert === false || pt.frequentation_reelle == null || pt.capacite_max == null) {
-      return null;
-    }
-    return Math.min(100, Math.max(0, Math.round((pt.frequentation_reelle / pt.capacite_max) * 100)));
+  function pourcentageAffiche(cle, frequentation) {
+    var s = seuilsPiscine(cle);
+    return Math.min(100, Math.max(0, Math.round((frequentation / s.rouge) * 100)));
   }
 
-  function creerSparklineSvg(historique, largeur, hauteur) {
+  function pourcentagePoint(pt, cle) {
+    if (!pt || pt.ouvert === false || pt.frequentation_reelle == null) {
+      return null;
+    }
+    return pourcentageAffiche(cle, pt.frequentation_reelle);
+  }
+
+  function creerSparklineSvg(historique, cle, largeur, hauteur) {
     if (!historique || !historique.length) return null;
 
-    var valeurs = historique.map(pourcentagePoint);
+    var valeurs = historique.map(function (pt) { return pourcentagePoint(pt, cle); });
     var valides = valeurs.filter(function (v) { return v != null; });
     if (!valides.length) return null;
 
@@ -546,7 +567,7 @@
       if (v == null) return null;
       var x = marge + i * pasX;
       var y = marge + (1 - (v - min) / (max - min)) * (hauteur - marge * 2);
-      return { x: x, y: y, v: v };
+      return { x: x, y: y, v: v, freq: historique[i].frequentation_reelle };
     });
 
     var segments = [];
@@ -572,7 +593,7 @@
 
     var dernier = points[points.length - 1];
     if (dernier) {
-      var couleur = couleurNiveau(niveau(dernier.v));
+      var couleur = couleurNiveau(niveau(cle, dernier.freq));
       svg += '<circle cx="' + dernier.x.toFixed(1) + '" cy="' + dernier.y.toFixed(1) +
         '" r="4" fill="' + couleur + '"/>';
     }
@@ -586,10 +607,10 @@
     return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
   }
 
-  function creerCourbeJournee(journee, largeur, hauteur) {
+  function creerCourbeJournee(journee, cle, largeur, hauteur) {
     if (!journee || journee.length < 2) return null;
 
-    var valeurs = journee.map(pourcentagePoint);
+    var valeurs = journee.map(function (pt) { return pourcentagePoint(pt, cle); });
     if (!valeurs.some(function (v) { return v != null; })) return null;
 
     var marge = 8;
@@ -629,10 +650,10 @@
 
     var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="courbe-jour">';
 
-    [50, 80].forEach(function (seuil) {
-      svg += '<line x1="' + marge + '" y1="' + y(seuil).toFixed(1) + '" x2="' + (largeur - marge) +
-        '" y2="' + y(seuil).toFixed(1) + '" stroke="rgba(18,33,59,0.14)" stroke-width="1" stroke-dasharray="3,3"/>';
-    });
+    // Seule frontière interne au graphique désormais : vert/orange (toujours à 50 %
+    // du seuil pratique). La frontière orange/rouge coïncide avec le haut du graphique.
+    svg += '<line x1="' + marge + '" y1="' + y(50).toFixed(1) + '" x2="' + (largeur - marge) +
+      '" y2="' + y(50).toFixed(1) + '" stroke="rgba(18,33,59,0.14)" stroke-width="1" stroke-dasharray="3,3"/>';
 
     segments.forEach(function (segment) {
       var d = segment
@@ -642,9 +663,10 @@
         'stroke-linecap="round" stroke-linejoin="round"/>';
       segment.forEach(function (p) {
         svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3.5" fill="' +
-          couleurNiveau(niveau(p.v)) + '" stroke="#12213b" stroke-width="1"/>';
+          couleurNiveau(niveau(cle, p.freq)) + '" stroke="#12213b" stroke-width="1"/>';
         svg += '<circle class="point-hit" data-heure="' + p.heure + '" data-freq="' + p.freq + '" data-cap="' + p.cap +
-          '" data-pct="' + p.v + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="10" fill="transparent"/>';
+          '" data-pct="' + p.v + '" data-cle="' + cle + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) +
+          '" r="10" fill="transparent"/>';
       });
     });
 
@@ -684,8 +706,9 @@
     var heure = cible.getAttribute("data-heure");
     var freq = cible.getAttribute("data-freq");
     var cap = cible.getAttribute("data-cap");
+    var cle = cible.getAttribute("data-cle");
     var pct = parseInt(cible.getAttribute("data-pct"), 10);
-    var n = niveau(pct);
+    var n = niveau(cle, parseInt(freq, 10));
 
     els.pointTooltipHeure.textContent = heure;
     els.pointTooltipValeur.textContent = freq + " / " + cap + " personnes";
@@ -725,7 +748,7 @@
   document.addEventListener("click", fermerTooltip);
 
   function renderFeaturedSparkline(piscine) {
-    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 260, 44) : null;
+    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, FEATURED_KEY, 260, 44) : null;
     if (svg) {
       els.featuredSparkline.innerHTML = svg;
       els.featuredSparklineWrap.hidden = false;
@@ -736,7 +759,7 @@
 
   function renderCourbeJournee(piscine) {
     var journee = piscine ? piscine.journee_actuelle : null;
-    var svg = journee ? creerCourbeJournee(journee, 300, 110) : null;
+    var svg = journee ? creerCourbeJournee(journee, FEATURED_KEY, 300, 110) : null;
     if (svg) {
       els.courbeJour.innerHTML = svg;
       els.courbeJourDebut.textContent = journee[0].heure;
@@ -764,9 +787,8 @@
       return;
     }
 
-    var pourcentage = Math.round((piscine.frequentation_reelle / piscine.capacite_max) * 100);
-    pourcentage = Math.min(100, Math.max(0, pourcentage));
-    var n = niveau(pourcentage);
+    var pourcentage = pourcentageAffiche(FEATURED_KEY, piscine.frequentation_reelle);
+    var n = niveau(FEATURED_KEY, piscine.frequentation_reelle);
     var couleur = couleurNiveau(n);
 
     var longueur = (pourcentage / 100) * CIRCONFERENCE;
@@ -775,11 +797,11 @@
 
     els.gaugePercent.textContent = pourcentage + "%";
     els.gaugePercent.style.color = couleur;
-    els.gaugeSub.textContent = piscine.frequentation_reelle + " / " + piscine.capacite_max;
+    els.gaugeSub.textContent = piscine.frequentation_reelle + " personnes";
 
-    els.verdict.textContent = texteVerdict(n, pourcentage);
+    els.verdict.textContent = texteVerdict(n);
     els.verdict.className = "verdict niveau-" + n;
-    els.verdictDetail.textContent = piscine.places_restantes + " places restantes";
+    els.verdictDetail.textContent = "";
 
     renderFeaturedSparkline(piscine);
     renderCourbeJournee(piscine);
@@ -809,10 +831,9 @@
       pastille.classList.add("ferme");
       pastille.textContent = "—";
     } else {
-      var pourcentage = Math.round((piscine.frequentation_reelle / piscine.capacite_max) * 100);
-      pourcentage = Math.min(100, Math.max(0, pourcentage));
-      var n = niveau(pourcentage);
-      places.textContent = piscine.places_restantes + " places restantes";
+      var pourcentage = pourcentageAffiche(cle, piscine.frequentation_reelle);
+      var n = niveau(cle, piscine.frequentation_reelle);
+      places.textContent = piscine.frequentation_reelle + " personnes";
       pastille.classList.add(n);
       pastille.textContent = pourcentage + "%";
     }
@@ -822,7 +843,7 @@
     top.appendChild(pastille);
     div.appendChild(top);
 
-    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, 220, 28) : null;
+    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, cle, 220, 28) : null;
     if (svg) {
       var sparklineWrap = document.createElement("div");
       sparklineWrap.className = "sparkline-wrap";
