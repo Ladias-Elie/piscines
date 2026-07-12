@@ -1120,5 +1120,38 @@
         "ouvert": true
       }
     }
+  },
+  {
+    "horodatage": "2026-07-12T18:33:02+00:00",
+    "piscines": {
+      "CNTB": {
+        "nom": "Centre Nautique T.Bertrand (CNTB)",
+        "capacite_max": 2000,
+        "frequentation_reelle": 714,
+        "places_restantes": 1286,
+        "ouvert": true
+      },
+      "Vaise": {
+        "nom": "Piscine de Vaise",
+        "capacite_max": 1100,
+        "frequentation_reelle": null,
+        "places_restantes": null,
+        "ouvert": false
+      },
+      "Duchère": {
+        "nom": "Piscine Duchère (été)",
+        "capacite_max": 600,
+        "frequentation_reelle": 12,
+        "places_restantes": 588,
+        "ouvert": true
+      },
+      "Mermoz": {
+        "nom": "Piscine Mermoz (été)",
+        "capacite_max": 500,
+        "frequentation_reelle": 239,
+        "places_restantes": 261,
+        "ouvert": true
+      }
+    }
   }
 ]
