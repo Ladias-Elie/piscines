@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-07-13T22:14:01+00:00",
+  "derniere_mise_a_jour": "2026-07-13T23:16:17+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T.Bertrand (CNTB)",
@@ -34,9 +34,9 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 228,
+          "frequentation_reelle": null,
           "capacite_max": 2000,
-          "ouvert": true
+          "ouvert": false
         },
         {
           "date": "2026-07-12",
@@ -132,6 +132,12 @@
         },
         {
           "heure": "00:14",
+          "frequentation_reelle": null,
+          "capacite_max": 2000,
+          "ouvert": false
+        },
+        {
+          "heure": "01:16",
           "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
@@ -272,6 +278,12 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "heure": "01:16",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ]
     },
@@ -409,6 +421,12 @@
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
+        },
+        {
+          "heure": "01:16",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ]
     },
@@ -445,9 +463,9 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 134,
+          "frequentation_reelle": null,
           "capacite_max": 500,
-          "ouvert": true
+          "ouvert": false
         },
         {
           "date": "2026-07-12",
@@ -543,6 +561,12 @@
         },
         {
           "heure": "00:14",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "heure": "01:16",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
