@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-07-14T15:00:36+00:00",
+  "derniere_mise_a_jour": "2026-07-14T16:23:06+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T.Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 1133,
-      "places_restantes": 867,
+      "frequentation_reelle": 1365,
+      "places_restantes": 635,
       "ouvert": true,
       "historique_7j": [
         {
@@ -28,25 +28,25 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 478,
+          "frequentation_reelle": 593,
           "capacite_max": 2000,
           "ouvert": true
         },
         {
           "date": "2026-07-12",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 1504,
+          "capacite_max": 2000,
+          "ouvert": true
         },
         {
           "date": "2026-07-13",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 959,
+          "capacite_max": 2000,
+          "ouvert": true
         },
         {
           "date": "2026-07-14",
-          "frequentation_reelle": 1133,
+          "frequentation_reelle": 1365,
           "capacite_max": 2000,
           "ouvert": true
         }
@@ -99,6 +99,12 @@
           "frequentation_reelle": 1133,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "heure": "18:23",
+          "frequentation_reelle": 1365,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ]
     },
@@ -136,14 +142,14 @@
         {
           "date": "2026-07-12",
           "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "capacite_max": 1100,
+          "ouvert": false
         },
         {
           "date": "2026-07-13",
           "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "capacite_max": 1100,
+          "ouvert": false
         },
         {
           "date": "2026-07-14",
@@ -200,14 +206,20 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "heure": "18:23",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ]
     },
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 329,
-      "places_restantes": 271,
+      "frequentation_reelle": 352,
+      "places_restantes": 248,
       "ouvert": true,
       "historique_7j": [
         {
@@ -230,25 +242,25 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 90,
+          "frequentation_reelle": 122,
           "capacite_max": 600,
           "ouvert": true
         },
         {
           "date": "2026-07-12",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 316,
+          "capacite_max": 600,
+          "ouvert": true
         },
         {
           "date": "2026-07-13",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 132,
+          "capacite_max": 600,
+          "ouvert": true
         },
         {
           "date": "2026-07-14",
-          "frequentation_reelle": 329,
+          "frequentation_reelle": 352,
           "capacite_max": 600,
           "ouvert": true
         }
@@ -301,14 +313,20 @@
           "frequentation_reelle": 329,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "heure": "18:23",
+          "frequentation_reelle": 352,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ]
     },
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 603,
-      "places_restantes": 3,
+      "frequentation_reelle": 522,
+      "places_restantes": 78,
       "ouvert": true,
       "historique_7j": [
         {
@@ -331,25 +349,25 @@
         },
         {
           "date": "2026-07-11",
-          "frequentation_reelle": 179,
+          "frequentation_reelle": 236,
           "capacite_max": 500,
           "ouvert": true
         },
         {
           "date": "2026-07-12",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 491,
+          "capacite_max": 500,
+          "ouvert": true
         },
         {
           "date": "2026-07-13",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
+          "frequentation_reelle": 167,
+          "capacite_max": 600,
+          "ouvert": true
         },
         {
           "date": "2026-07-14",
-          "frequentation_reelle": 603,
+          "frequentation_reelle": 522,
           "capacite_max": 600,
           "ouvert": true
         }
@@ -400,6 +418,12 @@
         {
           "heure": "17:00",
           "frequentation_reelle": 603,
+          "capacite_max": 600,
+          "ouvert": true
+        },
+        {
+          "heure": "18:23",
+          "frequentation_reelle": 522,
           "capacite_max": 600,
           "ouvert": true
         }
