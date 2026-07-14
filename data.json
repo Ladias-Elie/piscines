@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-07-13T23:16:17+00:00",
+  "derniere_mise_a_jour": "2026-07-14T00:10:13+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T.Bertrand (CNTB)",
@@ -8,12 +8,6 @@
       "places_restantes": null,
       "ouvert": false,
       "historique_7j": [
-        {
-          "date": "2026-07-07",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
-        },
         {
           "date": "2026-07-08",
           "frequentation_reelle": null,
@@ -35,8 +29,8 @@
         {
           "date": "2026-07-11",
           "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
+          "capacite_max": null,
+          "ouvert": null
         },
         {
           "date": "2026-07-12",
@@ -47,97 +41,19 @@
         {
           "date": "2026-07-13",
           "frequentation_reelle": null,
+          "capacite_max": null,
+          "ouvert": null
+        },
+        {
+          "date": "2026-07-14",
+          "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
         }
       ],
       "journee_actuelle": [
         {
-          "heure": "03:11",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "heure": "06:50",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "heure": "09:58",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "heure": "12:03",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "heure": "12:26",
-          "frequentation_reelle": 200,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "13:05",
-          "frequentation_reelle": 388,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "13:25",
-          "frequentation_reelle": 438,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "14:04",
-          "frequentation_reelle": 530,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "15:39",
-          "frequentation_reelle": 751,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "18:10",
-          "frequentation_reelle": 959,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "20:12",
-          "frequentation_reelle": 485,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "21:53",
-          "frequentation_reelle": 485,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "23:08",
-          "frequentation_reelle": 485,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "heure": "00:14",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "heure": "01:16",
+          "heure": "02:10",
           "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
@@ -152,12 +68,6 @@
       "ouvert": false,
       "historique_7j": [
         {
-          "date": "2026-07-07",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
-        },
-        {
           "date": "2026-07-08",
           "frequentation_reelle": null,
           "capacite_max": null,
@@ -178,8 +88,8 @@
         {
           "date": "2026-07-11",
           "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
+          "capacite_max": null,
+          "ouvert": null
         },
         {
           "date": "2026-07-12",
@@ -190,97 +100,19 @@
         {
           "date": "2026-07-13",
           "frequentation_reelle": null,
+          "capacite_max": null,
+          "ouvert": null
+        },
+        {
+          "date": "2026-07-14",
+          "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
         }
       ],
       "journee_actuelle": [
         {
-          "heure": "03:11",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "06:50",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "09:58",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "12:03",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "12:26",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "13:05",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "13:25",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "14:04",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "15:39",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "18:10",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "20:12",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "21:53",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "23:08",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "00:14",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "heure": "01:16",
+          "heure": "02:10",
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
@@ -295,12 +127,6 @@
       "ouvert": false,
       "historique_7j": [
         {
-          "date": "2026-07-07",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
-        },
-        {
           "date": "2026-07-08",
           "frequentation_reelle": null,
           "capacite_max": null,
@@ -321,8 +147,8 @@
         {
           "date": "2026-07-11",
           "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
+          "capacite_max": null,
+          "ouvert": null
         },
         {
           "date": "2026-07-12",
@@ -333,97 +159,19 @@
         {
           "date": "2026-07-13",
           "frequentation_reelle": null,
+          "capacite_max": null,
+          "ouvert": null
+        },
+        {
+          "date": "2026-07-14",
+          "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
         }
       ],
       "journee_actuelle": [
         {
-          "heure": "03:11",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "06:50",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "09:58",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "12:03",
-          "frequentation_reelle": 133,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "12:26",
-          "frequentation_reelle": 130,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "13:05",
-          "frequentation_reelle": 114,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "13:25",
-          "frequentation_reelle": 107,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "14:04",
-          "frequentation_reelle": 79,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "15:39",
-          "frequentation_reelle": 46,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "18:10",
-          "frequentation_reelle": 132,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "20:12",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "21:53",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "23:08",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "00:14",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "01:16",
+          "heure": "02:10",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -438,12 +186,6 @@
       "ouvert": false,
       "historique_7j": [
         {
-          "date": "2026-07-07",
-          "frequentation_reelle": null,
-          "capacite_max": null,
-          "ouvert": null
-        },
-        {
           "date": "2026-07-08",
           "frequentation_reelle": null,
           "capacite_max": null,
@@ -464,8 +206,8 @@
         {
           "date": "2026-07-11",
           "frequentation_reelle": null,
-          "capacite_max": 500,
-          "ouvert": false
+          "capacite_max": null,
+          "ouvert": null
         },
         {
           "date": "2026-07-12",
@@ -476,97 +218,19 @@
         {
           "date": "2026-07-13",
           "frequentation_reelle": null,
+          "capacite_max": null,
+          "ouvert": null
+        },
+        {
+          "date": "2026-07-14",
+          "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
         }
       ],
       "journee_actuelle": [
         {
-          "heure": "03:11",
-          "frequentation_reelle": null,
-          "capacite_max": 500,
-          "ouvert": false
-        },
-        {
-          "heure": "06:50",
-          "frequentation_reelle": null,
-          "capacite_max": 500,
-          "ouvert": false
-        },
-        {
-          "heure": "09:58",
-          "frequentation_reelle": null,
-          "capacite_max": 500,
-          "ouvert": false
-        },
-        {
-          "heure": "12:03",
-          "frequentation_reelle": 110,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "12:26",
-          "frequentation_reelle": 51,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "13:05",
-          "frequentation_reelle": 89,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "13:25",
-          "frequentation_reelle": 82,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "14:04",
-          "frequentation_reelle": 73,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "15:39",
-          "frequentation_reelle": 37,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "18:10",
-          "frequentation_reelle": 167,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "20:12",
-          "frequentation_reelle": 68,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "21:53",
-          "frequentation_reelle": 68,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "23:08",
-          "frequentation_reelle": 68,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "heure": "00:14",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "heure": "01:16",
+          "heure": "02:10",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
