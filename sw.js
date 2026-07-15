@@ -1,4 +1,4 @@
-const CACHE = "piscines-lyon-v4";
+const CACHE = "piscines-lyon-v5";
 const ASSETS = [
   "./",
   "./index.html",

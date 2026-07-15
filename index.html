@@ -109,73 +109,46 @@
   }
 
   .featured h2 {
-    margin: 0 0 1.35rem;
+    margin: 0 0 0.5rem;
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--ink);
   }
 
-  .gauge-wrap {
-    position: relative;
-    width: 210px;
-    height: 210px;
-    margin: 0 auto;
-  }
-
-  .gauge-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-
-  .gauge-track { fill: none; stroke: rgba(18, 33, 59, 0.1); stroke-width: 14; }
-
-  .gauge-value {
-    fill: none;
-    stroke-width: 14;
-    stroke-linecap: round;
-    transition: stroke-dasharray 0.6s ease, stroke 0.6s ease;
-  }
-
-  .gauge-center {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gauge-percent {
-    font-size: 2.5rem;
+  .nombre {
+    font-size: 3.2rem;
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;
   }
 
-  .gauge-sub {
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    margin-top: 0.35rem;
-  }
-
-  .verdict {
-    display: inline-block;
-    margin-top: 1.35rem;
-    font-size: 0.92rem;
-    font-weight: 800;
-    color: #fff;
-    padding: 0.5rem 1.05rem;
-    border-radius: 999px;
-    border: 2px solid var(--ink);
-  }
-
-  .verdict-detail {
-    margin-top: 0.55rem;
+  .nombre-label {
     font-size: 0.82rem;
     color: var(--ink-soft);
+    margin-top: 0.4rem;
+    margin-bottom: 1.35rem;
   }
 
-  .niveau-vert { background: var(--vert); }
-  .niveau-orange { background: var(--orange); }
-  .niveau-rouge { background: var(--rouge); }
-  .niveau-ferme { background: var(--ink-faint); }
+  .courbe-wrap {
+    width: 100%;
+    text-align: left;
+  }
+
+  .courbe {
+    display: block;
+    width: 100%;
+  }
+
+  .point-hit { cursor: pointer; }
+
+  .courbe-axes {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    font-weight: 700;
+    margin-top: 0.3rem;
+  }
 
   section.autres {
     margin-top: 1.75rem;
@@ -203,7 +176,7 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.5rem;
     box-shadow: 5px 5px 0 var(--ink);
     transition: transform 0.1s ease, box-shadow 0.1s ease;
   }
@@ -213,92 +186,23 @@
     box-shadow: 2px 2px 0 var(--ink);
   }
 
-  .card .card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .card .nom {
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--ink);
   }
 
-  .card .places {
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    margin-top: 0.2rem;
-  }
-
-  .card .pastille {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 2px solid var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .card .nombre-carte {
+    font-size: 1.7rem;
     font-weight: 800;
-    font-size: 0.78rem;
-    color: #fff;
-    flex-shrink: 0;
+    line-height: 1;
   }
 
-  .pastille.vert { background: var(--vert); }
-  .pastille.orange { background: var(--orange); }
-  .pastille.rouge { background: var(--rouge); }
-  .pastille.ferme { background: var(--ink-faint); }
-
-  .sparkline-wrap {
-    width: 100%;
-  }
-
-  .sparkline-wrap .sparkline-legende {
-    font-size: 0.66rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    font-weight: 700;
-    margin: 0 0 0.3rem;
-  }
-
-  .sparkline {
-    display: block;
-    width: 100%;
-  }
-
-  .courbe-jour-wrap {
-    width: 100%;
-    margin-top: 1.25rem;
-    padding-top: 1.25rem;
-    border-top: 2px solid var(--ink);
-    text-align: left;
-  }
-
-  .courbe-jour-legende {
+  .card .nombre-carte-unite {
     font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-weight: 600;
     color: var(--ink-soft);
-    font-weight: 800;
-    margin: 0 0 0.5rem;
-  }
-
-  .courbe-jour {
-    display: block;
-    width: 100%;
-  }
-
-  .point-hit { cursor: pointer; }
-
-  .courbe-jour-axes {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.68rem;
-    color: var(--ink-faint);
-    font-weight: 700;
-    margin-top: 0.2rem;
+    margin-left: 0.3rem;
   }
 
   footer.maj {
@@ -420,33 +324,15 @@
   <div class="featured" id="featured">
     <h2 id="featured-nom">Centre Nautique T.Bertrand (CNTB)</h2>
 
-    <div class="gauge-wrap">
-      <svg viewBox="0 0 200 200">
-        <circle class="gauge-track" cx="100" cy="100" r="85"></circle>
-        <circle class="gauge-value" id="gauge-circle" cx="100" cy="100" r="85"
-                stroke="#2f8f5b" stroke-dasharray="0 534"></circle>
-      </svg>
-      <div class="gauge-center">
-        <div class="gauge-percent" id="gauge-percent">—</div>
-        <div class="gauge-sub" id="gauge-sub">chargement…</div>
+    <div class="nombre" id="featured-nombre">—</div>
+    <div class="nombre-label" id="featured-nombre-label">chargement…</div>
+
+    <div class="courbe-wrap" id="featured-courbe-wrap" hidden>
+      <div id="featured-courbe"></div>
+      <div class="courbe-axes">
+        <span id="featured-courbe-debut"></span>
+        <span id="featured-courbe-fin"></span>
       </div>
-    </div>
-
-    <div class="verdict" id="verdict">Chargement des données…</div>
-    <div class="verdict-detail" id="verdict-detail"></div>
-
-    <div class="courbe-jour-wrap" id="courbe-jour-wrap" hidden>
-      <p class="courbe-jour-legende">Aujourd'hui</p>
-      <div id="courbe-jour"></div>
-      <div class="courbe-jour-axes">
-        <span id="courbe-jour-debut"></span>
-        <span id="courbe-jour-fin"></span>
-      </div>
-    </div>
-
-    <div class="sparkline-wrap" id="featured-sparkline-wrap" hidden>
-      <p class="sparkline-legende">Même heure, 7 derniers jours</p>
-      <div id="featured-sparkline"></div>
     </div>
   </div>
 
@@ -476,17 +362,12 @@
 
   var els = {
     featuredNom: document.getElementById("featured-nom"),
-    gaugeCircle: document.getElementById("gauge-circle"),
-    gaugePercent: document.getElementById("gauge-percent"),
-    gaugeSub: document.getElementById("gauge-sub"),
-    verdict: document.getElementById("verdict"),
-    verdictDetail: document.getElementById("verdict-detail"),
-    featuredSparklineWrap: document.getElementById("featured-sparkline-wrap"),
-    featuredSparkline: document.getElementById("featured-sparkline"),
-    courbeJourWrap: document.getElementById("courbe-jour-wrap"),
-    courbeJour: document.getElementById("courbe-jour"),
-    courbeJourDebut: document.getElementById("courbe-jour-debut"),
-    courbeJourFin: document.getElementById("courbe-jour-fin"),
+    featuredNombre: document.getElementById("featured-nombre"),
+    featuredNombreLabel: document.getElementById("featured-nombre-label"),
+    featuredCourbeWrap: document.getElementById("featured-courbe-wrap"),
+    featuredCourbe: document.getElementById("featured-courbe"),
+    featuredCourbeDebut: document.getElementById("featured-courbe-debut"),
+    featuredCourbeFin: document.getElementById("featured-courbe-fin"),
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
     erreur: document.getElementById("erreur"),
@@ -497,7 +378,6 @@
     pointTooltipClose: document.getElementById("point-tooltip-close"),
   };
 
-  var CIRCONFERENCE = 2 * Math.PI * 85;
   var derniereMaj = null;
 
   // Seuils en nombre de personnes réel (pas en % de la capacité légale, qui est
@@ -526,12 +406,6 @@
     return { vert: "#2f8f5b", orange: "#d97a34", rouge: "#c74634" }[n];
   }
 
-  function texteVerdict(n) {
-    if (n === "vert") return "C'est calme, profitez-en !";
-    if (n === "orange") return "Ça commence à se remplir.";
-    return "Très fréquentée, prévoyez de l'attente.";
-  }
-
   function pourcentageAffiche(cle, frequentation) {
     var s = seuilsPiscine(cle);
     return Math.min(100, Math.max(0, Math.round((frequentation / s.rouge) * 100)));
@@ -544,95 +418,47 @@
     return pourcentageAffiche(cle, pt.frequentation_reelle);
   }
 
-  function creerSparklineSvg(historique, cle, largeur, hauteur) {
-    if (!historique || !historique.length) return null;
-
-    var valeurs = historique.map(function (pt) { return pourcentagePoint(pt, cle); });
-    var valides = valeurs.filter(function (v) { return v != null; });
-    if (!valides.length) return null;
-
-    var min = Math.min.apply(null, valides);
-    var max = Math.max.apply(null, valides);
-    if (max - min < 10) {
-      var milieu = (max + min) / 2;
-      min = Math.max(0, milieu - 5);
-      max = Math.min(100, milieu + 5) || 10;
-    }
-
-    var marge = 4;
-    var n = historique.length;
-    var pasX = n > 1 ? (largeur - marge * 2) / (n - 1) : 0;
-
-    var points = valeurs.map(function (v, i) {
-      if (v == null) return null;
-      var x = marge + i * pasX;
-      var y = marge + (1 - (v - min) / (max - min)) * (hauteur - marge * 2);
-      return { x: x, y: y, v: v, freq: historique[i].frequentation_reelle };
-    });
-
-    var segments = [];
-    var courant = [];
-    points.forEach(function (p) {
-      if (p) {
-        courant.push(p);
-      } else if (courant.length) {
-        segments.push(courant);
-        courant = [];
-      }
-    });
-    if (courant.length) segments.push(courant);
-
-    var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="sparkline" preserveAspectRatio="none">';
-    segments.forEach(function (segment) {
-      var d = segment
-        .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
-        .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="rgba(18,33,59,0.3)" stroke-width="2" ' +
-        'stroke-linecap="round" stroke-linejoin="round"/>';
-    });
-
-    var dernier = points[points.length - 1];
-    if (dernier) {
-      var couleur = couleurNiveau(niveau(cle, dernier.freq));
-      svg += '<circle cx="' + dernier.x.toFixed(1) + '" cy="' + dernier.y.toFixed(1) +
-        '" r="4" fill="' + couleur + '"/>';
-    }
-
-    svg += "</svg>";
-    return svg;
-  }
-
   function minutesDepuisMinuit(heure) {
     var parts = heure.split(":");
     return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
   }
 
-  function creerCourbeJournee(journee, cle, largeur, hauteur) {
-    if (!journee || journee.length < 2) return null;
+  function minutesAbsolues(pt) {
+    var parts = pt.jour.split("-").map(Number);
+    var jourIndex = Date.UTC(parts[0], parts[1] - 1, parts[2]) / 86400000;
+    return jourIndex * 1440 + minutesDepuisMinuit(pt.heure);
+  }
 
-    var valeurs = journee.map(function (pt) { return pourcentagePoint(pt, cle); });
+  function formatAxeCourbe(pt) {
+    var j = pt.jour.split("-");
+    return j[2] + "/" + j[1] + " " + pt.heure;
+  }
+
+  function creerCourbe(tendance, cle, largeur, hauteur) {
+    if (!tendance || tendance.length < 2) return null;
+
+    var valeurs = tendance.map(function (pt) { return pourcentagePoint(pt, cle); });
     if (!valeurs.some(function (v) { return v != null; })) return null;
 
     var marge = 8;
-    var t0 = minutesDepuisMinuit(journee[0].heure);
-    var t1 = minutesDepuisMinuit(journee[journee.length - 1].heure);
+    var t0 = minutesAbsolues(tendance[0]);
+    var t1 = minutesAbsolues(tendance[tendance.length - 1]);
     var duree = Math.max(1, t1 - t0);
 
     function y(pourcentage) {
       return marge + (1 - pourcentage / 100) * (hauteur - marge * 2);
     }
+    function x(pt) {
+      return marge + ((minutesAbsolues(pt) - t0) / duree) * (largeur - marge * 2);
+    }
 
-    var points = journee.map(function (pt, i) {
+    var points = tendance.map(function (pt, i) {
       var v = valeurs[i];
       if (v == null) return null;
-      var fraction = (minutesDepuisMinuit(pt.heure) - t0) / duree;
       return {
-        x: marge + fraction * (largeur - marge * 2),
-        y: y(v),
-        v: v,
-        heure: pt.heure,
-        freq: pt.frequentation_reelle,
-        cap: pt.capacite_max,
+        x: x(pt), y: y(v), v: v,
+        jour: pt.jour, heure: pt.heure,
+        freq: pt.frequentation_reelle, cap: pt.capacite_max,
       };
     });
 
@@ -648,25 +474,37 @@
     });
     if (courant.length) segments.push(courant);
 
-    var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="courbe-jour">';
+    var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="courbe">';
 
-    // Seule frontière interne au graphique désormais : vert/orange (toujours à 50 %
-    // du seuil pratique). La frontière orange/rouge coïncide avec le haut du graphique.
+    // Seule frontière horizontale utile : vert/orange (toujours à 50 % du seuil
+    // pratique). La frontière orange/rouge coïncide avec le haut du graphique.
     svg += '<line x1="' + marge + '" y1="' + y(50).toFixed(1) + '" x2="' + (largeur - marge) +
       '" y2="' + y(50).toFixed(1) + '" stroke="rgba(18,33,59,0.14)" stroke-width="1" stroke-dasharray="3,3"/>';
+
+    // Repères verticaux à chaque changement de jour, pour lire les coupures nocturnes.
+    var premierJour = Math.floor(t0 / 1440);
+    var dernierJour = Math.floor(t1 / 1440);
+    for (var j = premierJour + 1; j <= dernierJour; j++) {
+      var minuteJour = j * 1440;
+      if (minuteJour > t0 && minuteJour < t1) {
+        var xj = marge + ((minuteJour - t0) / duree) * (largeur - marge * 2);
+        svg += '<line x1="' + xj.toFixed(1) + '" y1="' + marge + '" x2="' + xj.toFixed(1) + '" y2="' + (hauteur - marge) +
+          '" stroke="rgba(18,33,59,0.1)" stroke-width="1"/>';
+      }
+    }
 
     segments.forEach(function (segment) {
       var d = segment
         .map(function (p, i) { return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); })
         .join(" ");
-      svg += '<path d="' + d + '" fill="none" stroke="#1f6fb2" stroke-width="2.5" ' +
+      svg += '<path d="' + d + '" fill="none" stroke="#1f6fb2" stroke-width="2" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
       segment.forEach(function (p) {
-        svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3.5" fill="' +
+        svg += '<circle class="point-visual" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3" fill="' +
           couleurNiveau(niveau(cle, p.freq)) + '" stroke="#12213b" stroke-width="1"/>';
-        svg += '<circle class="point-hit" data-heure="' + p.heure + '" data-freq="' + p.freq + '" data-cap="' + p.cap +
-          '" data-pct="' + p.v + '" data-cle="' + cle + '" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) +
-          '" r="10" fill="transparent"/>';
+        svg += '<circle class="point-hit" data-jour="' + p.jour + '" data-heure="' + p.heure + '" data-freq="' + p.freq +
+          '" data-cap="' + p.cap + '" data-pct="' + p.v + '" data-cle="' + cle + '" cx="' + p.x.toFixed(1) + '" cy="' +
+          p.y.toFixed(1) + '" r="9" fill="transparent"/>';
       });
     });
 
@@ -703,15 +541,16 @@
   }
 
   function ouvrirTooltip(cible, clientX, clientY) {
+    var jour = cible.getAttribute("data-jour");
     var heure = cible.getAttribute("data-heure");
     var freq = cible.getAttribute("data-freq");
-    var cap = cible.getAttribute("data-cap");
     var cle = cible.getAttribute("data-cle");
     var pct = parseInt(cible.getAttribute("data-pct"), 10);
     var n = niveau(cle, parseInt(freq, 10));
 
-    els.pointTooltipHeure.textContent = heure;
-    els.pointTooltipValeur.textContent = freq + " / " + cap + " personnes";
+    var j = jour.split("-");
+    els.pointTooltipHeure.textContent = j[2] + "/" + j[1] + " " + heure;
+    els.pointTooltipValeur.textContent = freq + " personnes";
     els.pointTooltipBadge.textContent = pct + "%";
     els.pointTooltipBadge.style.background = couleurNiveau(n);
     els.pointTooltip.hidden = false;
@@ -729,133 +568,102 @@
     els.pointTooltip.hidden = true;
   }
 
-  els.courbeJour.addEventListener("mouseover", function (e) {
-    if (e.target.classList.contains("point-hit")) ouvrirTooltip(e.target, e.clientX, e.clientY);
+  function estPointHit(cible) {
+    return !!(cible && cible.classList && cible.classList.contains("point-hit"));
+  }
+
+  document.addEventListener("mouseover", function (e) {
+    if (estPointHit(e.target)) ouvrirTooltip(e.target, e.clientX, e.clientY);
   });
-  els.courbeJour.addEventListener("mouseout", function (e) {
-    if (e.target.classList.contains("point-hit")) fermerTooltip();
+  document.addEventListener("mouseout", function (e) {
+    if (estPointHit(e.target)) fermerTooltip();
   });
-  els.courbeJour.addEventListener("click", function (e) {
-    if (e.target.classList.contains("point-hit")) {
-      e.stopPropagation();
+  document.addEventListener("click", function (e) {
+    if (estPointHit(e.target)) {
       ouvrirTooltip(e.target, e.clientX, e.clientY);
+      return;
     }
+    fermerTooltip();
   });
   els.pointTooltipClose.addEventListener("click", function (e) {
     e.stopPropagation();
     fermerTooltip();
   });
-  document.addEventListener("click", fermerTooltip);
 
-  function renderFeaturedSparkline(piscine) {
-    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, FEATURED_KEY, 260, 44) : null;
+  function renderCourbe(conteneur, debutEl, finEl, wrapEl, piscine, cle, largeur, hauteur) {
+    var tendance = piscine ? piscine.tendance : null;
+    var svg = tendance ? creerCourbe(tendance, cle, largeur, hauteur) : null;
     if (svg) {
-      els.featuredSparkline.innerHTML = svg;
-      els.featuredSparklineWrap.hidden = false;
+      conteneur.innerHTML = svg;
+      debutEl.textContent = formatAxeCourbe(tendance[0]);
+      finEl.textContent = formatAxeCourbe(tendance[tendance.length - 1]);
+      wrapEl.hidden = false;
     } else {
-      els.featuredSparklineWrap.hidden = true;
-    }
-  }
-
-  function renderCourbeJournee(piscine) {
-    var journee = piscine ? piscine.journee_actuelle : null;
-    var svg = journee ? creerCourbeJournee(journee, FEATURED_KEY, 300, 110) : null;
-    if (svg) {
-      els.courbeJour.innerHTML = svg;
-      els.courbeJourDebut.textContent = journee[0].heure;
-      els.courbeJourFin.textContent = journee[journee.length - 1].heure;
-      els.courbeJourWrap.hidden = false;
-    } else {
-      els.courbeJourWrap.hidden = true;
+      wrapEl.hidden = true;
     }
   }
 
   function renderFeatured(piscine) {
     els.featuredNom.textContent = piscine ? piscine.nom : "Centre Nautique T.Bertrand (CNTB)";
 
-    if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
-      els.gaugeCircle.setAttribute("stroke-dasharray", "0 " + CIRCONFERENCE);
-      els.gaugeCircle.setAttribute("stroke", "rgba(18,33,59,0.18)");
-      els.gaugePercent.textContent = "—";
-      els.gaugePercent.style.color = "var(--ink-faint)";
-      els.gaugeSub.textContent = "Fermée";
-      els.verdict.textContent = "Piscine fermée pour le moment";
-      els.verdict.className = "verdict niveau-ferme";
-      els.verdictDetail.textContent = "";
-      renderFeaturedSparkline(piscine);
-      renderCourbeJournee(piscine);
-      return;
+    if (!piscine || !piscine.ouvert || piscine.frequentation_reelle == null) {
+      els.featuredNombre.textContent = "—";
+      els.featuredNombre.style.color = "var(--ink-faint)";
+      els.featuredNombreLabel.textContent = "Fermée pour le moment";
+    } else {
+      var n = niveau(FEATURED_KEY, piscine.frequentation_reelle);
+      els.featuredNombre.textContent = piscine.frequentation_reelle;
+      els.featuredNombre.style.color = couleurNiveau(n);
+      els.featuredNombreLabel.textContent = "personnes actuellement";
     }
 
-    var pourcentage = pourcentageAffiche(FEATURED_KEY, piscine.frequentation_reelle);
-    var n = niveau(FEATURED_KEY, piscine.frequentation_reelle);
-    var couleur = couleurNiveau(n);
-
-    var longueur = (pourcentage / 100) * CIRCONFERENCE;
-    els.gaugeCircle.setAttribute("stroke-dasharray", longueur + " " + CIRCONFERENCE);
-    els.gaugeCircle.setAttribute("stroke", couleur);
-
-    els.gaugePercent.textContent = pourcentage + "%";
-    els.gaugePercent.style.color = couleur;
-    els.gaugeSub.textContent = piscine.frequentation_reelle + " personnes";
-
-    els.verdict.textContent = texteVerdict(n);
-    els.verdict.className = "verdict niveau-" + n;
-    els.verdictDetail.textContent = "";
-
-    renderFeaturedSparkline(piscine);
-    renderCourbeJournee(piscine);
+    renderCourbe(els.featuredCourbe, els.featuredCourbeDebut, els.featuredCourbeFin,
+      els.featuredCourbeWrap, piscine, FEATURED_KEY, 300, 130);
   }
 
   function renderCard(cle, piscine) {
     var div = document.createElement("div");
     div.className = "card";
 
-    var top = document.createElement("div");
-    top.className = "card-top";
-
-    var infos = document.createElement("div");
     var nom = document.createElement("div");
     nom.className = "nom";
     nom.textContent = piscine ? piscine.nom : cle;
-    infos.appendChild(nom);
+    div.appendChild(nom);
 
-    var places = document.createElement("div");
-    places.className = "places";
+    var nombre = document.createElement("div");
+    nombre.className = "nombre-carte";
 
-    var pastille = document.createElement("div");
-    pastille.className = "pastille";
-
-    if (!piscine || !piscine.ouvert || piscine.capacite_max == null || piscine.frequentation_reelle == null) {
-      places.textContent = "Fermée";
-      pastille.classList.add("ferme");
-      pastille.textContent = "—";
+    if (!piscine || !piscine.ouvert || piscine.frequentation_reelle == null) {
+      nombre.textContent = "Fermée";
+      nombre.style.color = "var(--ink-faint)";
     } else {
-      var pourcentage = pourcentageAffiche(cle, piscine.frequentation_reelle);
       var n = niveau(cle, piscine.frequentation_reelle);
-      places.textContent = piscine.frequentation_reelle + " personnes";
-      pastille.classList.add(n);
-      pastille.textContent = pourcentage + "%";
+      var valeur = document.createElement("span");
+      valeur.textContent = piscine.frequentation_reelle;
+      var unite = document.createElement("span");
+      unite.className = "nombre-carte-unite";
+      unite.textContent = "personnes";
+      nombre.appendChild(valeur);
+      nombre.appendChild(document.createTextNode(" "));
+      nombre.appendChild(unite);
+      nombre.style.color = couleurNiveau(n);
     }
+    div.appendChild(nombre);
 
-    infos.appendChild(places);
-    top.appendChild(infos);
-    top.appendChild(pastille);
-    div.appendChild(top);
+    var courbeWrap = document.createElement("div");
+    courbeWrap.className = "courbe-wrap";
+    var courbeDiv = document.createElement("div");
+    var axes = document.createElement("div");
+    axes.className = "courbe-axes";
+    var debut = document.createElement("span");
+    var fin = document.createElement("span");
+    axes.appendChild(debut);
+    axes.appendChild(fin);
+    courbeWrap.appendChild(courbeDiv);
+    courbeWrap.appendChild(axes);
+    div.appendChild(courbeWrap);
 
-    var svg = piscine ? creerSparklineSvg(piscine.historique_7j, cle, 220, 28) : null;
-    if (svg) {
-      var sparklineWrap = document.createElement("div");
-      sparklineWrap.className = "sparkline-wrap";
-      var legende = document.createElement("p");
-      legende.className = "sparkline-legende";
-      legende.textContent = "Même heure, 7 derniers jours";
-      sparklineWrap.appendChild(legende);
-      var sparklineDiv = document.createElement("div");
-      sparklineDiv.innerHTML = svg;
-      sparklineWrap.appendChild(sparklineDiv);
-      div.appendChild(sparklineWrap);
-    }
+    renderCourbe(courbeDiv, debut, fin, courbeWrap, piscine, cle, 220, 90);
 
     return div;
   }

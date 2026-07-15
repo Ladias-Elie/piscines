@@ -19,11 +19,9 @@ HISTORY_FILE = ROOT / "history.json"
 # Les horodatages sont stockés en UTC, mais affichés à l'heure de Lyon.
 FUSEAU_LYON = ZoneInfo("Europe/Paris")
 
-# Nombre de jours précédents comparés au jour courant dans la mini-courbe, et
-# tolérance de recherche autour de la même heure (le cron tourne toutes les
-# 15 min mais peut avoir un peu de retard).
-JOURS_HISTORIQUE = 6
-TOLERANCE_MINUTES = 25
+# Fenêtre glissante (en jours) incluse dans la courbe de tendance affichée
+# dans la PWA. Garde data.json compact même après plusieurs semaines de collecte.
+FENETRE_TENDANCE_JOURS = 5
 
 # Correspondance entre un mot-clé identifiant chaque piscine d'été et sa clé dans le JSON.
 POOLS = {
@@ -98,29 +96,30 @@ def load_json(path: Path, default):
         return default
 
 
-def _point_from_pool(date_iso: str, pool) -> dict:
-    if pool is None:
-        return {"date": date_iso, "frequentation_reelle": None, "capacite_max": None, "ouvert": None}
+def _point_from_pool_heure(horodatage: datetime, pool: dict) -> dict:
+    local = horodatage.astimezone(FUSEAU_LYON)
     return {
-        "date": date_iso,
+        "jour": local.date().isoformat(),
+        "heure": local.strftime("%H:%M"),
         "frequentation_reelle": pool.get("frequentation_reelle"),
         "capacite_max": pool.get("capacite_max"),
         "ouvert": pool.get("ouvert"),
     }
 
 
-def build_journee_actuelle(history: list, pool_key: str, now: datetime) -> list:
-    """Pour une piscine, renvoie tous les relevés du jour courant (hors point actuel),
-    triés chronologiquement, pour tracer la courbe de fréquentation de la journée."""
+def build_tendance(history: list, pool_key: str, now: datetime) -> list:
+    """Pour une piscine, renvoie tous les relevés des FENETRE_TENDANCE_JOURS derniers
+    jours (hors point actuel), triés chronologiquement, pour tracer la courbe de
+    fréquentation dans le temps."""
 
-    aujourdhui = now.date()
+    limite = now - timedelta(days=FENETRE_TENDANCE_JOURS)
     points = []
     for entry in history:
         try:
             horodatage = datetime.fromisoformat(entry["horodatage"])
         except (KeyError, ValueError, TypeError):
             continue
-        if horodatage.date() != aujourdhui:
+        if horodatage < limite:
             continue
         pool = entry.get("piscines", {}).get(pool_key)
         if pool is None:
@@ -129,44 +128,6 @@ def build_journee_actuelle(history: list, pool_key: str, now: datetime) -> list:
 
     points.sort(key=lambda item: item[0])
     return [point for _, point in points]
-
-
-def _point_from_pool_heure(horodatage: datetime, pool: dict) -> dict:
-    return {
-        "heure": horodatage.astimezone(FUSEAU_LYON).strftime("%H:%M"),
-        "frequentation_reelle": pool.get("frequentation_reelle"),
-        "capacite_max": pool.get("capacite_max"),
-        "ouvert": pool.get("ouvert"),
-    }
-
-
-def build_historique_7j(history: list, pool_key: str, now: datetime) -> list:
-    """Pour une piscine, renvoie les valeurs à la même heure sur les JOURS_HISTORIQUE
-    jours précédents, plus le point du jour, pour tracer une mini-courbe de comparaison."""
-
-    par_date = {}
-    for entry in history:
-        try:
-            horodatage = datetime.fromisoformat(entry["horodatage"])
-        except (KeyError, ValueError, TypeError):
-            continue
-        par_date.setdefault(horodatage.date(), []).append((horodatage, entry))
-
-    points = []
-    for jours_avant in range(JOURS_HISTORIQUE, 0, -1):
-        cible = now - timedelta(days=jours_avant)
-        meilleur_pool = None
-        meilleur_ecart = None
-        for horodatage, entry in par_date.get(cible.date(), []):
-            ecart = abs((horodatage - cible).total_seconds())
-            if ecart <= TOLERANCE_MINUTES * 60 and (meilleur_ecart is None or ecart < meilleur_ecart):
-                pool = entry.get("piscines", {}).get(pool_key)
-                if pool is not None:
-                    meilleur_pool = pool
-                    meilleur_ecart = ecart
-        points.append(_point_from_pool(cible.date().isoformat(), meilleur_pool))
-
-    return points
 
 
 def main() -> int:
@@ -194,17 +155,10 @@ def main() -> int:
 
     piscines_avec_historique = {}
     for key, pool in pools.items():
-        historique = build_historique_7j(history, key, now_dt)
-        historique.append(_point_from_pool(now_dt.date().isoformat(), pool))
+        tendance = build_tendance(history, key, now_dt)
+        tendance.append(_point_from_pool_heure(now_dt, pool))
 
-        journee = build_journee_actuelle(history, key, now_dt)
-        journee.append(_point_from_pool_heure(now_dt, pool))
-
-        piscines_avec_historique[key] = {
-            **pool,
-            "historique_7j": historique,
-            "journee_actuelle": journee,
-        }
+        piscines_avec_historique[key] = {**pool, "tendance": tendance}
 
     data = {
         "derniere_mise_a_jour": now,
