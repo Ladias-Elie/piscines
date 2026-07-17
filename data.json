@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-07-17T09:30:57+00:00",
+  "derniere_mise_a_jour": "2026-07-17T09:45:37+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 220,
-      "places_restantes": 1780,
+      "frequentation_reelle": 257,
+      "places_restantes": 1743,
       "ouvert": true,
       "tendance": [
         {
@@ -1615,6 +1615,13 @@
           "jour": "2026-07-17",
           "heure": "11:30",
           "frequentation_reelle": 220,
+          "capacite_max": 2000,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-17",
+          "heure": "11:45",
+          "frequentation_reelle": 257,
           "capacite_max": 2000,
           "ouvert": true
         }
@@ -3233,6 +3240,13 @@
         {
           "jour": "2026-07-17",
           "heure": "11:30",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-07-17",
+          "heure": "11:45",
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
@@ -4855,14 +4869,21 @@
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-17",
+          "heure": "11:45",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ]
     },
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 13,
-      "places_restantes": 587,
+      "frequentation_reelle": 20,
+      "places_restantes": 580,
       "ouvert": true,
       "tendance": [
         {
@@ -6472,6 +6493,13 @@
           "jour": "2026-07-17",
           "heure": "11:30",
           "frequentation_reelle": 13,
+          "capacite_max": 600,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-17",
+          "heure": "11:45",
+          "frequentation_reelle": 20,
           "capacite_max": 600,
           "ouvert": true
         }
