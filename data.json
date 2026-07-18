@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-07-18T20:00:51+00:00",
+  "derniere_mise_a_jour": "2026-07-18T20:15:33+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -2545,6 +2545,13 @@
         {
           "jour": "2026-07-18",
           "heure": "22:00",
+          "frequentation_reelle": 500,
+          "capacite_max": 2000,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-18",
+          "heure": "22:15",
           "frequentation_reelle": 500,
           "capacite_max": 2000,
           "ouvert": true
@@ -5098,6 +5105,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-18",
+          "heure": "22:15",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ]
     },
@@ -7648,6 +7662,13 @@
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-18",
+          "heure": "22:15",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ]
     },
@@ -10195,6 +10216,13 @@
         {
           "jour": "2026-07-18",
           "heure": "22:00",
+          "frequentation_reelle": 194,
+          "capacite_max": 600,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-18",
+          "heure": "22:15",
           "frequentation_reelle": 194,
           "capacite_max": 600,
           "ouvert": true
