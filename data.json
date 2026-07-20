@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-07-20T13:45:34+00:00",
+  "derniere_mise_a_jour": "2026-07-20T14:00:52+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 446,
-      "places_restantes": 1554,
+      "frequentation_reelle": 457,
+      "places_restantes": 1543,
       "ouvert": true,
       "tendance": [
         {
@@ -3680,6 +3680,13 @@
           "jour": "2026-07-20",
           "heure": "15:45",
           "frequentation_reelle": 446,
+          "capacite_max": 2000,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-20",
+          "heure": "16:00",
+          "frequentation_reelle": 457,
           "capacite_max": 2000,
           "ouvert": true
         }
@@ -7366,14 +7373,21 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-20",
+          "heure": "16:00",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ]
     },
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 29,
-      "places_restantes": 571,
+      "frequentation_reelle": 28,
+      "places_restantes": 572,
       "ouvert": true,
       "tendance": [
         {
@@ -11050,14 +11064,21 @@
           "frequentation_reelle": 29,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-20",
+          "heure": "16:00",
+          "frequentation_reelle": 28,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ]
     },
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 53,
-      "places_restantes": 547,
+      "frequentation_reelle": 60,
+      "places_restantes": 540,
       "ouvert": true,
       "tendance": [
         {
@@ -14732,6 +14753,13 @@
           "jour": "2026-07-20",
           "heure": "15:45",
           "frequentation_reelle": 53,
+          "capacite_max": 600,
+          "ouvert": true
+        },
+        {
+          "jour": "2026-07-20",
+          "heure": "16:00",
+          "frequentation_reelle": 60,
           "capacite_max": 600,
           "ouvert": true
         }
