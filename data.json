@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-07-21T09:30:35+00:00",
+  "derniere_mise_a_jour": "2026-07-21T09:43:49+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 177,
-      "places_restantes": 1823,
+      "frequentation_reelle": 187,
+      "places_restantes": 1813,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-16",
-          "heure": "11:31",
-          "frequentation_reelle": 297,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-16",
           "heure": "11:45",
@@ -3808,6 +3801,13 @@
           "frequentation_reelle": 177,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-21",
+          "heure": "11:43",
+          "frequentation_reelle": 187,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ]
     },
@@ -3818,13 +3818,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-16",
-          "heure": "11:31",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-16",
           "heure": "11:45",
@@ -7618,23 +7611,23 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-21",
+          "heure": "11:43",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ]
     },
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 83,
-      "places_restantes": 517,
+      "frequentation_reelle": 114,
+      "places_restantes": 486,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-16",
-          "heure": "11:31",
-          "frequentation_reelle": 71,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-16",
           "heure": "11:45",
@@ -11428,6 +11421,13 @@
           "frequentation_reelle": 83,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-21",
+          "heure": "11:43",
+          "frequentation_reelle": 114,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ]
     },
@@ -11438,13 +11438,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-16",
-          "heure": "11:31",
-          "frequentation_reelle": 79,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-16",
           "heure": "11:45",
@@ -15235,6 +15228,13 @@
         {
           "jour": "2026-07-21",
           "heure": "11:30",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-07-21",
+          "heure": "11:43",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
