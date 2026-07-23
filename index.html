@@ -141,13 +141,11 @@
 
   .point-hit { cursor: pointer; }
 
-  .courbe-axes {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.68rem;
-    color: var(--ink-faint);
+  .axe-label {
+    font-size: 7.5px;
     font-weight: 700;
-    margin-top: 0.3rem;
+    fill: var(--ink-faint);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
   .courbe-legende {
@@ -175,6 +173,10 @@
 
   .legende-trait--max {
     border-top: 2px dashed var(--ink-faint);
+  }
+
+  .legende-trait--moyenne {
+    border-top: 2px solid #eab13a;
   }
 
   section.autres {
@@ -356,14 +358,11 @@
 
     <div class="courbe-wrap" id="featured-courbe-wrap" hidden>
       <div id="featured-courbe"></div>
-      <div class="courbe-axes">
-        <span id="featured-courbe-debut"></span>
-        <span id="featured-courbe-fin"></span>
-      </div>
       <div class="courbe-legende">
-        <span class="legende-item"><span class="legende-trait"></span> Fréquentation</span>
+        <span class="legende-item"><span class="legende-trait"></span> Aujourd'hui</span>
+        <span class="legende-item"><span class="legende-trait legende-trait--moyenne"></span> Moyenne</span>
         <span class="legende-item">
-          <span class="legende-trait legende-trait--max"></span> Maximum aujourd'hui (<span id="featured-courbe-max"></span>)
+          <span class="legende-trait legende-trait--max"></span> Max aujourd'hui (<span id="featured-courbe-max"></span>)
         </span>
       </div>
     </div>
@@ -399,8 +398,6 @@
     featuredNombreLabel: document.getElementById("featured-nombre-label"),
     featuredCourbeWrap: document.getElementById("featured-courbe-wrap"),
     featuredCourbe: document.getElementById("featured-courbe"),
-    featuredCourbeDebut: document.getElementById("featured-courbe-debut"),
-    featuredCourbeFin: document.getElementById("featured-courbe-fin"),
     featuredCourbeMax: document.getElementById("featured-courbe-max"),
     cards: document.getElementById("cards"),
     majTexte: document.getElementById("maj-texte"),
@@ -414,15 +411,17 @@
 
   var derniereMaj = null;
 
-  // Seuils en nombre de personnes réel (pas en % de la capacité légale, qui est
-  // très supérieure à ce qui "sent" plein). Calés sur un seul repère de terrain
-  // (CNTB ~860 personnes = déjà bondé) puis extrapolés aux autres piscines au
-  // prorata de leur capacité légale — à corriger si le ressenti diffère.
+  // Seuils en nombre de personnes réel, calculés sur les terciles (p33/p66) de
+  // la fréquentation réelle observée sur les 12 premiers jours de collecte
+  // (909 relevés) : chaque zone vert/orange/rouge couvre ~1/3 des observations
+  // réelles. Vaise n'a jamais ouvert — seuils extrapolés du ratio ~10 %/20 %
+  // de la capacité légale observé sur les 3 autres piscines, à corriger dès
+  // qu'elle ouvrira.
   var SEUILS = {
-    CNTB: { vert: 400, rouge: 800 },
-    Vaise: { vert: 220, rouge: 440 },
-    "Duchère": { vert: 120, rouge: 240 },
-    Mermoz: { vert: 100, rouge: 200 },
+    CNTB: { vert: 200, rouge: 400 },
+    Vaise: { vert: 110, rouge: 220 },
+    "Duchère": { vert: 45, rouge: 85 },
+    Mermoz: { vert: 50, rouge: 110 },
   };
 
   function seuilsPiscine(cle) {
@@ -455,32 +454,77 @@
     return new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
   }
 
-  function creerCourbeJour(pointsJour, cle, largeur, hauteur) {
-    if (!pointsJour || pointsJour.length < 2) return null;
+  function arrondiJoli(valeur) {
+    if (valeur <= 0) return 1;
+    var magnitude = Math.pow(10, Math.floor(Math.log10(valeur)));
+    var normalise = valeur / magnitude;
+    var nice = normalise <= 1 ? 1 : normalise <= 2 ? 2 : normalise <= 5 ? 5 : 10;
+    return nice * magnitude;
+  }
 
-    var valides = pointsJour.filter(function (pt) {
-      return pt.ouvert !== false && pt.frequentation_reelle != null;
+  function choisirIntervalleMinutes(dureeMinutes, largeurTracee) {
+    var maxTicks = Math.max(2, Math.floor(largeurTracee / 46));
+    var paliers = [15, 30, 60, 120, 180, 240, 360];
+    for (var i = 0; i < paliers.length; i++) {
+      if (dureeMinutes / paliers[i] <= maxTicks) return paliers[i];
+    }
+    return paliers[paliers.length - 1];
+  }
+
+  function formatHeureAxe(minutes) {
+    var h = Math.floor(minutes / 60);
+    var m = minutes % 60;
+    return m === 0 ? (h + "h") : (h + "h" + (m < 10 ? "0" : "") + m);
+  }
+
+  // Échelle horaire fixe : pas besoin d'afficher la nuit, la piscine est de
+  // toute façon toujours fermée en dehors de cette plage.
+  var FENETRE_AXE_DEBUT = 7 * 60;
+  var FENETRE_AXE_FIN = 20 * 60;
+
+  function creerCourbeJour(pointsJour, moyenneJour, cle, largeur, hauteur) {
+    var t0 = FENETRE_AXE_DEBUT;
+    var t1 = FENETRE_AXE_FIN;
+    var duree = t1 - t0;
+
+    var valides = (pointsJour || []).filter(function (pt) {
+      if (pt.ouvert === false || pt.frequentation_reelle == null) return false;
+      var m = minutesDepuisMinuit(pt.heure);
+      return m >= t0 && m <= t1;
     });
-    if (valides.length < 2) return null;
 
-    var maxJour = Math.max.apply(null, valides.map(function (pt) { return pt.frequentation_reelle; }));
-    var plafond = Math.max(1, maxJour * 1.15);
+    var moyenneFiltree = (moyenneJour || []).filter(function (pt) {
+      var m = minutesDepuisMinuit(pt.heure);
+      return m >= t0 && m <= t1;
+    });
 
-    var marge = 8;
-    var t0 = minutesDepuisMinuit(pointsJour[0].heure);
-    var t1 = minutesDepuisMinuit(pointsJour[pointsJour.length - 1].heure);
-    var duree = Math.max(1, t1 - t0);
+    if (valides.length < 2 && moyenneFiltree.length < 2) return null;
+
+    var maxJour = valides.length ? Math.max.apply(null, valides.map(function (pt) { return pt.frequentation_reelle; })) : null;
+    var maxMoyenne = moyenneFiltree.length
+      ? Math.max.apply(null, moyenneFiltree.map(function (pt) { return pt.frequentation_moyenne; }))
+      : 0;
+    var plafond = arrondiJoli(Math.max(1, (maxJour || 0), maxMoyenne) * 1.15);
+
+    var margeGauche = 30;
+    var margeDroite = 6;
+    var margeHaut = 8;
+    var margeBas = 16;
+    var largeurTracee = largeur - margeGauche - margeDroite;
+    var hauteurTracee = hauteur - margeHaut - margeBas;
 
     function y(valeur) {
-      return marge + (1 - valeur / plafond) * (hauteur - marge * 2);
+      return margeHaut + (1 - valeur / plafond) * hauteurTracee;
     }
-    function x(pt) {
-      return marge + ((minutesDepuisMinuit(pt.heure) - t0) / duree) * (largeur - marge * 2);
+    function x(minutes) {
+      return margeGauche + ((minutes - t0) / duree) * largeurTracee;
     }
 
     var points = pointsJour.map(function (pt) {
       if (pt.ouvert === false || pt.frequentation_reelle == null) return null;
-      return { x: x(pt), y: y(pt.frequentation_reelle), heure: pt.heure, freq: pt.frequentation_reelle };
+      var m = minutesDepuisMinuit(pt.heure);
+      if (m < t0 || m > t1) return null;
+      return { x: x(m), y: y(pt.frequentation_reelle), heure: pt.heure, freq: pt.frequentation_reelle };
     });
 
     var segments = [];
@@ -497,9 +541,63 @@
 
     var svg = '<svg viewBox="0 0 ' + largeur + ' ' + hauteur + '" class="courbe">';
 
+    // Zones grisées : portions de l'axe temporel où la piscine est fermée
+    // (avant/après les segments ouverts, ou entre deux segments).
+    var curseur = margeGauche;
+    var xDroite = largeur - margeDroite;
+    segments.forEach(function (segment) {
+      var debut = segment[0].x;
+      var fin = segment[segment.length - 1].x;
+      if (debut > curseur + 0.5) {
+        svg += '<rect x="' + curseur.toFixed(1) + '" y="' + margeHaut + '" width="' + (debut - curseur).toFixed(1) +
+          '" height="' + hauteurTracee + '" fill="rgba(18,33,59,0.05)"/>';
+      }
+      curseur = Math.max(curseur, fin);
+    });
+    if (curseur < xDroite - 0.5) {
+      svg += '<rect x="' + curseur.toFixed(1) + '" y="' + margeHaut + '" width="' + (xDroite - curseur).toFixed(1) +
+        '" height="' + hauteurTracee + '" fill="rgba(18,33,59,0.05)"/>';
+    }
+
+    // Quadrillage + graduations verticales (Y : fréquentation).
+    for (var niveau = 0; niveau <= 4; niveau++) {
+      var valeurTick = (plafond * niveau) / 4;
+      var yTick = y(valeurTick);
+      svg += '<line x1="' + margeGauche + '" y1="' + yTick.toFixed(1) + '" x2="' + xDroite +
+        '" y2="' + yTick.toFixed(1) + '" stroke="rgba(18,33,59,0.08)" stroke-width="1"/>';
+      svg += '<text class="axe-label" x="' + (margeGauche - 5) + '" y="' + (yTick + 2.8).toFixed(1) +
+        '" text-anchor="end">' + Math.round(valeurTick) + "</text>";
+    }
+
+    // Quadrillage + graduations horizontales (X : heure).
+    var intervalle = choisirIntervalleMinutes(duree, largeurTracee);
+    var premierTick = Math.ceil(t0 / intervalle) * intervalle;
+    for (var m2 = premierTick; m2 <= t1; m2 += intervalle) {
+      var xTick = x(m2);
+      svg += '<line x1="' + xTick.toFixed(1) + '" y1="' + margeHaut + '" x2="' + xTick.toFixed(1) +
+        '" y2="' + (margeHaut + hauteurTracee) + '" stroke="rgba(18,33,59,0.08)" stroke-width="1"/>';
+      svg += '<text class="axe-label" x="' + xTick.toFixed(1) + '" y="' + (hauteur - 3) +
+        '" text-anchor="middle">' + formatHeureAxe(m2) + "</text>";
+    }
+
+    // Courbe de fréquentation moyenne (profil historique au même horaire).
+    if (moyenneFiltree.length >= 2) {
+      var dMoyenne = moyenneFiltree
+        .map(function (pt, i) {
+          var px = x(minutesDepuisMinuit(pt.heure));
+          var py = y(pt.frequentation_moyenne);
+          return (i === 0 ? "M" : "L") + px.toFixed(1) + "," + py.toFixed(1);
+        })
+        .join(" ");
+      svg += '<path d="' + dMoyenne + '" fill="none" stroke="#eab13a" stroke-width="1.75" ' +
+        'stroke-linecap="round" stroke-linejoin="round"/>';
+    }
+
     // Trait de référence : maximum observé sur la journée en cours.
-    svg += '<line x1="' + marge + '" y1="' + y(maxJour).toFixed(1) + '" x2="' + (largeur - marge) +
-      '" y2="' + y(maxJour).toFixed(1) + '" stroke="#8891a3" stroke-width="1.5" stroke-dasharray="4,3"/>';
+    if (maxJour != null) {
+      svg += '<line x1="' + margeGauche + '" y1="' + y(maxJour).toFixed(1) + '" x2="' + xDroite +
+        '" y2="' + y(maxJour).toFixed(1) + '" stroke="#8891a3" stroke-width="1.5" stroke-dasharray="4,3"/>';
+    }
 
     segments.forEach(function (segment) {
       var d = segment
@@ -596,19 +694,17 @@
     fermerTooltip();
   });
 
-  function renderCourbe(conteneur, debutEl, finEl, maxEl, wrapEl, piscine, cle, largeur, hauteur) {
+  function renderCourbe(conteneur, maxEl, wrapEl, piscine, cle, largeur, hauteur) {
     var tendance = piscine ? piscine.tendance : null;
     var aujourdhui = aujourdhuiLyon();
     var pointsJour = tendance
       ? tendance.filter(function (pt) { return pt.jour === aujourdhui; })
-      : null;
-    var resultat = pointsJour ? creerCourbeJour(pointsJour, cle, largeur, hauteur) : null;
+      : [];
+    var resultat = creerCourbeJour(pointsJour, piscine ? piscine.moyenne_jour : null, cle, largeur, hauteur);
 
     if (resultat) {
       conteneur.innerHTML = resultat.svg;
-      debutEl.textContent = pointsJour[0].heure;
-      finEl.textContent = pointsJour[pointsJour.length - 1].heure;
-      maxEl.textContent = resultat.max;
+      maxEl.textContent = resultat.max != null ? resultat.max : "—";
       wrapEl.hidden = false;
     } else {
       wrapEl.hidden = true;
@@ -629,8 +725,7 @@
       els.featuredNombreLabel.textContent = "personnes actuellement";
     }
 
-    renderCourbe(els.featuredCourbe, els.featuredCourbeDebut, els.featuredCourbeFin, els.featuredCourbeMax,
-      els.featuredCourbeWrap, piscine, FEATURED_KEY, 300, 130);
+    renderCourbe(els.featuredCourbe, els.featuredCourbeMax, els.featuredCourbeWrap, piscine, FEATURED_KEY, 320, 150);
   }
 
   function renderCard(cle, piscine) {
@@ -665,14 +760,7 @@
     var courbeWrap = document.createElement("div");
     courbeWrap.className = "courbe-wrap";
     var courbeDiv = document.createElement("div");
-    var axes = document.createElement("div");
-    axes.className = "courbe-axes";
-    var debut = document.createElement("span");
-    var fin = document.createElement("span");
-    axes.appendChild(debut);
-    axes.appendChild(fin);
     courbeWrap.appendChild(courbeDiv);
-    courbeWrap.appendChild(axes);
 
     var legende = document.createElement("div");
     legende.className = "courbe-legende";
@@ -682,7 +770,14 @@
     var traitFreq = document.createElement("span");
     traitFreq.className = "legende-trait";
     legendeFreq.appendChild(traitFreq);
-    legendeFreq.appendChild(document.createTextNode(" Fréquentation"));
+    legendeFreq.appendChild(document.createTextNode(" Aujourd'hui"));
+
+    var legendeMoyenne = document.createElement("span");
+    legendeMoyenne.className = "legende-item";
+    var traitMoyenne = document.createElement("span");
+    traitMoyenne.className = "legende-trait legende-trait--moyenne";
+    legendeMoyenne.appendChild(traitMoyenne);
+    legendeMoyenne.appendChild(document.createTextNode(" Moyenne"));
 
     var legendeMax = document.createElement("span");
     legendeMax.className = "legende-item";
@@ -695,12 +790,13 @@
     legendeMax.appendChild(document.createTextNode(")"));
 
     legende.appendChild(legendeFreq);
+    legende.appendChild(legendeMoyenne);
     legende.appendChild(legendeMax);
     courbeWrap.appendChild(legende);
 
     div.appendChild(courbeWrap);
 
-    renderCourbe(courbeDiv, debut, fin, maxValeur, courbeWrap, piscine, cle, 220, 90);
+    renderCourbe(courbeDiv, maxValeur, courbeWrap, piscine, cle, 230, 120);
 
     return div;
   }

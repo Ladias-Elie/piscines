@@ -23,6 +23,9 @@ FUSEAU_LYON = ZoneInfo("Europe/Paris")
 # dans la PWA. Garde data.json compact même après plusieurs semaines de collecte.
 FENETRE_TENDANCE_JOURS = 5
 
+# Taille des créneaux (en minutes) pour la courbe de fréquentation moyenne.
+TAILLE_CRENEAU_MOYENNE = 15
+
 # Correspondance entre un mot-clé identifiant chaque piscine d'été et sa clé dans le JSON.
 POOLS = {
     "cntb": "CNTB",
@@ -130,6 +133,70 @@ def build_tendance(history: list, pool_key: str, now: datetime) -> list:
     return [point for _, point in points]
 
 
+def _plus_longue_plage_contigue(points: list) -> list:
+    """Renvoie la plus longue série de créneaux consécutifs (sans trou d'un
+    créneau à l'autre) parmi les créneaux ayant au moins une observation."""
+
+    meilleure: list = []
+    courante: list = []
+    for point in points:
+        if courante and point["creneau"] - courante[-1]["creneau"] != TAILLE_CRENEAU_MOYENNE:
+            courante = []
+        courante.append(point)
+        if len(courante) > len(meilleure):
+            meilleure = courante[:]
+
+    return meilleure
+
+
+def build_moyenne_jour(history: list, pool_key: str) -> list:
+    """Pour une piscine, moyenne la fréquentation par créneau de TAILLE_CRENEAU_MOYENNE
+    minutes sur tout l'historique disponible (heure de Lyon), pour tracer un profil
+    de journée type comparé à la courbe du jour.
+
+    Certains relevés nocturnes isolés montrent une fréquentation résiduelle non
+    nulle (le compteur du site ne semble pas toujours revenir à "-" immédiatement
+    à la fermeture). Pour ne garder que la vraie plage d'ouverture, on ne conserve
+    que la plus longue série de créneaux consécutifs (sans trou) — un relevé
+    nocturne isolé, séparé du reste par plusieurs heures sans aucune donnée,
+    forme sa propre mini-série et se retrouve naturellement exclu."""
+
+    par_creneau: dict = {}
+    for entry in history:
+        try:
+            horodatage = datetime.fromisoformat(entry["horodatage"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        pool = entry.get("piscines", {}).get(pool_key)
+        if not pool or not pool.get("ouvert") or pool.get("frequentation_reelle") is None:
+            continue
+
+        local = horodatage.astimezone(FUSEAU_LYON)
+        minutes = local.hour * 60 + local.minute
+        creneau = (minutes // TAILLE_CRENEAU_MOYENNE) * TAILLE_CRENEAU_MOYENNE
+        par_creneau.setdefault(creneau, []).append(pool["frequentation_reelle"])
+
+    if not par_creneau:
+        return []
+
+    points_bruts = []
+    for creneau in sorted(par_creneau.keys()):
+        valeurs = par_creneau[creneau]
+        points_bruts.append({
+            "creneau": creneau,
+            "heure": f"{creneau // 60:02d}:{creneau % 60:02d}",
+            "frequentation_moyenne": round(sum(valeurs) / len(valeurs)),
+            "nb_jours": len(valeurs),
+        })
+
+    plage = _plus_longue_plage_contigue(points_bruts)
+
+    return [
+        {"heure": p["heure"], "frequentation_moyenne": p["frequentation_moyenne"], "nb_jours": p["nb_jours"]}
+        for p in plage
+    ]
+
+
 def main() -> int:
     try:
         html = fetch_html(URL)
@@ -158,7 +225,9 @@ def main() -> int:
         tendance = build_tendance(history, key, now_dt)
         tendance.append(_point_from_pool_heure(now_dt, pool))
 
-        piscines_avec_historique[key] = {**pool, "tendance": tendance}
+        moyenne_jour = build_moyenne_jour(history, key)
+
+        piscines_avec_historique[key] = {**pool, "tendance": tendance, "moyenne_jour": moyenne_jour}
 
     data = {
         "derniere_mise_a_jour": now,
