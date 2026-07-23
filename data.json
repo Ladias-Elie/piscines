@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-07-23T11:15:25+00:00",
+  "derniere_mise_a_jour": "2026-07-23T11:30:24+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 403,
-      "places_restantes": 1597,
+      "frequentation_reelle": 383,
+      "places_restantes": 1617,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-18",
-          "heure": "13:15",
-          "frequentation_reelle": 483,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-18",
           "heure": "13:30",
@@ -3787,6 +3780,280 @@
           "frequentation_reelle": 403,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-23",
+          "heure": "13:30",
+          "frequentation_reelle": 383,
+          "capacite_max": 2000,
+          "ouvert": true
+        }
+      ],
+      "moyenne_jour": [
+        {
+          "heure": "10:45",
+          "frequentation_moyenne": 132,
+          "nb_jours": 5
+        },
+        {
+          "heure": "11:00",
+          "frequentation_moyenne": 208,
+          "nb_jours": 8
+        },
+        {
+          "heure": "11:15",
+          "frequentation_moyenne": 292,
+          "nb_jours": 10
+        },
+        {
+          "heure": "11:30",
+          "frequentation_moyenne": 321,
+          "nb_jours": 9
+        },
+        {
+          "heure": "11:45",
+          "frequentation_moyenne": 374,
+          "nb_jours": 7
+        },
+        {
+          "heure": "12:00",
+          "frequentation_moyenne": 420,
+          "nb_jours": 8
+        },
+        {
+          "heure": "12:15",
+          "frequentation_moyenne": 472,
+          "nb_jours": 11
+        },
+        {
+          "heure": "12:30",
+          "frequentation_moyenne": 394,
+          "nb_jours": 8
+        },
+        {
+          "heure": "12:45",
+          "frequentation_moyenne": 434,
+          "nb_jours": 10
+        },
+        {
+          "heure": "13:00",
+          "frequentation_moyenne": 456,
+          "nb_jours": 11
+        },
+        {
+          "heure": "13:15",
+          "frequentation_moyenne": 375,
+          "nb_jours": 12
+        },
+        {
+          "heure": "13:30",
+          "frequentation_moyenne": 411,
+          "nb_jours": 9
+        },
+        {
+          "heure": "13:45",
+          "frequentation_moyenne": 477,
+          "nb_jours": 10
+        },
+        {
+          "heure": "14:00",
+          "frequentation_moyenne": 337,
+          "nb_jours": 11
+        },
+        {
+          "heure": "14:15",
+          "frequentation_moyenne": 278,
+          "nb_jours": 9
+        },
+        {
+          "heure": "14:30",
+          "frequentation_moyenne": 362,
+          "nb_jours": 8
+        },
+        {
+          "heure": "14:45",
+          "frequentation_moyenne": 225,
+          "nb_jours": 9
+        },
+        {
+          "heure": "15:00",
+          "frequentation_moyenne": 187,
+          "nb_jours": 6
+        },
+        {
+          "heure": "15:15",
+          "frequentation_moyenne": 209,
+          "nb_jours": 8
+        },
+        {
+          "heure": "15:30",
+          "frequentation_moyenne": 368,
+          "nb_jours": 5
+        },
+        {
+          "heure": "15:45",
+          "frequentation_moyenne": 177,
+          "nb_jours": 5
+        },
+        {
+          "heure": "16:00",
+          "frequentation_moyenne": 289,
+          "nb_jours": 11
+        },
+        {
+          "heure": "16:15",
+          "frequentation_moyenne": 330,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:30",
+          "frequentation_moyenne": 416,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:45",
+          "frequentation_moyenne": 441,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:00",
+          "frequentation_moyenne": 562,
+          "nb_jours": 11
+        },
+        {
+          "heure": "17:15",
+          "frequentation_moyenne": 670,
+          "nb_jours": 12
+        },
+        {
+          "heure": "17:30",
+          "frequentation_moyenne": 524,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:45",
+          "frequentation_moyenne": 559,
+          "nb_jours": 8
+        },
+        {
+          "heure": "18:00",
+          "frequentation_moyenne": 666,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:15",
+          "frequentation_moyenne": 729,
+          "nb_jours": 9
+        },
+        {
+          "heure": "18:30",
+          "frequentation_moyenne": 621,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:45",
+          "frequentation_moyenne": 470,
+          "nb_jours": 10
+        },
+        {
+          "heure": "19:00",
+          "frequentation_moyenne": 510,
+          "nb_jours": 9
+        },
+        {
+          "heure": "19:15",
+          "frequentation_moyenne": 440,
+          "nb_jours": 7
+        },
+        {
+          "heure": "19:30",
+          "frequentation_moyenne": 441,
+          "nb_jours": 13
+        },
+        {
+          "heure": "19:45",
+          "frequentation_moyenne": 272,
+          "nb_jours": 8
+        },
+        {
+          "heure": "20:00",
+          "frequentation_moyenne": 254,
+          "nb_jours": 11
+        },
+        {
+          "heure": "20:15",
+          "frequentation_moyenne": 171,
+          "nb_jours": 7
+        },
+        {
+          "heure": "20:30",
+          "frequentation_moyenne": 285,
+          "nb_jours": 10
+        },
+        {
+          "heure": "20:45",
+          "frequentation_moyenne": 255,
+          "nb_jours": 9
+        },
+        {
+          "heure": "21:00",
+          "frequentation_moyenne": 223,
+          "nb_jours": 8
+        },
+        {
+          "heure": "21:15",
+          "frequentation_moyenne": 201,
+          "nb_jours": 9
+        },
+        {
+          "heure": "21:30",
+          "frequentation_moyenne": 260,
+          "nb_jours": 11
+        },
+        {
+          "heure": "21:45",
+          "frequentation_moyenne": 240,
+          "nb_jours": 11
+        },
+        {
+          "heure": "22:00",
+          "frequentation_moyenne": 231,
+          "nb_jours": 10
+        },
+        {
+          "heure": "22:15",
+          "frequentation_moyenne": 210,
+          "nb_jours": 10
+        },
+        {
+          "heure": "22:30",
+          "frequentation_moyenne": 241,
+          "nb_jours": 12
+        },
+        {
+          "heure": "22:45",
+          "frequentation_moyenne": 195,
+          "nb_jours": 10
+        },
+        {
+          "heure": "23:00",
+          "frequentation_moyenne": 261,
+          "nb_jours": 11
+        },
+        {
+          "heure": "23:15",
+          "frequentation_moyenne": 260,
+          "nb_jours": 13
+        },
+        {
+          "heure": "23:30",
+          "frequentation_moyenne": 162,
+          "nb_jours": 10
+        },
+        {
+          "heure": "23:45",
+          "frequentation_moyenne": 203,
+          "nb_jours": 10
         }
       ]
     },
@@ -3797,13 +4064,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-18",
-          "heure": "13:15",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-18",
           "heure": "13:30",
@@ -7576,23 +7836,24 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-23",
+          "heure": "13:30",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
-      ]
+      ],
+      "moyenne_jour": []
     },
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 40,
-      "places_restantes": 560,
+      "frequentation_reelle": 36,
+      "places_restantes": 564,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-18",
-          "heure": "13:15",
-          "frequentation_reelle": 70,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-18",
           "heure": "13:30",
@@ -11365,6 +11626,290 @@
           "frequentation_reelle": 40,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-23",
+          "heure": "13:30",
+          "frequentation_reelle": 36,
+          "capacite_max": 600,
+          "ouvert": true
+        }
+      ],
+      "moyenne_jour": [
+        {
+          "heure": "10:15",
+          "frequentation_moyenne": 4,
+          "nb_jours": 2
+        },
+        {
+          "heure": "10:30",
+          "frequentation_moyenne": 4,
+          "nb_jours": 2
+        },
+        {
+          "heure": "10:45",
+          "frequentation_moyenne": 29,
+          "nb_jours": 6
+        },
+        {
+          "heure": "11:00",
+          "frequentation_moyenne": 42,
+          "nb_jours": 8
+        },
+        {
+          "heure": "11:15",
+          "frequentation_moyenne": 66,
+          "nb_jours": 9
+        },
+        {
+          "heure": "11:30",
+          "frequentation_moyenne": 69,
+          "nb_jours": 9
+        },
+        {
+          "heure": "11:45",
+          "frequentation_moyenne": 74,
+          "nb_jours": 7
+        },
+        {
+          "heure": "12:00",
+          "frequentation_moyenne": 83,
+          "nb_jours": 9
+        },
+        {
+          "heure": "12:15",
+          "frequentation_moyenne": 90,
+          "nb_jours": 11
+        },
+        {
+          "heure": "12:30",
+          "frequentation_moyenne": 69,
+          "nb_jours": 8
+        },
+        {
+          "heure": "12:45",
+          "frequentation_moyenne": 74,
+          "nb_jours": 10
+        },
+        {
+          "heure": "13:00",
+          "frequentation_moyenne": 76,
+          "nb_jours": 11
+        },
+        {
+          "heure": "13:15",
+          "frequentation_moyenne": 60,
+          "nb_jours": 12
+        },
+        {
+          "heure": "13:30",
+          "frequentation_moyenne": 60,
+          "nb_jours": 9
+        },
+        {
+          "heure": "13:45",
+          "frequentation_moyenne": 62,
+          "nb_jours": 10
+        },
+        {
+          "heure": "14:00",
+          "frequentation_moyenne": 47,
+          "nb_jours": 10
+        },
+        {
+          "heure": "14:15",
+          "frequentation_moyenne": 52,
+          "nb_jours": 7
+        },
+        {
+          "heure": "14:30",
+          "frequentation_moyenne": 54,
+          "nb_jours": 7
+        },
+        {
+          "heure": "14:45",
+          "frequentation_moyenne": 35,
+          "nb_jours": 7
+        },
+        {
+          "heure": "15:00",
+          "frequentation_moyenne": 25,
+          "nb_jours": 5
+        },
+        {
+          "heure": "15:15",
+          "frequentation_moyenne": 30,
+          "nb_jours": 4
+        },
+        {
+          "heure": "15:30",
+          "frequentation_moyenne": 34,
+          "nb_jours": 5
+        },
+        {
+          "heure": "15:45",
+          "frequentation_moyenne": 33,
+          "nb_jours": 7
+        },
+        {
+          "heure": "16:00",
+          "frequentation_moyenne": 78,
+          "nb_jours": 10
+        },
+        {
+          "heure": "16:15",
+          "frequentation_moyenne": 68,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:30",
+          "frequentation_moyenne": 86,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:45",
+          "frequentation_moyenne": 90,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:00",
+          "frequentation_moyenne": 120,
+          "nb_jours": 11
+        },
+        {
+          "heure": "17:15",
+          "frequentation_moyenne": 125,
+          "nb_jours": 12
+        },
+        {
+          "heure": "17:30",
+          "frequentation_moyenne": 96,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:45",
+          "frequentation_moyenne": 102,
+          "nb_jours": 8
+        },
+        {
+          "heure": "18:00",
+          "frequentation_moyenne": 111,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:15",
+          "frequentation_moyenne": 132,
+          "nb_jours": 9
+        },
+        {
+          "heure": "18:30",
+          "frequentation_moyenne": 108,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:45",
+          "frequentation_moyenne": 75,
+          "nb_jours": 10
+        },
+        {
+          "heure": "19:00",
+          "frequentation_moyenne": 71,
+          "nb_jours": 9
+        },
+        {
+          "heure": "19:15",
+          "frequentation_moyenne": 62,
+          "nb_jours": 7
+        },
+        {
+          "heure": "19:30",
+          "frequentation_moyenne": 56,
+          "nb_jours": 13
+        },
+        {
+          "heure": "19:45",
+          "frequentation_moyenne": 36,
+          "nb_jours": 4
+        },
+        {
+          "heure": "20:00",
+          "frequentation_moyenne": 13,
+          "nb_jours": 3
+        },
+        {
+          "heure": "20:15",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "20:30",
+          "frequentation_moyenne": 12,
+          "nb_jours": 2
+        },
+        {
+          "heure": "20:45",
+          "frequentation_moyenne": 37,
+          "nb_jours": 2
+        },
+        {
+          "heure": "21:00",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "21:15",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "21:30",
+          "frequentation_moyenne": 12,
+          "nb_jours": 2
+        },
+        {
+          "heure": "21:45",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "22:00",
+          "frequentation_moyenne": 37,
+          "nb_jours": 2
+        },
+        {
+          "heure": "22:15",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "22:30",
+          "frequentation_moyenne": 12,
+          "nb_jours": 2
+        },
+        {
+          "heure": "22:45",
+          "frequentation_moyenne": 13,
+          "nb_jours": 2
+        },
+        {
+          "heure": "23:00",
+          "frequentation_moyenne": 37,
+          "nb_jours": 2
+        },
+        {
+          "heure": "23:15",
+          "frequentation_moyenne": 12,
+          "nb_jours": 2
+        },
+        {
+          "heure": "23:30",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
+        },
+        {
+          "heure": "23:45",
+          "frequentation_moyenne": 13,
+          "nb_jours": 1
         }
       ]
     },
@@ -11375,13 +11920,6 @@
       "places_restantes": 539,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-18",
-          "heure": "13:15",
-          "frequentation_reelle": 108,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-18",
           "heure": "13:30",
@@ -15154,6 +15692,280 @@
           "frequentation_reelle": 61,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-23",
+          "heure": "13:30",
+          "frequentation_reelle": 61,
+          "capacite_max": 600,
+          "ouvert": true
+        }
+      ],
+      "moyenne_jour": [
+        {
+          "heure": "10:45",
+          "frequentation_moyenne": 34,
+          "nb_jours": 6
+        },
+        {
+          "heure": "11:00",
+          "frequentation_moyenne": 46,
+          "nb_jours": 8
+        },
+        {
+          "heure": "11:15",
+          "frequentation_moyenne": 54,
+          "nb_jours": 10
+        },
+        {
+          "heure": "11:30",
+          "frequentation_moyenne": 64,
+          "nb_jours": 8
+        },
+        {
+          "heure": "11:45",
+          "frequentation_moyenne": 71,
+          "nb_jours": 7
+        },
+        {
+          "heure": "12:00",
+          "frequentation_moyenne": 81,
+          "nb_jours": 9
+        },
+        {
+          "heure": "12:15",
+          "frequentation_moyenne": 81,
+          "nb_jours": 11
+        },
+        {
+          "heure": "12:30",
+          "frequentation_moyenne": 68,
+          "nb_jours": 8
+        },
+        {
+          "heure": "12:45",
+          "frequentation_moyenne": 70,
+          "nb_jours": 10
+        },
+        {
+          "heure": "13:00",
+          "frequentation_moyenne": 88,
+          "nb_jours": 11
+        },
+        {
+          "heure": "13:15",
+          "frequentation_moyenne": 69,
+          "nb_jours": 12
+        },
+        {
+          "heure": "13:30",
+          "frequentation_moyenne": 78,
+          "nb_jours": 9
+        },
+        {
+          "heure": "13:45",
+          "frequentation_moyenne": 100,
+          "nb_jours": 10
+        },
+        {
+          "heure": "14:00",
+          "frequentation_moyenne": 60,
+          "nb_jours": 11
+        },
+        {
+          "heure": "14:15",
+          "frequentation_moyenne": 55,
+          "nb_jours": 9
+        },
+        {
+          "heure": "14:30",
+          "frequentation_moyenne": 74,
+          "nb_jours": 9
+        },
+        {
+          "heure": "14:45",
+          "frequentation_moyenne": 80,
+          "nb_jours": 10
+        },
+        {
+          "heure": "15:00",
+          "frequentation_moyenne": 39,
+          "nb_jours": 6
+        },
+        {
+          "heure": "15:15",
+          "frequentation_moyenne": 38,
+          "nb_jours": 8
+        },
+        {
+          "heure": "15:30",
+          "frequentation_moyenne": 40,
+          "nb_jours": 6
+        },
+        {
+          "heure": "15:45",
+          "frequentation_moyenne": 70,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:00",
+          "frequentation_moyenne": 120,
+          "nb_jours": 10
+        },
+        {
+          "heure": "16:15",
+          "frequentation_moyenne": 131,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:30",
+          "frequentation_moyenne": 155,
+          "nb_jours": 8
+        },
+        {
+          "heure": "16:45",
+          "frequentation_moyenne": 160,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:00",
+          "frequentation_moyenne": 221,
+          "nb_jours": 11
+        },
+        {
+          "heure": "17:15",
+          "frequentation_moyenne": 227,
+          "nb_jours": 12
+        },
+        {
+          "heure": "17:30",
+          "frequentation_moyenne": 177,
+          "nb_jours": 9
+        },
+        {
+          "heure": "17:45",
+          "frequentation_moyenne": 183,
+          "nb_jours": 8
+        },
+        {
+          "heure": "18:00",
+          "frequentation_moyenne": 200,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:15",
+          "frequentation_moyenne": 243,
+          "nb_jours": 9
+        },
+        {
+          "heure": "18:30",
+          "frequentation_moyenne": 202,
+          "nb_jours": 10
+        },
+        {
+          "heure": "18:45",
+          "frequentation_moyenne": 140,
+          "nb_jours": 10
+        },
+        {
+          "heure": "19:00",
+          "frequentation_moyenne": 146,
+          "nb_jours": 9
+        },
+        {
+          "heure": "19:15",
+          "frequentation_moyenne": 129,
+          "nb_jours": 7
+        },
+        {
+          "heure": "19:30",
+          "frequentation_moyenne": 160,
+          "nb_jours": 13
+        },
+        {
+          "heure": "19:45",
+          "frequentation_moyenne": 85,
+          "nb_jours": 8
+        },
+        {
+          "heure": "20:00",
+          "frequentation_moyenne": 75,
+          "nb_jours": 11
+        },
+        {
+          "heure": "20:15",
+          "frequentation_moyenne": 61,
+          "nb_jours": 6
+        },
+        {
+          "heure": "20:30",
+          "frequentation_moyenne": 100,
+          "nb_jours": 10
+        },
+        {
+          "heure": "20:45",
+          "frequentation_moyenne": 89,
+          "nb_jours": 9
+        },
+        {
+          "heure": "21:00",
+          "frequentation_moyenne": 65,
+          "nb_jours": 8
+        },
+        {
+          "heure": "21:15",
+          "frequentation_moyenne": 72,
+          "nb_jours": 9
+        },
+        {
+          "heure": "21:30",
+          "frequentation_moyenne": 94,
+          "nb_jours": 10
+        },
+        {
+          "heure": "21:45",
+          "frequentation_moyenne": 82,
+          "nb_jours": 10
+        },
+        {
+          "heure": "22:00",
+          "frequentation_moyenne": 89,
+          "nb_jours": 9
+        },
+        {
+          "heure": "22:15",
+          "frequentation_moyenne": 78,
+          "nb_jours": 9
+        },
+        {
+          "heure": "22:30",
+          "frequentation_moyenne": 89,
+          "nb_jours": 10
+        },
+        {
+          "heure": "22:45",
+          "frequentation_moyenne": 73,
+          "nb_jours": 9
+        },
+        {
+          "heure": "23:00",
+          "frequentation_moyenne": 93,
+          "nb_jours": 10
+        },
+        {
+          "heure": "23:15",
+          "frequentation_moyenne": 94,
+          "nb_jours": 12
+        },
+        {
+          "heure": "23:30",
+          "frequentation_moyenne": 63,
+          "nb_jours": 8
+        },
+        {
+          "heure": "23:45",
+          "frequentation_moyenne": 72,
+          "nb_jours": 9
         }
       ]
     }
