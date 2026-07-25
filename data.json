@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-07-25T16:30:34+00:00",
+  "derniere_mise_a_jour": "2026-07-25T16:45:27+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 90,
-      "places_restantes": 1910,
+      "frequentation_reelle": 71,
+      "places_restantes": 1929,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-20",
-          "heure": "18:30",
-          "frequentation_reelle": 521,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-20",
           "heure": "18:45",
@@ -3822,6 +3815,13 @@
           "frequentation_reelle": 90,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-25",
+          "heure": "18:45",
+          "frequentation_reelle": 71,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3982,8 +3982,8 @@
         },
         {
           "heure": "18:30",
-          "frequentation_moyenne": 574,
-          "nb_jours": 12
+          "frequentation_moyenne": 537,
+          "nb_jours": 13
         },
         {
           "heure": "18:45",
@@ -4099,13 +4099,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-20",
-          "heure": "18:30",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-20",
           "heure": "18:45",
@@ -7913,6 +7906,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-25",
+          "heure": "18:45",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7924,13 +7924,6 @@
       "places_restantes": 591,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-20",
-          "heure": "18:30",
-          "frequentation_reelle": 54,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-20",
           "heure": "18:45",
@@ -11738,6 +11731,13 @@
           "frequentation_reelle": 9,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-25",
+          "heure": "18:45",
+          "frequentation_reelle": 9,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -11908,8 +11908,8 @@
         },
         {
           "heure": "18:30",
-          "frequentation_moyenne": 105,
-          "nb_jours": 12
+          "frequentation_moyenne": 98,
+          "nb_jours": 13
         },
         {
           "heure": "18:45",
@@ -12021,17 +12021,10 @@
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 59,
-      "places_restantes": 541,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-20",
-          "heure": "18:30",
-          "frequentation_reelle": 123,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-20",
           "heure": "18:45",
@@ -15839,6 +15832,13 @@
           "frequentation_reelle": 59,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-25",
+          "heure": "18:45",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -15999,8 +15999,8 @@
         },
         {
           "heure": "18:30",
-          "frequentation_moyenne": 197,
-          "nb_jours": 12
+          "frequentation_moyenne": 186,
+          "nb_jours": 13
         },
         {
           "heure": "18:45",
