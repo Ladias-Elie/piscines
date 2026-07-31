@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-07-31T18:00:42+00:00",
+  "derniere_mise_a_jour": "2026-07-31T18:15:27+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -8,20 +8,6 @@
       "places_restantes": 1924,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-26",
-          "heure": "20:01",
-          "frequentation_reelle": 124,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "jour": "2026-07-26",
-          "heure": "20:15",
-          "frequentation_reelle": 124,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-26",
           "heure": "20:30",
@@ -3794,6 +3780,13 @@
           "frequentation_reelle": 76,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-31",
+          "heure": "20:15",
+          "frequentation_reelle": 76,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3984,8 +3977,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 247,
-          "nb_jours": 19
+          "frequentation_moyenne": 238,
+          "nb_jours": 20
         },
         {
           "heure": "20:15",
@@ -4071,20 +4064,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-26",
-          "heure": "20:01",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-07-26",
-          "heure": "20:15",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-26",
           "heure": "20:30",
@@ -7857,6 +7836,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-31",
+          "heure": "20:15",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7868,20 +7854,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-26",
-          "heure": "20:01",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-07-26",
-          "heure": "20:15",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-26",
           "heure": "20:30",
@@ -11654,6 +11626,13 @@
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
+        },
+        {
+          "jour": "2026-07-31",
+          "heure": "20:15",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -11941,20 +11920,6 @@
       "places_restantes": 595,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-26",
-          "heure": "20:01",
-          "frequentation_reelle": 6,
-          "capacite_max": 600,
-          "ouvert": true
-        },
-        {
-          "jour": "2026-07-26",
-          "heure": "20:15",
-          "frequentation_reelle": 6,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-26",
           "heure": "20:30",
@@ -15727,6 +15692,13 @@
           "frequentation_reelle": 5,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-07-31",
+          "heure": "20:15",
+          "frequentation_reelle": 5,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -15922,8 +15894,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 89,
-          "nb_jours": 18
+          "frequentation_moyenne": 85,
+          "nb_jours": 19
         },
         {
           "heure": "20:15",
