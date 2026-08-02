@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-08-02T19:00:49+00:00",
+  "derniere_mise_a_jour": "2026-08-02T19:15:29+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -3843,6 +3843,13 @@
           "frequentation_reelle": 433,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-02",
+          "heure": "21:15",
+          "frequentation_reelle": 433,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4053,8 +4060,8 @@
         },
         {
           "heure": "21:00",
-          "frequentation_moyenne": 223,
-          "nb_jours": 18
+          "frequentation_moyenne": 234,
+          "nb_jours": 19
         },
         {
           "heure": "21:15",
@@ -7955,6 +7962,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-02",
+          "heure": "21:15",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -11798,6 +11812,13 @@
         {
           "jour": "2026-08-02",
           "heure": "21:00",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-02",
+          "heure": "21:15",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -15923,6 +15944,13 @@
           "frequentation_reelle": 284,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-02",
+          "heure": "21:15",
+          "frequentation_reelle": 284,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -16138,8 +16166,8 @@
         },
         {
           "heure": "21:00",
-          "frequentation_moyenne": 87,
-          "nb_jours": 17
+          "frequentation_moyenne": 98,
+          "nb_jours": 18
         },
         {
           "heure": "21:15",
