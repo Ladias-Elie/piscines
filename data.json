@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-08-04T17:45:26+00:00",
+  "derniere_mise_a_jour": "2026-08-04T18:00:58+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 285,
-      "places_restantes": 1715,
+      "frequentation_reelle": 217,
+      "places_restantes": 1783,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-30",
-          "heure": "20:00",
-          "frequentation_reelle": 252,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-30",
           "heure": "20:15",
@@ -3829,6 +3822,13 @@
           "frequentation_reelle": 285,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-04",
+          "heure": "20:00",
+          "frequentation_reelle": 217,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4014,8 +4014,8 @@
         },
         {
           "heure": "19:45",
-          "frequentation_moyenne": 346,
-          "nb_jours": 22
+          "frequentation_moyenne": 343,
+          "nb_jours": 23
         },
         {
           "heure": "20:00",
@@ -4106,13 +4106,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-30",
-          "heure": "20:00",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-30",
           "heure": "20:15",
@@ -7927,6 +7920,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-04",
+          "heure": "20:00",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7934,17 +7934,10 @@
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 43,
-      "places_restantes": 557,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-30",
-          "heure": "20:00",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-30",
           "heure": "20:15",
@@ -11759,6 +11752,13 @@
           "frequentation_reelle": 43,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-04",
+          "heure": "20:00",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -11954,8 +11954,8 @@
         },
         {
           "heure": "19:45",
-          "frequentation_moyenne": 41,
-          "nb_jours": 13
+          "frequentation_moyenne": 42,
+          "nb_jours": 14
         },
         {
           "heure": "20:00",
@@ -12046,13 +12046,6 @@
       "places_restantes": 443,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-30",
-          "heure": "20:00",
-          "frequentation_reelle": 124,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-30",
           "heure": "20:15",
@@ -15867,6 +15860,13 @@
           "frequentation_reelle": 157,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-04",
+          "heure": "20:00",
+          "frequentation_reelle": 157,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -16057,8 +16057,8 @@
         },
         {
           "heure": "19:45",
-          "frequentation_moyenne": 123,
-          "nb_jours": 21
+          "frequentation_moyenne": 125,
+          "nb_jours": 22
         },
         {
           "heure": "20:00",
