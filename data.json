@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-08-05T18:00:49+00:00",
+  "derniere_mise_a_jour": "2026-08-05T18:15:29+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 438,
-      "places_restantes": 1562,
+      "frequentation_reelle": 434,
+      "places_restantes": 1566,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-31",
-          "heure": "20:15",
-          "frequentation_reelle": 76,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-31",
           "heure": "20:35",
@@ -3829,6 +3822,13 @@
           "frequentation_reelle": 438,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-05",
+          "heure": "20:15",
+          "frequentation_reelle": 434,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4019,8 +4019,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 258,
-          "nb_jours": 24
+          "frequentation_moyenne": 265,
+          "nb_jours": 25
         },
         {
           "heure": "20:15",
@@ -4106,13 +4106,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-31",
-          "heure": "20:15",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-31",
           "heure": "20:35",
@@ -7927,6 +7920,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-05",
+          "heure": "20:15",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7934,17 +7934,10 @@
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 10,
-      "places_restantes": 590,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-07-31",
-          "heure": "20:15",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
         {
           "jour": "2026-07-31",
           "heure": "20:35",
@@ -11759,6 +11752,13 @@
           "frequentation_reelle": 10,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-05",
+          "heure": "20:15",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -11960,7 +11960,7 @@
         {
           "heure": "20:00",
           "frequentation_moyenne": 12,
-          "nb_jours": 6
+          "nb_jours": 7
         },
         {
           "heure": "20:15",
@@ -12046,13 +12046,6 @@
       "places_restantes": 402,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-07-31",
-          "heure": "20:15",
-          "frequentation_reelle": 5,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-07-31",
           "heure": "20:35",
@@ -15867,6 +15860,13 @@
           "frequentation_reelle": 198,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-05",
+          "heure": "20:15",
+          "frequentation_reelle": 198,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -16062,8 +16062,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 99,
-          "nb_jours": 23
+          "frequentation_moyenne": 103,
+          "nb_jours": 24
         },
         {
           "heure": "20:15",
