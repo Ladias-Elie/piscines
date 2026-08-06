@@ -183,6 +183,20 @@
     margin-top: 0.3rem;
   }
 
+  /* Alignées sur les marges gauche/droite (en viewBox) du graphique du dessous,
+     pour que le bandeau et la courbe partagent visuellement le même axe. */
+  #featured-creneaux .creneaux-strip,
+  #featured-creneaux .creneaux-axes {
+    padding-left: 9.4%;
+    padding-right: 1.9%;
+  }
+
+  .card .creneaux-strip,
+  .card .creneaux-axes {
+    padding-left: 13%;
+    padding-right: 2.6%;
+  }
+
   .courbe-wrap {
     width: 100%;
     text-align: left;
@@ -556,25 +570,40 @@
     return { texte: "Comme d'habitude à cette heure", sens: "neutre" };
   }
 
-  // Bandeau horaire : moyenne agrégée par heure pleine sur la fenêtre 7h-20h,
-  // pour repérer d'un coup d'œil les créneaux historiquement calmes/chargés.
+  // Bornes horaires du profil moyen, partagées par le bandeau et le graphique
+  // du dessous pour qu'ils utilisent exactement la même échelle de temps.
+  function fenetreMoyenne(moyenneJour) {
+    if (!moyenneJour || moyenneJour.length < 2) return null;
+    return {
+      t0: minutesDepuisMinuit(moyenneJour[0].heure),
+      t1: minutesDepuisMinuit(moyenneJour[moyenneJour.length - 1].heure),
+    };
+  }
+
+  // Bandeau horaire : moyenne agrégée par heure pleine sur la même fenêtre que
+  // le graphique du dessous, pour repérer d'un coup d'œil les créneaux
+  // historiquement calmes/chargés.
   function creerBandeauHoraire(moyenneJour, cle) {
-    if (!moyenneJour || !moyenneJour.length) return null;
+    var fenetre = fenetreMoyenne(moyenneJour);
+    if (!fenetre) return null;
+
+    var heureDebut = Math.floor(fenetre.t0 / 60);
+    var heureFin = Math.floor(fenetre.t1 / 60);
+    if (heureFin <= heureDebut) return null;
 
     var parHeure = {};
     moyenneJour.forEach(function (pt) {
       var h = Math.floor(minutesDepuisMinuit(pt.heure) / 60);
-      if (h < 7 || h > 19) return;
+      if (h < heureDebut || h > heureFin) return;
       (parHeure[h] = parHeure[h] || []).push(pt.frequentation_moyenne);
     });
-    if (!Object.keys(parHeure).length) return null;
 
     var heureMaintenant = parseInt(heureActuelleLyon().split(":")[0], 10);
 
     var strip = document.createElement("div");
     strip.className = "creneaux-strip";
 
-    for (var h = 7; h <= 19; h++) {
+    for (var h = heureDebut; h <= heureFin; h++) {
       var bar = document.createElement("div");
       bar.className = "creneau";
       var valeurs = parHeure[h];
@@ -592,11 +621,13 @@
 
     var axes = document.createElement("div");
     axes.className = "creneaux-axes";
-    [7, 10, 13, 16, 19].forEach(function (h) {
+    var nbHeures = heureFin - heureDebut + 1;
+    var pasAxe = Math.max(1, Math.round(nbHeures / 5));
+    for (var hLabel = heureDebut; hLabel <= heureFin; hLabel += pasAxe) {
       var span = document.createElement("span");
-      span.textContent = h + "h";
+      span.textContent = hLabel + "h";
       axes.appendChild(span);
-    });
+    }
 
     var fragment = document.createDocumentFragment();
     fragment.appendChild(strip);
@@ -632,13 +663,14 @@
       return pt.ouvert !== false && pt.frequentation_reelle != null;
     });
 
-    // Fenêtre horaire propre à chaque piscine : les vraies heures d'ouverture
-    // (bornes du profil moyen, déjà nettoyé des résidus nocturnes côté
-    // scraper), avec repli sur les relevés du jour si pas encore de moyenne.
+    // Fenêtre horaire propre à chaque piscine, partagée avec le bandeau des
+    // créneaux au-dessus (bornes du profil moyen), avec repli sur les
+    // relevés du jour si pas encore de moyenne.
+    var fenetre = fenetreMoyenne(moyenneJour);
     var t0, t1;
-    if (moyenneJour && moyenneJour.length >= 2) {
-      t0 = minutesDepuisMinuit(moyenneJour[0].heure);
-      t1 = minutesDepuisMinuit(moyenneJour[moyenneJour.length - 1].heure);
+    if (fenetre) {
+      t0 = fenetre.t0;
+      t1 = fenetre.t1;
     } else if (pointsOuverts.length >= 2) {
       t0 = minutesDepuisMinuit(pointsOuverts[0].heure);
       t1 = minutesDepuisMinuit(pointsOuverts[pointsOuverts.length - 1].heure);
