@@ -126,7 +126,61 @@
     font-size: 0.82rem;
     color: var(--ink-soft);
     margin-top: 0.4rem;
-    margin-bottom: 1.35rem;
+  }
+
+  .ecart {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 0.3rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .ecart--moins { color: var(--vert); }
+  .ecart--plus { color: var(--rouge); }
+  .ecart--neutre { color: var(--ink-soft); }
+
+  .creneaux-wrap {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .creneaux-titre {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+  }
+
+  .creneaux-strip {
+    display: flex;
+    gap: 2px;
+  }
+
+  .creneau {
+    flex: 1;
+    height: 26px;
+    border-radius: 4px;
+    background: rgba(18, 33, 59, 0.06);
+    cursor: pointer;
+  }
+
+  .creneau--actuel {
+    outline: 2px solid var(--ink);
+    outline-offset: 1px;
+  }
+
+  .creneaux-axes {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+    font-weight: 700;
+    margin-top: 0.3rem;
   }
 
   .courbe-wrap {
@@ -177,6 +231,10 @@
 
   .legende-trait--moyenne {
     border-top: 2px solid #eab13a;
+  }
+
+  .legende-trait--prevision {
+    border-top: 2px dotted #1f6fb2;
   }
 
   section.autres {
@@ -355,12 +413,19 @@
 
     <div class="nombre" id="featured-nombre">—</div>
     <div class="nombre-label" id="featured-nombre-label">chargement…</div>
+    <div class="ecart" id="featured-ecart"></div>
+
+    <div class="creneaux-wrap" id="featured-creneaux-wrap" hidden>
+      <p class="creneaux-titre">Meilleurs créneaux (moyenne historique)</p>
+      <div id="featured-creneaux"></div>
+    </div>
 
     <div class="courbe-wrap" id="featured-courbe-wrap" hidden>
       <div id="featured-courbe"></div>
       <div class="courbe-legende">
         <span class="legende-item"><span class="legende-trait"></span> Aujourd'hui</span>
         <span class="legende-item"><span class="legende-trait legende-trait--moyenne"></span> Moyenne</span>
+        <span class="legende-item"><span class="legende-trait legende-trait--prevision"></span> Prévision</span>
         <span class="legende-item">
           <span class="legende-trait legende-trait--max"></span> Max aujourd'hui (<span id="featured-courbe-max"></span>)
         </span>
@@ -396,6 +461,9 @@
     featuredNom: document.getElementById("featured-nom"),
     featuredNombre: document.getElementById("featured-nombre"),
     featuredNombreLabel: document.getElementById("featured-nombre-label"),
+    featuredEcart: document.getElementById("featured-ecart"),
+    featuredCreneauxWrap: document.getElementById("featured-creneaux-wrap"),
+    featuredCreneaux: document.getElementById("featured-creneaux"),
     featuredCourbeWrap: document.getElementById("featured-courbe-wrap"),
     featuredCourbe: document.getElementById("featured-courbe"),
     featuredCourbeMax: document.getElementById("featured-courbe-max"),
@@ -454,6 +522,88 @@
     return new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
   }
 
+  function heureActuelleLyon() {
+    return new Date().toLocaleTimeString("fr-FR", {
+      timeZone: "Europe/Paris",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  // Cherche dans le profil moyen le créneau le plus proche de l'heure donnée.
+  function trouverMoyenneProche(moyenneJour, heureCible) {
+    if (!moyenneJour || !moyenneJour.length) return null;
+    var mCible = minutesDepuisMinuit(heureCible);
+    var meilleur = null;
+    var meilleurEcart = Infinity;
+    moyenneJour.forEach(function (pt) {
+      var ecart = Math.abs(minutesDepuisMinuit(pt.heure) - mCible);
+      if (ecart < meilleurEcart) {
+        meilleur = pt;
+        meilleurEcart = ecart;
+      }
+    });
+    return meilleur;
+  }
+
+  // Compare la fréquentation actuelle à la moyenne historique au même horaire.
+  // Sous ±10 %, l'écart est considéré comme du bruit plutôt qu'un vrai signal.
+  function calculerEcart(actuel, attendu) {
+    if (attendu == null || attendu < 5) return null;
+    var pct = Math.round(((actuel - attendu) / attendu) * 100);
+    if (pct <= -10) return { texte: Math.abs(pct) + " % de moins que d'habitude à cette heure", sens: "moins" };
+    if (pct >= 10) return { texte: "+" + pct + " % de plus que d'habitude à cette heure", sens: "plus" };
+    return { texte: "Comme d'habitude à cette heure", sens: "neutre" };
+  }
+
+  // Bandeau horaire : moyenne agrégée par heure pleine sur la fenêtre 7h-20h,
+  // pour repérer d'un coup d'œil les créneaux historiquement calmes/chargés.
+  function creerBandeauHoraire(moyenneJour, cle) {
+    if (!moyenneJour || !moyenneJour.length) return null;
+
+    var parHeure = {};
+    moyenneJour.forEach(function (pt) {
+      var h = Math.floor(minutesDepuisMinuit(pt.heure) / 60);
+      if (h < 7 || h > 19) return;
+      (parHeure[h] = parHeure[h] || []).push(pt.frequentation_moyenne);
+    });
+    if (!Object.keys(parHeure).length) return null;
+
+    var heureMaintenant = parseInt(heureActuelleLyon().split(":")[0], 10);
+
+    var strip = document.createElement("div");
+    strip.className = "creneaux-strip";
+
+    for (var h = 7; h <= 19; h++) {
+      var bar = document.createElement("div");
+      bar.className = "creneau";
+      var valeurs = parHeure[h];
+      if (valeurs && valeurs.length) {
+        var moyenne = Math.round(valeurs.reduce(function (a, b) { return a + b; }, 0) / valeurs.length);
+        bar.style.background = couleurNiveau(niveau(cle, moyenne));
+        bar.classList.add("point-hit");
+        bar.setAttribute("data-heure", (h < 10 ? "0" : "") + h + ":00");
+        bar.setAttribute("data-freq", moyenne);
+        bar.setAttribute("data-cle", cle);
+      }
+      if (h === heureMaintenant) bar.classList.add("creneau--actuel");
+      strip.appendChild(bar);
+    }
+
+    var axes = document.createElement("div");
+    axes.className = "creneaux-axes";
+    [7, 10, 13, 16, 19].forEach(function (h) {
+      var span = document.createElement("span");
+      span.textContent = h + "h";
+      axes.appendChild(span);
+    });
+
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(strip);
+    fragment.appendChild(axes);
+    return fragment;
+  }
+
   function arrondiJoli(valeur) {
     if (valeur <= 0) return 1;
     var magnitude = Math.pow(10, Math.floor(Math.log10(valeur)));
@@ -477,18 +627,27 @@
     return m === 0 ? (h + "h") : (h + "h" + (m < 10 ? "0" : "") + m);
   }
 
-  // Échelle horaire fixe : pas besoin d'afficher la nuit, la piscine est de
-  // toute façon toujours fermée en dehors de cette plage.
-  var FENETRE_AXE_DEBUT = 7 * 60;
-  var FENETRE_AXE_FIN = 20 * 60;
-
   function creerCourbeJour(pointsJour, moyenneJour, cle, largeur, hauteur) {
-    var t0 = FENETRE_AXE_DEBUT;
-    var t1 = FENETRE_AXE_FIN;
-    var duree = t1 - t0;
+    var pointsOuverts = (pointsJour || []).filter(function (pt) {
+      return pt.ouvert !== false && pt.frequentation_reelle != null;
+    });
 
-    var valides = (pointsJour || []).filter(function (pt) {
-      if (pt.ouvert === false || pt.frequentation_reelle == null) return false;
+    // Fenêtre horaire propre à chaque piscine : les vraies heures d'ouverture
+    // (bornes du profil moyen, déjà nettoyé des résidus nocturnes côté
+    // scraper), avec repli sur les relevés du jour si pas encore de moyenne.
+    var t0, t1;
+    if (moyenneJour && moyenneJour.length >= 2) {
+      t0 = minutesDepuisMinuit(moyenneJour[0].heure);
+      t1 = minutesDepuisMinuit(moyenneJour[moyenneJour.length - 1].heure);
+    } else if (pointsOuverts.length >= 2) {
+      t0 = minutesDepuisMinuit(pointsOuverts[0].heure);
+      t1 = minutesDepuisMinuit(pointsOuverts[pointsOuverts.length - 1].heure);
+    } else {
+      return null;
+    }
+    var duree = Math.max(1, t1 - t0);
+
+    var valides = pointsOuverts.filter(function (pt) {
       var m = minutesDepuisMinuit(pt.heure);
       return m >= t0 && m <= t1;
     });
@@ -500,11 +659,34 @@
 
     if (valides.length < 2 && moyenneFiltree.length < 2) return null;
 
+    // Prévision : on prend le rapport entre le dernier relevé réel et la
+    // moyenne attendue au même horaire, puis on l'applique au reste du
+    // profil moyen — une prévision multiplicative simple (le même écart
+    // qu'en ce moment se maintient jusqu'à la fermeture), plus honnête
+    // qu'une extrapolation de tendance sur des données bruitées par créneau.
+    var dernierValide = valides.length ? valides[valides.length - 1] : null;
+    var previsionPoints = [];
+    if (dernierValide && moyenneFiltree.length) {
+      var attenduMaintenant = trouverMoyenneProche(moyenneFiltree, dernierValide.heure);
+      if (attenduMaintenant && attenduMaintenant.frequentation_moyenne >= 5) {
+        var ratio = Math.min(3, Math.max(0.15, dernierValide.frequentation_reelle / attenduMaintenant.frequentation_moyenne));
+        var mDernier = minutesDepuisMinuit(dernierValide.heure);
+        previsionPoints = moyenneFiltree
+          .filter(function (pt) { return minutesDepuisMinuit(pt.heure) > mDernier; })
+          .map(function (pt) {
+            return { heure: pt.heure, freq: Math.round(pt.frequentation_moyenne * ratio) };
+          });
+      }
+    }
+
     var maxJour = valides.length ? Math.max.apply(null, valides.map(function (pt) { return pt.frequentation_reelle; })) : null;
     var maxMoyenne = moyenneFiltree.length
       ? Math.max.apply(null, moyenneFiltree.map(function (pt) { return pt.frequentation_moyenne; }))
       : 0;
-    var plafond = arrondiJoli(Math.max(1, (maxJour || 0), maxMoyenne) * 1.15);
+    var maxPrevision = previsionPoints.length
+      ? Math.max.apply(null, previsionPoints.map(function (pt) { return pt.freq; }))
+      : 0;
+    var plafond = arrondiJoli(Math.max(1, (maxJour || 0), maxMoyenne, maxPrevision) * 1.15);
 
     var margeGauche = 30;
     var margeDroite = 6;
@@ -560,8 +742,8 @@
     }
 
     // Quadrillage + graduations verticales (Y : fréquentation).
-    for (var niveau = 0; niveau <= 4; niveau++) {
-      var valeurTick = (plafond * niveau) / 4;
+    for (var paliersY = 0; paliersY <= 4; paliersY++) {
+      var valeurTick = (plafond * paliersY) / 4;
       var yTick = y(valeurTick);
       svg += '<line x1="' + margeGauche + '" y1="' + yTick.toFixed(1) + '" x2="' + xDroite +
         '" y2="' + yTick.toFixed(1) + '" stroke="rgba(18,33,59,0.08)" stroke-width="1"/>';
@@ -591,6 +773,18 @@
         .join(" ");
       svg += '<path d="' + dMoyenne + '" fill="none" stroke="#eab13a" stroke-width="1.75" ' +
         'stroke-linecap="round" stroke-linejoin="round"/>';
+    }
+
+    // Prévision : continuité du dernier point réel, en pointillés, jusqu'à
+    // la fermeture.
+    if (previsionPoints.length && dernierValide) {
+      var dPrevision = "M" + x(minutesDepuisMinuit(dernierValide.heure)).toFixed(1) + "," +
+        y(dernierValide.frequentation_reelle).toFixed(1) + " " +
+        previsionPoints
+          .map(function (pt) { return "L" + x(minutesDepuisMinuit(pt.heure)).toFixed(1) + "," + y(pt.freq).toFixed(1); })
+          .join(" ");
+      svg += '<path d="' + dPrevision + '" fill="none" stroke="#1f6fb2" stroke-width="2" ' +
+        'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>';
     }
 
     // Trait de référence : maximum observé sur la journée en cours.
@@ -711,6 +905,30 @@
     }
   }
 
+  function renderEcart(conteneur, piscine, cle) {
+    conteneur.textContent = "";
+    conteneur.className = "ecart";
+    if (!piscine || !piscine.ouvert || piscine.frequentation_reelle == null) return;
+
+    var attendu = trouverMoyenneProche(piscine.moyenne_jour, heureActuelleLyon());
+    var info = attendu ? calculerEcart(piscine.frequentation_reelle, attendu.frequentation_moyenne) : null;
+    if (!info) return;
+
+    conteneur.textContent = (info.sens === "moins" ? "▼ " : info.sens === "plus" ? "▲ " : "") + info.texte;
+    conteneur.classList.add("ecart--" + info.sens);
+  }
+
+  function renderBandeau(conteneur, wrapEl, piscine, cle) {
+    conteneur.innerHTML = "";
+    var bandeau = piscine ? creerBandeauHoraire(piscine.moyenne_jour, cle) : null;
+    if (bandeau) {
+      conteneur.appendChild(bandeau);
+      wrapEl.hidden = false;
+    } else {
+      wrapEl.hidden = true;
+    }
+  }
+
   function renderFeatured(piscine) {
     els.featuredNom.textContent = piscine ? piscine.nom : "Centre Nautique T.Bertrand (CNTB)";
 
@@ -725,6 +943,8 @@
       els.featuredNombreLabel.textContent = "personnes actuellement";
     }
 
+    renderEcart(els.featuredEcart, piscine, FEATURED_KEY);
+    renderBandeau(els.featuredCreneaux, els.featuredCreneauxWrap, piscine, FEATURED_KEY);
     renderCourbe(els.featuredCourbe, els.featuredCourbeMax, els.featuredCourbeWrap, piscine, FEATURED_KEY, 320, 150);
   }
 
@@ -757,6 +977,21 @@
     }
     div.appendChild(nombre);
 
+    var ecart = document.createElement("div");
+    renderEcart(ecart, piscine, cle);
+    div.appendChild(ecart);
+
+    var creneauxWrap = document.createElement("div");
+    creneauxWrap.className = "creneaux-wrap";
+    var creneauxTitre = document.createElement("p");
+    creneauxTitre.className = "creneaux-titre";
+    creneauxTitre.textContent = "Meilleurs créneaux";
+    var creneauxDiv = document.createElement("div");
+    creneauxWrap.appendChild(creneauxTitre);
+    creneauxWrap.appendChild(creneauxDiv);
+    div.appendChild(creneauxWrap);
+    renderBandeau(creneauxDiv, creneauxWrap, piscine, cle);
+
     var courbeWrap = document.createElement("div");
     courbeWrap.className = "courbe-wrap";
     var courbeDiv = document.createElement("div");
@@ -779,6 +1014,13 @@
     legendeMoyenne.appendChild(traitMoyenne);
     legendeMoyenne.appendChild(document.createTextNode(" Moyenne"));
 
+    var legendePrevision = document.createElement("span");
+    legendePrevision.className = "legende-item";
+    var traitPrevision = document.createElement("span");
+    traitPrevision.className = "legende-trait legende-trait--prevision";
+    legendePrevision.appendChild(traitPrevision);
+    legendePrevision.appendChild(document.createTextNode(" Prévision"));
+
     var legendeMax = document.createElement("span");
     legendeMax.className = "legende-item";
     var traitMax = document.createElement("span");
@@ -791,6 +1033,7 @@
 
     legende.appendChild(legendeFreq);
     legende.appendChild(legendeMoyenne);
+    legende.appendChild(legendePrevision);
     legende.appendChild(legendeMax);
     courbeWrap.appendChild(legende);
 
