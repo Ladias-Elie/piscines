@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-08-07T20:00:45+00:00",
+  "derniere_mise_a_jour": "2026-08-07T20:15:24+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -3675,6 +3675,13 @@
           "frequentation_reelle": 259,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-07",
+          "heure": "22:15",
+          "frequentation_reelle": 259,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3906,7 +3913,7 @@
         {
           "heure": "22:00",
           "frequentation_moyenne": 254,
-          "nb_jours": 30
+          "nb_jours": 31
         },
         {
           "heure": "22:15",
@@ -7619,6 +7626,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-07",
+          "heure": "22:15",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -11294,6 +11308,13 @@
         {
           "jour": "2026-08-07",
           "heure": "22:00",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-07",
+          "heure": "22:15",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -15251,6 +15272,13 @@
           "frequentation_reelle": 160,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-07",
+          "heure": "22:15",
+          "frequentation_reelle": 160,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -15486,8 +15514,8 @@
         },
         {
           "heure": "22:00",
-          "frequentation_moyenne": 114,
-          "nb_jours": 28
+          "frequentation_moyenne": 115,
+          "nb_jours": 29
         },
         {
           "heure": "22:15",
