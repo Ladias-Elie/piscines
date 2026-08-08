@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-08-08T17:30:32+00:00",
+  "derniere_mise_a_jour": "2026-08-08T17:39:19+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 710,
-      "places_restantes": 1290,
+      "frequentation_reelle": 672,
+      "places_restantes": 1328,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-03",
-          "heure": "19:30",
-          "frequentation_reelle": 684,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-03",
           "heure": "19:45",
@@ -3794,6 +3787,13 @@
           "frequentation_reelle": 710,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "19:39",
+          "frequentation_reelle": 672,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3974,8 +3974,8 @@
         },
         {
           "heure": "19:30",
-          "frequentation_moyenne": 430,
-          "nb_jours": 29
+          "frequentation_moyenne": 439,
+          "nb_jours": 30
         },
         {
           "heure": "19:45",
@@ -4071,13 +4071,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-08-03",
-          "heure": "19:30",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-08-03",
           "heure": "19:45",
@@ -7857,6 +7850,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "19:39",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7864,17 +7864,10 @@
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 72,
-      "places_restantes": 528,
+      "frequentation_reelle": 46,
+      "places_restantes": 554,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-03",
-          "heure": "19:30",
-          "frequentation_reelle": 114,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-03",
           "heure": "19:45",
@@ -11654,6 +11647,13 @@
           "frequentation_reelle": 72,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "19:39",
+          "frequentation_reelle": 46,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -11844,8 +11844,8 @@
         },
         {
           "heure": "19:30",
-          "frequentation_moyenne": 60,
-          "nb_jours": 26
+          "frequentation_moyenne": 61,
+          "nb_jours": 27
         },
         {
           "heure": "19:45",
@@ -11941,13 +11941,6 @@
       "places_restantes": 363,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-03",
-          "heure": "19:30",
-          "frequentation_reelle": 197,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-03",
           "heure": "19:45",
@@ -15727,6 +15720,13 @@
           "frequentation_reelle": 237,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "19:39",
+          "frequentation_reelle": 237,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -15912,8 +15912,8 @@
         },
         {
           "heure": "19:30",
-          "frequentation_moyenne": 153,
-          "nb_jours": 28
+          "frequentation_moyenne": 156,
+          "nb_jours": 29
         },
         {
           "heure": "19:45",
