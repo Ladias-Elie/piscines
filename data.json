@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-08-08T14:30:35+00:00",
+  "derniere_mise_a_jour": "2026-08-08T14:41:27+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 683,
-      "places_restantes": 1317,
+      "frequentation_reelle": 726,
+      "places_restantes": 1274,
       "ouvert": true,
       "tendance": [
         {
@@ -3759,6 +3759,13 @@
           "frequentation_reelle": 683,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "16:41",
+          "frequentation_reelle": 726,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3879,8 +3886,8 @@
         },
         {
           "heure": "16:30",
-          "frequentation_moyenne": 422,
-          "nb_jours": 27
+          "frequentation_moyenne": 431,
+          "nb_jours": 28
         },
         {
           "heure": "16:45",
@@ -7787,6 +7794,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "16:41",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -7794,8 +7808,8 @@
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 171,
-      "places_restantes": 429,
+      "frequentation_reelle": 180,
+      "places_restantes": 420,
       "ouvert": true,
       "tendance": [
         {
@@ -11549,6 +11563,13 @@
           "frequentation_reelle": 171,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "16:41",
+          "frequentation_reelle": 180,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -11679,8 +11700,8 @@
         },
         {
           "heure": "16:30",
-          "frequentation_moyenne": 97,
-          "nb_jours": 27
+          "frequentation_moyenne": 99,
+          "nb_jours": 28
         },
         {
           "heure": "16:45",
@@ -11832,8 +11853,8 @@
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 285,
-      "places_restantes": 315,
+      "frequentation_reelle": 305,
+      "places_restantes": 295,
       "ouvert": true,
       "tendance": [
         {
@@ -15587,6 +15608,13 @@
           "frequentation_reelle": 285,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-08",
+          "heure": "16:41",
+          "frequentation_reelle": 305,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -15712,8 +15740,8 @@
         },
         {
           "heure": "16:30",
-          "frequentation_moyenne": 172,
-          "nb_jours": 27
+          "frequentation_moyenne": 176,
+          "nb_jours": 28
         },
         {
           "heure": "16:45",
