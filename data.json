@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-08-09T13:23:57+00:00",
+  "derniere_mise_a_jour": "2026-08-09T13:30:32+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -3885,6 +3885,13 @@
           "frequentation_reelle": 173,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-09",
+          "heure": "15:30",
+          "frequentation_reelle": 173,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3981,7 +3988,7 @@
         {
           "heure": "15:15",
           "frequentation_moyenne": 185,
-          "nb_jours": 24
+          "nb_jours": 25
         },
         {
           "heure": "15:30",
@@ -8039,6 +8046,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-09",
+          "heure": "15:30",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -11927,6 +11941,13 @@
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-09",
+          "heure": "15:30",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -12210,8 +12231,8 @@
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 12,
-      "places_restantes": 588,
+      "frequentation_reelle": 11,
+      "places_restantes": 589,
       "ouvert": true,
       "tendance": [
         {
@@ -16091,6 +16112,13 @@
           "frequentation_reelle": 12,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-09",
+          "heure": "15:30",
+          "frequentation_reelle": 11,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -16191,8 +16219,8 @@
         },
         {
           "heure": "15:15",
-          "frequentation_moyenne": 48,
-          "nb_jours": 21
+          "frequentation_moyenne": 47,
+          "nb_jours": 22
         },
         {
           "heure": "15:30",
