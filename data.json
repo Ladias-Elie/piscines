@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-08-10T18:00:50+00:00",
+  "derniere_mise_a_jour": "2026-08-10T18:06:42+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 416,
-      "places_restantes": 1584,
+      "frequentation_reelle": 410,
+      "places_restantes": 1590,
       "ouvert": true,
       "tendance": [
         {
@@ -3990,6 +3990,13 @@
           "frequentation_reelle": 416,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-10",
+          "heure": "20:06",
+          "frequentation_reelle": 410,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4180,8 +4187,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 279,
-          "nb_jours": 29
+          "frequentation_moyenne": 284,
+          "nb_jours": 30
         },
         {
           "heure": "20:15",
@@ -8249,6 +8256,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-10",
+          "heure": "20:06",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -12239,6 +12253,13 @@
         {
           "jour": "2026-08-10",
           "heure": "20:00",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-10",
+          "heure": "20:06",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -16511,6 +16532,13 @@
           "frequentation_reelle": 152,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-10",
+          "heure": "20:06",
+          "frequentation_reelle": 152,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -16706,8 +16734,8 @@
         },
         {
           "heure": "20:00",
-          "frequentation_moyenne": 113,
-          "nb_jours": 28
+          "frequentation_moyenne": 115,
+          "nb_jours": 29
         },
         {
           "heure": "20:15",
