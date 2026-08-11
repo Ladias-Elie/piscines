@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-08-11T09:30:34+00:00",
+  "derniere_mise_a_jour": "2026-08-11T09:44:49+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 145,
-      "places_restantes": 1855,
+      "frequentation_reelle": 167,
+      "places_restantes": 1833,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-06",
-          "heure": "11:30",
-          "frequentation_reelle": 400,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-06",
           "heure": "11:45",
@@ -4039,6 +4032,13 @@
           "frequentation_reelle": 145,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-11",
+          "heure": "11:44",
+          "frequentation_reelle": 167,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4059,8 +4059,8 @@
         },
         {
           "heure": "11:30",
-          "frequentation_moyenne": 336,
-          "nb_jours": 27
+          "frequentation_moyenne": 329,
+          "nb_jours": 28
         },
         {
           "heure": "11:45",
@@ -4316,13 +4316,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-08-06",
-          "heure": "11:30",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-08-06",
           "heure": "11:45",
@@ -8347,6 +8340,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-11",
+          "heure": "11:44",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -8354,17 +8354,10 @@
     "Duchère": {
       "nom": "Piscine Duchère (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 23,
-      "places_restantes": 577,
+      "frequentation_reelle": 33,
+      "places_restantes": 567,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-06",
-          "heure": "11:30",
-          "frequentation_reelle": 65,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-06",
           "heure": "11:45",
@@ -12389,6 +12382,13 @@
           "frequentation_reelle": 23,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-11",
+          "heure": "11:44",
+          "frequentation_reelle": 33,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -12419,8 +12419,8 @@
         },
         {
           "heure": "11:30",
-          "frequentation_moyenne": 64,
-          "nb_jours": 27
+          "frequentation_moyenne": 63,
+          "nb_jours": 28
         },
         {
           "heure": "11:45",
@@ -12676,13 +12676,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-08-06",
-          "heure": "11:30",
-          "frequentation_reelle": 71,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-06",
           "heure": "11:45",
@@ -16704,6 +16697,13 @@
         {
           "jour": "2026-08-11",
           "heure": "11:30",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-11",
+          "heure": "11:44",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
