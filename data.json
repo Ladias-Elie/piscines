@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-08-16T21:49:39+00:00",
+  "derniere_mise_a_jour": "2026-08-16T22:00:28+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -2996,6 +2996,13 @@
           "frequentation_reelle": 212,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-17",
+          "heure": "00:00",
+          "frequentation_reelle": 212,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -3261,8 +3268,8 @@
         },
         {
           "heure": "23:45",
-          "frequentation_moyenne": 287,
-          "nb_jours": 37
+          "frequentation_moyenne": 285,
+          "nb_jours": 38
         }
       ]
     },
@@ -6258,6 +6265,13 @@
         {
           "jour": "2026-08-16",
           "heure": "23:49",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-17",
+          "heure": "00:00",
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
@@ -9257,6 +9271,13 @@
         {
           "jour": "2026-08-16",
           "heure": "23:49",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-08-17",
+          "heure": "00:00",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -12535,6 +12556,13 @@
           "frequentation_reelle": 148,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-17",
+          "heure": "00:00",
+          "frequentation_reelle": 148,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -12806,7 +12834,7 @@
         {
           "heure": "23:45",
           "frequentation_moyenne": 123,
-          "nb_jours": 35
+          "nb_jours": 36
         }
       ]
     }
