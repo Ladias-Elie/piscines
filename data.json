@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-08-18T20:33:59+00:00",
+  "derniere_mise_a_jour": "2026-08-18T20:54:58+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -8,13 +8,6 @@
       "places_restantes": 1824,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-13",
-          "heure": "22:45",
-          "frequentation_reelle": 587,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-13",
           "heure": "23:00",
@@ -1939,6 +1932,13 @@
           "frequentation_reelle": 176,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-18",
+          "heure": "22:54",
+          "frequentation_reelle": 176,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -2179,8 +2179,8 @@
         },
         {
           "heure": "22:30",
-          "frequentation_moyenne": 292,
-          "nb_jours": 42
+          "frequentation_moyenne": 290,
+          "nb_jours": 43
         },
         {
           "heure": "22:45",
@@ -2216,13 +2216,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-08-13",
-          "heure": "22:45",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-08-13",
           "heure": "23:00",
@@ -4147,6 +4140,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-18",
+          "heure": "22:54",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -4158,13 +4158,6 @@
       "places_restantes": 573,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-13",
-          "heure": "22:45",
-          "frequentation_reelle": 8,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-13",
           "heure": "23:00",
@@ -6089,6 +6082,13 @@
           "frequentation_reelle": 27,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-18",
+          "heure": "22:54",
+          "frequentation_reelle": 27,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -6339,8 +6339,8 @@
         },
         {
           "heure": "22:30",
-          "frequentation_moyenne": 10,
-          "nb_jours": 7
+          "frequentation_moyenne": 12,
+          "nb_jours": 8
         },
         {
           "heure": "22:45",
@@ -6376,13 +6376,6 @@
       "places_restantes": 444,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-13",
-          "heure": "22:45",
-          "frequentation_reelle": 209,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-13",
           "heure": "23:00",
@@ -8307,6 +8300,13 @@
           "frequentation_reelle": 156,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-18",
+          "heure": "22:54",
+          "frequentation_reelle": 156,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -8552,8 +8552,8 @@
         },
         {
           "heure": "22:30",
-          "frequentation_moyenne": 136,
-          "nb_jours": 37
+          "frequentation_moyenne": 137,
+          "nb_jours": 38
         },
         {
           "heure": "22:45",
