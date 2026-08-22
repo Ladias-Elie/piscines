@@ -1,20 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-08-22T13:39:47+00:00",
+  "derniere_mise_a_jour": "2026-08-22T14:01:55+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 38,
-      "places_restantes": 1962,
+      "frequentation_reelle": 109,
+      "places_restantes": 1891,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-17",
-          "heure": "15:47",
-          "frequentation_reelle": 203,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-17",
           "heure": "16:12",
@@ -1344,6 +1337,13 @@
           "frequentation_reelle": 38,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-22",
+          "heure": "16:01",
+          "frequentation_reelle": 109,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -1444,8 +1444,8 @@
         },
         {
           "heure": "15:30",
-          "frequentation_moyenne": 260,
-          "nb_jours": 16
+          "frequentation_moyenne": 247,
+          "nb_jours": 17
         },
         {
           "heure": "15:45",
@@ -1621,13 +1621,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-08-17",
-          "heure": "15:47",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-08-17",
           "heure": "16:12",
@@ -2957,6 +2950,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-08-22",
+          "heure": "16:01",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": []
@@ -2968,13 +2968,6 @@
       "places_restantes": 594,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-17",
-          "heure": "15:47",
-          "frequentation_reelle": 9,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-17",
           "heure": "16:12",
@@ -4304,6 +4297,13 @@
           "frequentation_reelle": 6,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-22",
+          "heure": "16:01",
+          "frequentation_reelle": 6,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -4414,8 +4414,8 @@
         },
         {
           "heure": "15:30",
-          "frequentation_moyenne": 35,
-          "nb_jours": 16
+          "frequentation_moyenne": 34,
+          "nb_jours": 17
         },
         {
           "heure": "15:45",
@@ -4587,17 +4587,10 @@
     "Mermoz": {
       "nom": "Piscine Mermoz (été)",
       "capacite_max": 600,
-      "frequentation_reelle": 11,
-      "places_restantes": 589,
+      "frequentation_reelle": 14,
+      "places_restantes": 586,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-08-17",
-          "heure": "15:47",
-          "frequentation_reelle": 19,
-          "capacite_max": 600,
-          "ouvert": true
-        },
         {
           "jour": "2026-08-17",
           "heure": "16:12",
@@ -5927,6 +5920,13 @@
           "frequentation_reelle": 11,
           "capacite_max": 600,
           "ouvert": true
+        },
+        {
+          "jour": "2026-08-22",
+          "heure": "16:01",
+          "frequentation_reelle": 14,
+          "capacite_max": 600,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -6032,8 +6032,8 @@
         },
         {
           "heure": "15:30",
-          "frequentation_moyenne": 65,
-          "nb_jours": 17
+          "frequentation_moyenne": 62,
+          "nb_jours": 18
         },
         {
           "heure": "15:45",
