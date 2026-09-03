@@ -1,12 +1,12 @@
 {
-  "derniere_mise_a_jour": "2026-09-03T21:17:01+00:00",
+  "derniere_mise_a_jour": "2026-09-03T23:19:28+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 28,
-      "places_restantes": 1972,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
         {
           "jour": "2026-08-30",
@@ -224,6 +224,13 @@
           "frequentation_reelle": 28,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-09-04",
+          "heure": "01:19",
+          "frequentation_reelle": null,
+          "capacite_max": 2000,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -479,8 +486,8 @@
         },
         {
           "heure": "23:15",
-          "frequentation_moyenne": 292,
-          "nb_jours": 43
+          "frequentation_moyenne": 286,
+          "nb_jours": 44
         },
         {
           "heure": "23:30",
@@ -717,6 +724,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-09-04",
+          "heure": "01:19",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -947,6 +961,13 @@
         {
           "jour": "2026-09-03",
           "heure": "23:17",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-04",
+          "heure": "01:19",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1450,6 +1471,13 @@
         {
           "jour": "2026-09-03",
           "heure": "23:17",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-04",
+          "heure": "01:19",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
