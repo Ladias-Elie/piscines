@@ -1,11 +1,11 @@
 {
-  "derniere_mise_a_jour": "2026-09-06T10:48:17+00:00",
+  "derniere_mise_a_jour": "2026-09-06T13:49:15+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 295,
-      "places_restantes": 1705,
+      "frequentation_reelle": 1255,
+      "places_restantes": 745,
       "ouvert": true,
       "tendance": [
         {
@@ -266,6 +266,13 @@
           "frequentation_reelle": 295,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-09-06",
+          "heure": "15:49",
+          "frequentation_reelle": 1255,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -311,8 +318,8 @@
         },
         {
           "heure": "12:45",
-          "frequentation_moyenne": 372,
-          "nb_jours": 42
+          "frequentation_moyenne": 371,
+          "nb_jours": 43
         },
         {
           "heure": "13:00",
@@ -801,6 +808,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-09-06",
+          "heure": "15:49",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -1073,6 +1087,13 @@
         {
           "jour": "2026-09-06",
           "heure": "12:48",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-06",
+          "heure": "15:49",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1618,6 +1639,13 @@
         {
           "jour": "2026-09-06",
           "heure": "12:48",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-06",
+          "heure": "15:49",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
