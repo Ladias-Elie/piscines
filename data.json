@@ -1,27 +1,13 @@
 {
-  "derniere_mise_a_jour": "2026-09-14T10:33:05+00:00",
+  "derniere_mise_a_jour": "2026-09-14T16:30:01+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
       "capacite_max": 2000,
-      "frequentation_reelle": 132,
-      "places_restantes": 1868,
+      "frequentation_reelle": 229,
+      "places_restantes": 1771,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-09-09",
-          "heure": "13:14",
-          "frequentation_reelle": 120,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
-        {
-          "jour": "2026-09-09",
-          "heure": "17:09",
-          "frequentation_reelle": 102,
-          "capacite_max": 2000,
-          "ouvert": true
-        },
         {
           "jour": "2026-09-09",
           "heure": "20:41",
@@ -266,6 +252,13 @@
           "frequentation_reelle": 132,
           "capacite_max": 2000,
           "ouvert": true
+        },
+        {
+          "jour": "2026-09-14",
+          "heure": "18:30",
+          "frequentation_reelle": 229,
+          "capacite_max": 2000,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -306,8 +299,8 @@
         },
         {
           "heure": "12:30",
-          "frequentation_moyenne": 372,
-          "nb_jours": 41
+          "frequentation_moyenne": 366,
+          "nb_jours": 42
         },
         {
           "heure": "12:45",
@@ -539,24 +532,10 @@
     "Vaise": {
       "nom": "Piscine de Vaise",
       "capacite_max": 1100,
-      "frequentation_reelle": 76,
-      "places_restantes": 1024,
+      "frequentation_reelle": 96,
+      "places_restantes": 1004,
       "ouvert": true,
       "tendance": [
-        {
-          "jour": "2026-09-09",
-          "heure": "13:14",
-          "frequentation_reelle": 55,
-          "capacite_max": 1100,
-          "ouvert": true
-        },
-        {
-          "jour": "2026-09-09",
-          "heure": "17:09",
-          "frequentation_reelle": 89,
-          "capacite_max": 1100,
-          "ouvert": true
-        },
         {
           "jour": "2026-09-09",
           "heure": "20:41",
@@ -801,6 +780,13 @@
           "frequentation_reelle": 76,
           "capacite_max": 1100,
           "ouvert": true
+        },
+        {
+          "jour": "2026-09-14",
+          "heure": "18:30",
+          "frequentation_reelle": 96,
+          "capacite_max": 1100,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -823,20 +809,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-09-09",
-          "heure": "13:14",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-09-09",
-          "heure": "17:09",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
         {
           "jour": "2026-09-09",
           "heure": "20:41",
@@ -1078,6 +1050,13 @@
         {
           "jour": "2026-09-14",
           "heure": "12:33",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-14",
+          "heure": "18:30",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1370,20 +1349,6 @@
       "tendance": [
         {
           "jour": "2026-09-09",
-          "heure": "13:14",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-09-09",
-          "heure": "17:09",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-09-09",
           "heure": "20:41",
           "frequentation_reelle": null,
           "capacite_max": 600,
@@ -1623,6 +1588,13 @@
         {
           "jour": "2026-09-14",
           "heure": "12:33",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-09-14",
+          "heure": "18:30",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
