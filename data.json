@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-10-16T01:28:37+00:00",
+  "derniere_mise_a_jour": "2026-10-16T06:17:55+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -179,6 +179,13 @@
         {
           "jour": "2026-10-16",
           "heure": "03:28",
+          "frequentation_reelle": null,
+          "capacite_max": 2000,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-16",
+          "heure": "08:17",
           "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
@@ -455,9 +462,9 @@
     "Vaise": {
       "nom": "Piscine de Vaise",
       "capacite_max": 1100,
-      "frequentation_reelle": null,
-      "places_restantes": null,
-      "ouvert": false,
+      "frequentation_reelle": 26,
+      "places_restantes": 1074,
+      "ouvert": true,
       "tendance": [
         {
           "jour": "2026-10-11",
@@ -633,6 +640,13 @@
           "frequentation_reelle": null,
           "capacite_max": 1100,
           "ouvert": false
+        },
+        {
+          "jour": "2026-10-16",
+          "heure": "08:17",
+          "frequentation_reelle": 26,
+          "capacite_max": 1100,
+          "ouvert": true
         }
       ],
       "moyenne_jour": [
@@ -851,6 +865,13 @@
         {
           "jour": "2026-10-16",
           "heure": "03:28",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-16",
+          "heure": "08:17",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1312,6 +1333,13 @@
         {
           "jour": "2026-10-16",
           "heure": "03:28",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-16",
+          "heure": "08:17",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
