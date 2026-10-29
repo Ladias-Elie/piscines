@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-10-29T16:25:50+00:00",
+  "derniere_mise_a_jour": "2026-10-29T21:22:18+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -8,20 +8,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-10-24",
-          "heure": "19:39",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-10-24",
-          "heure": "21:51",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
         {
           "jour": "2026-10-24",
           "heure": "23:59",
@@ -200,6 +186,13 @@
         {
           "jour": "2026-10-29",
           "heure": "17:25",
+          "frequentation_reelle": null,
+          "capacite_max": 2000,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-29",
+          "heure": "22:22",
           "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
@@ -476,24 +469,10 @@
     "Vaise": {
       "nom": "Piscine de Vaise",
       "capacite_max": 1100,
-      "frequentation_reelle": 52,
-      "places_restantes": 1048,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-10-24",
-          "heure": "19:39",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-10-24",
-          "heure": "21:51",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-10-24",
           "heure": "23:59",
@@ -675,6 +654,13 @@
           "frequentation_reelle": 52,
           "capacite_max": 1100,
           "ouvert": true
+        },
+        {
+          "jour": "2026-10-29",
+          "heure": "22:22",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -747,20 +733,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-10-24",
-          "heure": "19:39",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-10-24",
-          "heure": "21:51",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
         {
           "jour": "2026-10-24",
           "heure": "23:59",
@@ -939,6 +911,13 @@
         {
           "jour": "2026-10-29",
           "heure": "17:25",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-29",
+          "heure": "22:22",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1231,20 +1210,6 @@
       "tendance": [
         {
           "jour": "2026-10-24",
-          "heure": "19:39",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-10-24",
-          "heure": "21:51",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-10-24",
           "heure": "23:59",
           "frequentation_reelle": null,
           "capacite_max": 600,
@@ -1421,6 +1386,13 @@
         {
           "jour": "2026-10-29",
           "heure": "17:25",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-10-29",
+          "heure": "22:22",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
