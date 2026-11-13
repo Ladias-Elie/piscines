@@ -1,5 +1,5 @@
 {
-  "derniere_mise_a_jour": "2026-11-13T16:47:10+00:00",
+  "derniere_mise_a_jour": "2026-11-13T22:14:33+00:00",
   "piscines": {
     "CNTB": {
       "nom": "Centre Nautique T. Bertrand (CNTB)",
@@ -8,20 +8,6 @@
       "places_restantes": null,
       "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-11-08",
-          "heure": "18:57",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-11-08",
-          "heure": "22:56",
-          "frequentation_reelle": null,
-          "capacite_max": 2000,
-          "ouvert": false
-        },
         {
           "jour": "2026-11-09",
           "heure": "02:38",
@@ -116,6 +102,13 @@
         {
           "jour": "2026-11-13",
           "heure": "17:47",
+          "frequentation_reelle": null,
+          "capacite_max": 2000,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-11-13",
+          "heure": "23:14",
           "frequentation_reelle": null,
           "capacite_max": 2000,
           "ouvert": false
@@ -392,24 +385,10 @@
     "Vaise": {
       "nom": "Piscine de Vaise",
       "capacite_max": 1100,
-      "frequentation_reelle": 25,
-      "places_restantes": 1075,
-      "ouvert": true,
+      "frequentation_reelle": null,
+      "places_restantes": null,
+      "ouvert": false,
       "tendance": [
-        {
-          "jour": "2026-11-08",
-          "heure": "18:57",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-11-08",
-          "heure": "22:56",
-          "frequentation_reelle": null,
-          "capacite_max": 1100,
-          "ouvert": false
-        },
         {
           "jour": "2026-11-09",
           "heure": "02:38",
@@ -507,6 +486,13 @@
           "frequentation_reelle": 25,
           "capacite_max": 1100,
           "ouvert": true
+        },
+        {
+          "jour": "2026-11-13",
+          "heure": "23:14",
+          "frequentation_reelle": null,
+          "capacite_max": 1100,
+          "ouvert": false
         }
       ],
       "moyenne_jour": [
@@ -605,20 +591,6 @@
       "ouvert": false,
       "tendance": [
         {
-          "jour": "2026-11-08",
-          "heure": "18:57",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-11-08",
-          "heure": "22:56",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
           "jour": "2026-11-09",
           "heure": "02:38",
           "frequentation_reelle": null,
@@ -712,6 +684,13 @@
         {
           "jour": "2026-11-13",
           "heure": "17:47",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-11-13",
+          "heure": "23:14",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
@@ -1003,20 +982,6 @@
       "ouvert": false,
       "tendance": [
         {
-          "jour": "2026-11-08",
-          "heure": "18:57",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
-          "jour": "2026-11-08",
-          "heure": "22:56",
-          "frequentation_reelle": null,
-          "capacite_max": 600,
-          "ouvert": false
-        },
-        {
           "jour": "2026-11-09",
           "heure": "02:38",
           "frequentation_reelle": null,
@@ -1110,6 +1075,13 @@
         {
           "jour": "2026-11-13",
           "heure": "17:47",
+          "frequentation_reelle": null,
+          "capacite_max": 600,
+          "ouvert": false
+        },
+        {
+          "jour": "2026-11-13",
+          "heure": "23:14",
           "frequentation_reelle": null,
           "capacite_max": 600,
           "ouvert": false
